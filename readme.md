@@ -25,7 +25,7 @@
 
 
 
-- [경상북도 공식 블로그](https://blog.naver.com/pride_gb/222514128304){target="_blink"}  
+- [경상북도 공식 블로그](https://blog.naver.com/pride_gb/222514128304){:target="_blank"}  
 
 
 
@@ -46,7 +46,7 @@
 
 
 
-- [경상북도 공식 블로그](https://blog.naver.com/pride_gb/222563226405){target="_blink"}  
+- [경상북도 공식 블로그](https://blog.naver.com/pride_gb/222563226405){:target="_blank"}  
 
 
 
