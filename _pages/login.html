@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      #form_container {
+        margin: auto;
+        width: 500px;
+        height: 80%;
+        background-color: white;
+      }
+      form > input {
+        width: 200px;
+        height: 30px;
+        display: block;
+        margin: 10px auto;
+      }
+      .input_button {
+        width: 100px;
+        display: inline-block;
+        margin: 15px;
+        position: relative;
+        left: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 헤더 부분 -->
+    <header>
+      <div id="heading">
+        <h1>HEADER</h1>
+        <input id="login_btn" type="button" value="LOGIN" />
+        <input id="night_day_btn" type="button" value="NIGHT" />
+      </div>
+    </header>
+    <!-- 네비게이션 부분 -->
+    <nav>
+      <p>THIS IS NAVIGATION</p>
+      <ol>
+        <li>
+          <a href="../index.html"><button class="menu_btn">홈</button></a>
+        </li>
+        <li><button class="menu_btn">장소정보</button></li>
+        <li><button class="menu_btn">산책기록</button></li>
+        <li><button class="menu_btn">일정관리</button></li>
+        <li><button class="menu_btn">게시판</button></li>
+        <li><button class="menu_btn">공지사항</button></li>
+      </ol>
+    </nav>
+    <!-- 컨테이너 부분 -->
+    <div id="container">
+      <div id="form_container">
+        <p
+          style="
+            text-align: center;
+            font-size: 2em;
+            color: rgb(181, 79, 232);
+            margin-bottom: 30px;
+          "
+        >
+          LOG IN
+        </p>
+        <form action="URL">
+          <input type="text" id="input_id" placeholder="ID" />
+          <input type="password" id="input_password" placeholder="PASSWORD" />
+          <input type="email" id="input_email" placeholder="E-MAIL" />
+          <input type="submit" class="input_button" value="로그인" />
+          <input type="button" class="input_button" value="회원가입" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
