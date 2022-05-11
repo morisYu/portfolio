@@ -3,14 +3,13 @@
 <h3> Entity List</h3>  
 
 - 사용자(user)  
-- 홈화면(home)  
-- 장소정보(placeInfo)  
-- 일정관리(schedule)  
+- 장소정보(place)  
+- 일정관리(plan)  
 - 산책기록(record)  
 - 산책기록 댓글(record_comment)
 - 게시판(board)  
 - 게시판 댓글(board_comment)  
-- 공지사항(announcement)  
+- 공지사항(notice)  
 
 <br>  
 
@@ -23,34 +22,24 @@
 
 | 속성명 | 조건 | 비고 |  
 | -- | -- | :--: |  
-| 사용자번호(userNum) | INT AUTO_INCREMENT PRIMARY KEY | 기본키 |  
+| 번호(num) | INT AUTO_INCREMENT PRIMARY KEY | 기본키 |  
 | 사용자아이디(userID) | VARCHAR(15) | 이메일 형식 |  
-| 비밀번호(password) | VARCHAR(15) NOT NULL | 영문, 숫자, 특수문자 |  
+| 비밀번호(userPass) | VARCHAR(15) NOT NULL | 영문, 숫자, 특수문자 |  
 | 별명(nickname) | VARCHAR(10) | 입력 없을 시 사용자아이디(@ 앞부부)로 대체 |  
 | 연락처(mobile) | VARCHAR(15) NOT NULL | 연락처 노출 시 중간번호 별표(*) 처리 |  
 | 거주지역(site) | VARCHAR(10) | 드롭다운 메뉴에서 선택 |  
+| 가입일자(joindate) | DATE | 아이디 생성 일자 |  
 
 <br>  
 
-> 홈화면(home)  
-
-- 홈화면에는 관리자가 등록한 장소정보에 대한 사진과 지역을 선택할 수 있는 지도가 나옴  
-
-| 속성명 | 조건 | 비고 |  
-| -- | -- | :--: |  
-| 홈번호(homeNum) | INT AUTO_INCREMENT PRIMARY KEY | 기본키 |  
-| 장소정보 사진(picture) | BLOB | 입력값은 물리저장소에 저장된 경로 |  
-
-<br>  
-
-> 장소정보(placeInfo)  
+> 장소정보(place)  
 
 - 장소정보에는 관리자가 등록한 장소정보가 나옴  
 - 값이 없는 경우 하이픈(-) 으로 표시  
 
 | 속성명 | 조건 | 비고 |  
 | -- | -- | :--: |  
-| 장보정보번호(placeNum) | INT AUTO_INCREMENT PRIMARY KEY | 기본키 |  
+| 번호(num) | INT AUTO_INCREMENT PRIMARY KEY | 기본키 |  
 | 장소정보 사진(picture) | BLOB | 물리저장소에 저장된 경로 |   
 | 주소(addr) | VARCHAR(20) NOT NULL | - |  
 | 연락처(call) | VARCHAR(15) | - |  
