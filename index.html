@@ -1,35 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/common.css" />
   </head>
   <body>
     <!-- 헤더 부분 -->
     <header>
-      <div id="heading">
-        <h1>HEADER</h1>
-        <a href="./_pages/login.html"><input id="login_btn" type="button" value="LOGIN"/></a>
-        <input id="night_day_btn" type="button" value="NIGHT"/>
-      </div>
+        <h1>SANCHECK</h1>
+        <a href="/_pages/login.html"><input id="login_btn" type="button" value="LOGIN"/></a>
+        <a href="/_pages/join.html"><input id="join_btn" type="button" value="회원가입"/></a>
     </header>
     <!-- 네비게이션 부분 -->
     <nav>
-        <p>THIS IS NAVIGATION</p>
-      <ol>
-        <li><a href="#" target="_blank"><button class="menu_btn">홈</button></a> </li>
-        <li><button class="menu_btn">장소정보</button></li>
-        <li><button class="menu_btn">산책기록</button></li>
-        <li><button class="menu_btn">일정관리</button></li>
-        <li><button class="menu_btn">게시판</button></li>
-        <li><button class="menu_btn">공지사항</button></li>
-      </ol>
+      <button class="menu_btn" onclick="location.href='/index.html'">홈</button>
+      <button class="menu_btn" onclick="location.href='#'">장소정보</button>
+      <button class="menu_btn" onclick="location.href='#'">산책기록</button>
+      <button class="menu_btn" onclick="location.href='#'">일정관리</button>
+      <button class="menu_btn" onclick="location.href='#'">게시판</button>
+      <button class="menu_btn" onclick="location.href='#'">공지사항</button>
     </nav>
     <!-- 컨테이너 부분 -->
     <div id="container">
       <!-- 메인 부분 -->
-    <div id="main">
+      <div id="main">
         <p>THIS IS MAIN</p>
         <img src="" alt="" width="300px" height="150px" />
       </div>
@@ -38,16 +34,15 @@
         <p>THIS IS SIDE</p>
       </div>
     </div>
-          <!-- 바닥 부분 -->
-          <div id="bottomLayer">
-            <p>This is Bottom</p>
-            <div id="test_wrapper">
-                <div class="testBlock">test1</div>
-                <div class="testBlock">test2</div>
-                <div class="testBlock">test3</div>
-                <div class="testBlock">test4</div>
-            </div>
-          </div>
+    <!-- 바닥 부분 -->
+    <div id="bottomLayer">
+      <div id="test_wrapper">
+          <div class="testBlock">test1</div>
+          <div class="testBlock">test2</div>
+          <div class="testBlock">test3</div>
+          <div class="testBlock">test4</div>
+      </div>
+    </div>
     <!-- 푸터 부분 -->
     <footer>
       <p> &#x1F331; contact us &#127752;</p>

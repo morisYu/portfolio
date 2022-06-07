@@ -1,0 +1,46 @@
+/* 로그인 페이지 */
+
+#form_container {
+  position: relative;
+  top: 70px;
+  margin: auto;
+  width: 400px;
+  height: 300px;
+  background-color: rgb(199, 199, 199);
+}
+
+#form_message{
+  display: block;
+  position: relative;
+  top: 10px;
+  text-align: center;
+  font-size: 2em;
+  color: rgb(181, 79, 232);
+  /* margin-bottom: 20px; */
+}
+
+#login_form{
+  position: relative;
+  top: 30px;
+  display: block;
+  text-align: center;
+}
+
+form > input {
+  width: 230px;
+  height: 40px;
+  display: block;
+  margin: 15px auto;
+  border: none;
+
+}
+
+.input_button {
+  width: 100px;
+  display: inline-block;
+  margin: 15px 10px;
+  position: relative;
+  font-size: 1.2rem;
+}
+
+

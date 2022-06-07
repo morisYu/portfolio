@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/common.css" />
+  <link rel="stylesheet" href="/assets/css/join.css">
+</head>
+<body>
+  <!-- 헤더 부분 -->
+  <header>
+    <h1>SANCHECK</h1>
+    <a href="/_pages/login.html"><input id="login_btn" type="button" value="LOGIN"/></a>
+    <a href="/_pages/join.html"><input id="join_btn" type="button" value="회원가입"/></a>
+  </header>
+  <!-- 네비게이션 부분 -->
+  <nav>
+    <button class="menu_btn" onclick="location.href='../index.html'">홈</button>
+    <button class="menu_btn" onclick="location.href='#'">장소정보</button>
+    <button class="menu_btn" onclick="location.href='#'">산책기록</button>
+    <button class="menu_btn" onclick="location.href='#'">일정관리</button>
+    <button class="menu_btn" onclick="location.href='#'">게시판</button>
+    <button class="menu_btn" onclick="location.href='#'">공지사항</button>
+  </nav>
+  <h1 id="join_message">회원 가입</h1>
+  <!-- 회원가입 부분 -->
+  <form action="#" id="regist_form" method="post">
+    <table>
+      <tr>
+        <td class="category">
+          아이디
+        </td>
+        <td class="insert">
+          <input type="email" name="id" onchange="substring(event)"/>
+          <h6>아이디는 이메일 형식으로 입력하세요</h6>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="category">
+          비밀번호
+        </td>
+        <td class="insert">
+          <input type="password" name="passwd1" id="passwd" autocomplete="off" onchange="insertPasswd()"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="category">
+          비밀번호 확인
+        </td>
+        <td class="insert">
+          <input type="password" name="passwd2" autocomplete="off" onkeyup="passcheck(event)"/>
+          <span id="text"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="category">
+          이름
+        </td>
+        <td class="insert">
+          <input type="text" name="id" />
+        </td>
+      </tr>
+
+      <tr>
+        <td class="category">
+          별명
+        </td>
+        <td class="insert">
+          <input type="text" name="alias" id="alias"/>
+          <h6>별명은 입력하지 않으면 아이디로 자동 대체됩니다.</h6>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="category">
+          연락처
+        </td>
+        <td class="insert">
+          <select name="phone1" id="phone1" size="1" style="width: 60px">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="018">018</option>
+            <option value="019">019</option>
+          </select>
+          - <input type="text" name="phone2" maxlength="4" size="4"/>
+          - <input type="text" name="phone3" maxlength="4" size="4"/>
+          <span id="text"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="category">
+          생년월일
+        </td>
+        <td class="insert">
+          <input type="date" name="birth"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="category">
+          성별
+        </td>
+        <td class="insert">
+          <select name="gender" id="gender" style="width: 60px">
+            <option value="man">남자</option>
+            <option value="woman">여자</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="category">
+          지역
+        </td>
+        <td class="insert">
+          <select name="phone1" id="region" size="1" style="width: 100px">
+            <option value="서울">서울</option>
+            <option value="경기도">경기도</option>
+            <option value="대전">대전</option>
+            <option value="대구">대구</option>
+            <option value="기타">기타</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="form_btn">
+          <input class="join_btn" type="button" value="가입하기" onclick="form_submit()">
+          <input class="join_btn" type="button" value="취소" onclick="reset()">
+        </td>
+      </tr>
+    </table>
+  </form>
+  <script src="/assets/js/join.js"></script>
+</body>
+</html>
