@@ -1,0 +1,54 @@
+table{
+  position: relative;
+  top: 80px;
+  width: 500px;
+  margin: auto;
+  background: rgb(233, 233, 233);
+}
+
+.category{
+  width: 30%;
+  border: 1px solid green;
+  text-align: center;
+  padding: 10px;
+}
+
+.insert{
+  border: 1px solid red;
+  padding: 5px;
+}
+
+input{
+  height: 20px;
+}
+
+#join_message{
+  position: relative;
+  top: 20px;
+  text-align: center;
+}
+
+#text{
+  font-size: 0.7rem;
+}
+
+.form_btn{
+  width: 30%;
+  border: 1px solid green;
+  text-align: center;
+  padding: 10px;
+}
+
+.join_btn{
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  padding: 2px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.join_btn:hover{
+  background: lemonchiffon;
+}

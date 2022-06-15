@@ -1,0 +1,24 @@
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6{
+    margin: 0px;
+}
+
+a{
+    text-decoration: none;
+    font-size: 1em;
+}
+
+p{
+    margin: 0px;
+    text-align: center; 
+    font-weight: bold;
+}
+
+img{
+    width: auto;
+    height: auto;
+} 

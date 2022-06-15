@@ -1,75 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../style.css" />
-    <style>
-      #form_container {
-        margin: auto;
-        width: 500px;
-        height: 80%;
-        background-color: white;
-      }
-      form > input {
-        width: 200px;
-        height: 30px;
-        display: block;
-        margin: 10px auto;
-      }
-      .input_button {
-        width: 100px;
-        display: inline-block;
-        margin: 15px;
-        position: relative;
-        left: 120px;
-      }
-    </style>
+    <title>로그인</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <link rel="stylesheet" href="../assets/css/login.css" />
   </head>
   <body>
     <!-- 헤더 부분 -->
     <header>
-      <div id="heading">
-        <h1>HEADER</h1>
-        <input id="login_btn" type="button" value="LOGIN" />
-        <input id="night_day_btn" type="button" value="NIGHT" />
-      </div>
+      <h1>SANCHECK</h1>
+      <a href="/_pages/login.html"><input id="login_btn" type="button" value="LOGIN"/></a>
+      <a href="/_pages/join.html"><input id="join_btn" type="button" value="회원가입"/></a>
     </header>
     <!-- 네비게이션 부분 -->
     <nav>
-      <p>THIS IS NAVIGATION</p>
-      <ol>
-        <li>
-          <a href="../index.html"><button class="menu_btn">홈</button></a>
-        </li>
-        <li><button class="menu_btn">장소정보</button></li>
-        <li><button class="menu_btn">산책기록</button></li>
-        <li><button class="menu_btn">일정관리</button></li>
-        <li><button class="menu_btn">게시판</button></li>
-        <li><button class="menu_btn">공지사항</button></li>
-      </ol>
+      <button class="menu_btn" onclick="location.href='../index.html'">홈</button>
+      <button class="menu_btn" onclick="location.href='#'">장소정보</button>
+      <button class="menu_btn" onclick="location.href='#'">산책기록</button>
+      <button class="menu_btn" onclick="location.href='#'">일정관리</button>
+      <button class="menu_btn" onclick="location.href='#'">게시판</button>
+      <button class="menu_btn" onclick="location.href='#'">공지사항</button>
     </nav>
-    <!-- 컨테이너 부분 -->
-    <div id="container">
-      <div id="form_container">
-        <p
-          style="
-            text-align: center;
-            font-size: 2em;
-            color: rgb(181, 79, 232);
-            margin-bottom: 30px;
-          "
-        >
-          LOG IN
-        </p>
-        <form action="URL">
-          <input type="text" id="input_id" placeholder="ID" />
-          <input type="password" id="input_password" placeholder="PASSWORD" />
-          <input type="email" id="input_email" placeholder="E-MAIL" />
-          <input type="submit" class="input_button" value="로그인" />
-          <input type="button" class="input_button" value="회원가입" />
-        </form>
-      </div>
+    <!-- 로그인 정보 작성 부분 -->
+    <div id="form_container">
+      <p id="form_message">LOG IN</p>
+      <form action="URL" id="login_form">
+        <input type="email" id="input_id" name="id" placeholder="ID" onkeyup="log(event)"/>
+        <input type="password" id="input_password" name="passwd" autocomplete="off" placeholder="PASSWORD" />
+        <input type="button" class="input_button" value="로그인" onclick="check()" />
+        <input type="button" class="input_button" value="회원가입" />
+      </form>
     </div>
+    <script src="../assets/js/login.js"></script>
   </body>
 </html>
