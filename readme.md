@@ -249,4 +249,24 @@
 
 ### 관련사이트
 
-- [용두산공원](https://www.bisco.or.kr/yongdusanpark/)
+- [용두산공원](https://www.bisco.or.kr/yongdusanpark/)  
+
+
+## 작업 환경  
+
+1. Eclipse: 2202-03(4.23)  
+2. JAVA: jdk-17.0.3.1  
+3. SERVER: Apache Tomcat 9.0  
+4. JSP 사용  
+5. CSS, JAVASCRIPT: Bootstrap 사용  
+6. DBMS: MySQL8.0  
+
+
+## 06/15  
+
+1. 회원 테이블 수정(아이디, 이메일 따로 설정)  
+2. 메인페이지 Bootstrap 적용  
+3. 로그인 페이지 작성  
+4. 회원 DAO, DTO 클래스 작성  
+5. 회원 관련 페이지는 JSP scriptlet tag 로 작성, 게시판 관련 페이지는 EL 사용할 것  
+6. 회원 가입 페이지 수정 중...  

@@ -4,20 +4,29 @@ USE sancheck;
 
 /************************* 사용자(user) 테이블 데이터 ***************************/
 DESC user_tbl;
-INSERT INTO user_tbl (user_No, user_ID, user_Pass, user_name, user_nickname, 
-					  user_mobile, user_region, user_grade, user_join_DT)
-	VALUES (NULL, 'YSH@sancheck.com', '1111', '유성화', '관리자', '010-1234-5543', '구미', '관리자', NOW()),
-		   (NULL, 'LSG@example.com', '1234', '이승기', 'LSG', '010-1234-5543', '서울', '사용자', NOW()),
-		   (NULL, 'SSG@example.com', '2234', '성시경', 'SSG', '010-2435-1232', '대구', '사용자', NOW()),
-		   (NULL, 'KKH@example.com', '2222', '김경호', 'KKH', '010-6654-7768', '부산', '사용자', NOW()),
-		   (NULL, 'KHD@gooble.co.kr', '4345', '강호동', 'KHD', '010-5543-8789', '대전', '사용자', NOW()),
-		   (NULL, 'YJS@gooble.co.kr', '6789', '윤종신', 'YJS', '010-7821-0023', '구미', '사용자', NOW()),
-		   (NULL, 'JSH@gooble.co.kr', '1357', '조세호', 'JSH', '010-3345-3214', '경기', '사용자', NOW()),
-		   (NULL, 'PJB@hanmaum.net', '2468', '박재범', 'PJB', '010-5546-7657', '서울', '사용자', NOW()),
-		   (NULL, 'SSW@hanmaum.net', '0000', '신성우', 'SSW', '010-3455-6789', '세종', '사용자', NOW()),
-		   (NULL, 'PJY@hanmaum.net', '9873', '박진영', 'PJY', '010-9876-5432', '대구', '사용자', NOW());
+INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname, 
+					  user_mobile, user_region, user_email, user_grade, user_join_date)
+	VALUES (NULL, 'admin',  '0000', '유성화', '관리자', '010-1234-5543', '구미', 'YSH@sancheck.com', 'admin', '2022/05/10(10:30:23)'),
+		   (NULL, 'user01', '1111', '이승기', 'LSG', '010-1234-5543', '서울', 'LSG@example.com', 'user', '2022/05/11(11:21:35)'),
+		   (NULL, 'user02', '2222', '성시경', 'SSG', '010-2435-1232', '대구', 'SSG@example.com', 'user', '2022/05/12(15:11:05)'),
+		   (NULL, 'user03', '3333', '김경호', 'KKH', '010-6654-7768', '부산', 'KKH@example.com', 'user', '2022/05/15(09:30:23)'),
+		   (NULL, 'user04', '4444', '강호동', 'KHD', '010-5543-8789', '대전', 'KHD@gooble.co.kr', 'admin', '2022/05/18(10:30:23)'),
+		   (NULL, 'user05', '5555', '윤종신', 'YJS', '010-7821-0023', '구미', 'YJS@gooble.co.kr', 'user', '2022/05/20(10:30:23)'),
+		   (NULL, 'user06', '6666', '조세호', 'JSH', '010-3345-3214', '경기', 'JSH@gooble.co.kr', 'user', '2022/05/21(15:55:11)'),
+		   (NULL, 'user07', '7777', '박재범', 'PJB', '010-5546-7657', '서울', 'PJB@hanmaum.net', 'user', '2022/05/22(20:30:45)'),
+		   (NULL, 'user08', '8888', '신성우', 'SSW', '010-3455-6789', '세종', 'SSW@hanmaum.net', 'user', '2022/06/05(21:15:18)'),
+		   (NULL, 'user09', '9999', '박진영', 'PJY', '010-9876-5432', '대구', 'PJY@hanmaum.net', 'user', '2022/06/10(17:06:42)');
 
 SELECT * FROM user_tbl;
+
+SELECT user_grade FROM user_tbl WHERE user_id = 'YSH@sancheck.com';
+
+UPDATE user_tbl 
+	SET user_password = 'test', user_name = 'test', 
+		user_nickname = 'test', user_mobile = 'test', user_region = 'test'
+	WHERE user_id = 'LSG@example.com';
+
+DELETE FROM user_tbl WHERE user_id = 'LSG@example.com';
 
 /************************* 장소정보(place) 테이블 데이터 ***************************/
 DESC place_tbl;
