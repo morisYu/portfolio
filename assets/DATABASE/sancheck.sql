@@ -90,13 +90,14 @@ CREATE TABLE record_comment_tbl (
 /************************* 게시판(board) ***************************/
 -- 게시판 테이블 생성
 CREATE TABLE board_tbl (
-	board_No INT AUTO_INCREMENT PRIMARY KEY,
+	board_no INT AUTO_INCREMENT PRIMARY KEY,
     board_nickname VARCHAR(20),
     board_title VARCHAR(20),
     board_content TEXT,
     board_nice INT,
-    board_photo BLOB,
-    board_DT TIMESTAMP DEFAULT NOW()
+    board_photo TEXT,
+    board_reg_date VARCHAR(50),
+    board_ip VARCHAR(50)
 );
 
 /************************* 게시판 댓글(board_comment) ***************************/
@@ -111,12 +112,21 @@ CREATE TABLE board_comment_tbl (
 /************************* 공지사항(notice) ***************************/
 -- 공지사항 테이블 생성
 CREATE TABLE notice_tbl (
-	notice_No INT AUTO_INCREMENT PRIMARY KEY,
+	notice_no INT AUTO_INCREMENT PRIMARY KEY,
     notice_nickname VARCHAR(20),
     notice_title VARCHAR(20),
     notice_content LONGTEXT,
-    notice_DT TIMESTAMP DEFAULT NOW()
-);
+    notice_reg_date VARCHAR(50),
+    CONSTRAINT user_notice_nickname_fk
+    FOREIGN KEY (notice_nickname)
+    REFERENCES user_tbl(user_nickname)
+    ON UPDATE CASCADE
+)DEFAULT CHARSET=utf8mb4;
+
+-- 제약조건 확인
+SELECT * FROM information_schema.table_constraints 
+	WHERE  table_name = 'notice_tbl';
 
 -- 테이블 목록 확인
 SHOW TABLES;
+

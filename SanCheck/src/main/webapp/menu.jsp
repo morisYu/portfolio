@@ -23,7 +23,7 @@
 			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">게시판</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">공지사항</a>
+			<a class="navbar-brand  fs-4" href="/SanCheck/notice/notice.jsp">공지사항</a>
 		</div>
 	</div>
 	

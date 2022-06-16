@@ -10,108 +10,95 @@
 <body>
 	<jsp:include page="/menu.jsp" />
 	
-	<div class="container" style="margin: 20px auto; border: 1px solid;">
+	<div class="container" style="margin: 20px auto;">
 		<div class="container text-center">
 			<h1 class="display-3">회원 가입</h1>
 		</div>
 		
-		<div class="container col-sm-6 mt-5 mb-5" style="border: 1px solid">
+		<div class="container col-sm-6 mt-5 mb-5">
 			<form name="newMember" method="post" action="processAddMember.jsp" class="form-horizontal"
 				onsubmit="return checkForm()">
 				
-				<div class="form-group row">
-					<label class="col-sm-4">아이디</label>
-					<div class="col-sm-3">
-						<input type="text" name="id" class="form-control" placeholder="id">
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-sm-2">비밀번호</label>
-					<div class="col-sm-3">
-						<input type="password" name="password" class="form-control" placeholder="password">
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-sm-4">비밀번호 확인</label>
-					<div class="col-sm-3">
-						<input type="password" name="password_confirm" class="form-control" placeholder="password confirm">
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-sm-2">성명</label>
-					<div class="col-sm-3">
-						<input type="text" name="name" class="form-control" placeholder="name">
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-sm-2">성별</label>
-					<div class="col-sm-10">
-						<input type="radio" name="gender" value="남" />남 &nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="gender" value="여" />여
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-sm-2">생일</label>
-					<div class="col-sm-4">
-						<input type="text" name="birthyy" maxlength="4" placeholder="년(4 자)" size="6">
-						<select name="birthmm">
-							<option value="">월</option>
-							<option value="01">1</option>
-							<option value="02">2</option>
-							<option value="03">3</option>
-							<option value="04">4</option>
-							<option value="05">5</option>
-							<option value="06">6</option>
-							<option value="07">7</option>
-							<option value="08">8</option>
-							<option value="09">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-						</select>
-						<input type="text" name="birthdd" maxlength="2" placeholder="일" size=4>
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-sm-2">이메일</label>
-					<div class="col-sm-10">
-						<input type="text" name="mail1" maxlength="50">@
-						<select name="mail2">
-							<option value="naver.com">naver.com</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="daum.net">daum.net</option>
-							<option value="nate.com">nate.com</option>
-						</select>
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-sm-2">전화번호</label>
-					<div class="col-sm-10">
-						<input type="text" name="phone1" size="6" /> -
-						<input type="text" name="phone2" size="6" /> -
-						<input type="text" name="phone3" size="6" />
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-sm-2">주소</label>
+				<div class="form-group row justify-content-center my-2">
+					<label class="col-sm-3"><span class="fs-5">아이디</span></label>
 					<div class="col-sm-5">
-						<input type="text" name="address" class="form-control" placeholder="address">
+						<input type="text" name="id" class="form-control" placeholder="id" style="width: 200px" /> 
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<div class="col-sm-offset-2 col-sm-10">
-						<input type="submit" class="btn btn-primary" value="등록">
-						<input type="reset" class="btn btn-primary" value="취소">
+				<div class="form-group row justify-content-center my-2">
+					<label class="col-sm-3"><span class="fs-5">비밀번호</span></label>
+					<div class="col-sm-5">
+						<input type="password" name="password" class="form-control" placeholder="password" style="width: 200px"/> 
 					</div>
+				</div>
+				
+				<div class="form-group row justify-content-center my-2">
+					<label class="col-sm-3"><span class="fs-5">비밀번호 확인</span></label>
+					<div class="col-sm-5">
+						<input type="password" name="password_confirm" class="form-control" style="width: 200px"/> 
+					</div>
+				</div>
+				
+				<div class="form-group row justify-content-center my-2">
+					<label class="col-sm-3"><span class="fs-5">이름</span></label>
+					<div class="col-sm-5">
+						<input type="text" name="name" class="form-control" style="width: 200px" autocomplete="off"/> 
+					</div>
+				</div>
+				
+				<div class="form-group row justify-content-center my-2">
+					<label class="col-sm-3"><span class="fs-5">별명</span></label>
+					<div class="col-sm-5">
+						<input type="text" name="nickname" class="form-control" style="width: 200px"/> 
+					</div>
+				</div>
+				
+				<div class="form-group row justify-content-center my-2">
+					<label class="col-sm-3"><span class="fs-5">전화번호</span></label>
+					<div class="col-sm-5">
+						<input type="text" name="mobile1" maxlength="4" size="4" /> -
+						<input type="text" name="mobile2" maxlength="4" size="4" /> -
+						<input type="text" name="mobile3" maxlength="4" size="4" />
+					</div>
+				</div>
+				
+				<div class="form-group row justify-content-center my-2">
+					<label class="col-sm-3"><span class="fs-5">지역</span></label>
+					<div class="col-sm-5">
+						<select name="region" class="form-select form-select-sm" style="width: 100px">
+							<option value="광주">광주</option>
+							<option value="대구">대구</option>
+							<option value="대전">대전</option>
+							<option value="부산">부산</option>
+							<option value="서울">서울</option>
+							<option value="울산">울산</option>
+							<option value="인천">인천</option>
+							<option value="제주도">제주도</option>
+							<option value="기타">기타</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group row justify-content-center my-2">
+					<label class="col-sm-3"><span class="fs-5">이메일</span></label>
+					<div class="col-sm-5">
+						<input type="text" name="email1" size="10"/> @ 
+						<input type="text" name="email2" id="email2" size="8"/>
+						<select name="email3" id="email3" class="form-select form-select-sm my-2" style="width: 150px" onchange="emailSetting()">
+							<option value="navar.com">naver.com</option>
+							<option value="google.com">google.com</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="nate.com">nate.com</option>
+							<option value="">직접입력</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="text-center my-2">
+					<input type="submit" class="btn btn-primary mx-1 px-4" value="등록" />
+					<input type="button" class="btn btn-danger mx-1 px-4" value="취소" />
 				</div>
 			</form>
 		</div>
@@ -137,6 +124,17 @@
 				alert("비밀번호를 동일하게 입력하세요.");
 				member.password_confirm.focus();
 				return false;
+			}
+		}
+		
+		function emailSetting(){
+			var email = document.querySelector("#email2");
+			var tmp = document.querySelector("#email3");
+			
+			for(i = 0;tmp.options.length; i++){
+				if(tmp.options[i].selected == true){
+					email.value = tmp.options[i].value;
+				}
 			}
 		}
 	</script>
