@@ -2,28 +2,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String sessionId = (String) session.getAttribute("sessionId");
-	String grade = (String) session.getAttribute("user_grade");
+	String sessionGrade = (String) session.getAttribute("sessionGrade");
 %>
 
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-1" href="/SanCheck/">Home</a>
+			<a class="navbar-brand  fs-1" href="/SanCheck/index.jsp">Home</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/">장소정보</a>
+			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">장소정보</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/">산책기록</a>
+			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">산책기록</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/">일정관리</a>
+			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">일정관리</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/">게시판</a>
+			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">게시판</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/">공지사항</a>
+			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">공지사항</a>
 		</div>
 	</div>
 	
@@ -43,11 +43,11 @@
 						<a class="nav-link  fs-4" href="<c:url value="/member/logout.jsp" />">로그아웃</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link  fs-4" href="<c:url value="/member/updateMember.jsp" />">회원수정</a>
+						<a class="nav-link  fs-4" href="<c:url value="/member/updateMember.jsp" />">회원정보수정</a>
 					</li>
-					<c:if test="${ grade = 'admin' }">
+					<c:if test="${ sessionGrade eq 'admin' }">
 						<li class="nav-item">
-							<a class="nav-link  fs-4" href="<c:url value="/BoardListAction.do?pageNum=1"/>">회원관리</a>
+							<a class="nav-link  fs-4" href="<c:url value="/member/manageMember.jsp"/>">회원관리</a>
 						</li>
 					</c:if>
 				</c:otherwise>

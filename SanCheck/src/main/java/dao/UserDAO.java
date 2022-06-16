@@ -12,13 +12,13 @@ import dbconnect.DBConnection;
 import dto.UserDTO;
 
 public class UserDAO {
-	private UserDAO instance;
+	private static UserDAO instance;
 	
 	private UserDAO() {
 		
 	}
 	
-	public UserDAO getInstance() {
+	public static UserDAO getInstance() {
 		if(instance == null) {
 			instance = new UserDAO();
 		}
@@ -48,7 +48,7 @@ public class UserDAO {
 			user.setUser_nickname(rs.getString("user_nickname"));
 			user.setUser_mobile(rs.getString("user_mobile"));
 			user.setUser_region(rs.getString("user_region"));
-			user.setUser_region(rs.getString("user_email"));
+			user.setUser_email(rs.getString("user_email"));
 			user.setUser_grade(rs.getString("user_grade"));
 			user.setUser_join_date(rs.getString("user_join_date"));
 			

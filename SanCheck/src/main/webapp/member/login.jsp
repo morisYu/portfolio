@@ -17,12 +17,12 @@
 	    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 	
 	    <div class="form-floating">
-	      <input type="email" class="form-control" name="id" placeholder="name@example.com" autocomplete="off">
-	      <label>Email address</label>
+	      <input type="text" class="form-control" name="login_id" placeholder="name@example.com" autocomplete="off">
+	      <label>ID</label>
 	    </div>
 	    
 	    <div class="form-floating mt-2 mb-2">
-	      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+	      <input type="password" class="form-control" id="login_password" name="login_password" placeholder="Password">
 	      <label for="password">Password</label>
 	    </div>
 	

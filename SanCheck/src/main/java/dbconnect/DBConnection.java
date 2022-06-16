@@ -10,13 +10,13 @@ public class DBConnection {
 		
 		Connection conn = null;
 		
-		String url = "jdbc:mysql://localhost:3306/sancheck?useSSL=false&serverTimezone=Asia/Seoul";
-		String user = "root";
-		String password = "1111";
-		String driver = "com.mysql.cj.jdbc.Driver";
+		String connect_url = "jdbc:mysql://localhost:3306/sancheck?useSSL=false&serverTimezone=Asia/Seoul";
+		String connect_user = "root";
+		String connect_password = "1234";
+		String connect_driver = "com.mysql.cj.jdbc.Driver";
 		
-		Class.forName(driver);
-		conn = DriverManager.getConnection(url, user, password);
+		Class.forName(connect_driver);
+		conn = DriverManager.getConnection(connect_url, connect_user, connect_password);
 		
 		return conn;
 	}

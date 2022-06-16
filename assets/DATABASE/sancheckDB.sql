@@ -15,11 +15,12 @@ INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname,
 		   (NULL, 'user06', '6666', '조세호', 'JSH', '010-3345-3214', '경기', 'JSH@gooble.co.kr', 'user', '2022/05/21(15:55:11)'),
 		   (NULL, 'user07', '7777', '박재범', 'PJB', '010-5546-7657', '서울', 'PJB@hanmaum.net', 'user', '2022/05/22(20:30:45)'),
 		   (NULL, 'user08', '8888', '신성우', 'SSW', '010-3455-6789', '세종', 'SSW@hanmaum.net', 'user', '2022/06/05(21:15:18)'),
-		   (NULL, 'user09', '9999', '박진영', 'PJY', '010-9876-5432', '대구', 'PJY@hanmaum.net', 'user', '2022/06/10(17:06:42)');
+		   (NULL, 'user09', '9999', '박진영', 'PJY', '010-9876-5432', '대구', 'PJY@hanmaum.net', 'user', '2022/06/10(17:06:42)'),
+           (NULL, 'guest', 'guest', '게스트', 'GUEST', '011-1111-2222', '제주', 'guest@sancheck.com', 'user', '2022/01/01(21:15:18)');
 
 SELECT * FROM user_tbl;
 
-SELECT user_grade FROM user_tbl WHERE user_id = 'YSH@sancheck.com';
+SELECT * FROM user_tbl WHERE user_id = 'admin';
 
 UPDATE user_tbl 
 	SET user_password = 'test', user_name = 'test', 
