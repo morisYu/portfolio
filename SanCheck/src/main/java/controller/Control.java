@@ -32,7 +32,8 @@ public class Control extends HttpServlet {
 		String RequestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = RequestURI.substring(contextPath.length());
-
+		
+		System.out.println(command);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		RequestDispatcher rd;
@@ -60,6 +61,7 @@ public class Control extends HttpServlet {
 		case "/NoticeViewAction.do":
 			requestNoticeView(request);
 			rd = request.getRequestDispatcher("NoticeView.do");
+			rd.forward(request, response);
 			break;
 			
 		case "/NoticeView.do":
@@ -70,6 +72,7 @@ public class Control extends HttpServlet {
 		case "/NoticeUpdateAction.do":
 			requestNoticeUpdate(request);
 			rd = request.getRequestDispatcher("/NoticeListAction.do");
+			rd.forward(request, response);
 			break;
 			
 		case "/NoticeDeleteAction.do":
@@ -92,11 +95,8 @@ public class Control extends HttpServlet {
 			pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		}
 		
-		String items = request.getParameter("items");
-		String text = request.getParameter("text");
-		
-		int total_record = dao.getListCount(items, text);
-		noticeList = dao.getNoticeList(pageNum, limit, items, text);
+		int total_record = dao.getListCount();
+		noticeList = dao.getNoticeList(pageNum, limit);
 		
 		int total_page;
 		

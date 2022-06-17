@@ -151,3 +151,5 @@ INSERT INTO notice_tbl (notice_no, notice_nickname, notice_title, notice_content
 SELECT * FROM notice_tbl;
 SELECT * FROM notice_tbl ORDER BY notice_no DESC;
 UPDATE user_tbl SET user_nickname = '관리자' WHERE user_id = 'admin';
+
+SELECT * FROM notice_tbl WHERE notice_no = 3;

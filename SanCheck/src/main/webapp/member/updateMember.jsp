@@ -37,7 +37,11 @@
 		if(pstmt != null){
 			pstmt.close();
 		}
-		
+		if(conn != null){
+			conn.close();
+		}
+	} catch (Exception e){
+		e.printStackTrace();
 	}
 	
 %>

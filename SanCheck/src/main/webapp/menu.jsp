@@ -8,7 +8,7 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-1" href="/SanCheck/index.jsp">Home</a>
+			<a class="navbar-brand fs-1" href="/SanCheck/index.jsp">Home</a>
 		</div>
 		<div class="navbar-header">
 			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">장소정보</a>
@@ -23,7 +23,7 @@
 			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">게시판</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/notice/notice.jsp">공지사항</a>
+			<a class="navbar-brand  fs-4" href="./NoticeListAction.do?pageNum=1">공지사항</a>
 		</div>
 	</div>
 	
