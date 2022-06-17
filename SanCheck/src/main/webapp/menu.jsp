@@ -4,26 +4,27 @@
 	String sessionId = (String) session.getAttribute("sessionId");
 	String sessionGrade = (String) session.getAttribute("sessionGrade");
 %>
+<c:set var="path" value="<%= request.getContextPath() %>" scope="application"/>
 
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand fs-1" href="/SanCheck/index.jsp">Home</a>
+			<a class="navbar-brand fs-1" href="${ path }/index.jsp">Home</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">장소정보</a>
+			<a class="navbar-brand text-warning fs-4" href="${ path }/index.jsp">장소정보</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">산책기록</a>
+			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">산책기록</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">일정관리</a>
+			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">일정관리</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="/SanCheck/index.jsp">게시판</a>
+			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">게시판</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand  fs-4" href="./NoticeListAction.do?pageNum=1">공지사항</a>
+			<a class="navbar-brand text-success fs-4" href="${ path }/NoticeListAction.do?pageNum=1">공지사항</a>
 		</div>
 	</div>
 	
@@ -39,6 +40,9 @@
 					</li>
 				</c:when>
 				<c:otherwise>
+					<li class="nav-item">
+						<span class="badge fs-5 mt-2" style="background: yellow; color: black">[ ${ sessionId } ] 님</span>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link  fs-4" href="<c:url value="/member/logout.jsp" />">로그아웃</a>
 					</li>

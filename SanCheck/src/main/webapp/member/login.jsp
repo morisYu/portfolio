@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%
+	String msg = request.getParameter("msg");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,6 +11,16 @@
 </head>
 <body>
 	<jsp:include page="../menu.jsp" />
+	
+	<%
+		if(msg != null){
+			if(msg.equals("1")){
+				out.println("<h2 class='alert alert-danger text-center'> 아이디가 존재합니다. </h2>");
+			} else if(msg.equals("2")){
+				out.println("<h2 class='alert alert-success text-center'> 회원가입이 되었습니다. </h2>");
+			}
+		}
+	%>
 	
 	<main class="container text-center" style="padding: 100px; width: 500px; margin: 20px auto">
 	

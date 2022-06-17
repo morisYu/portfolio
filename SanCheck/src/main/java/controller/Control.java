@@ -33,7 +33,6 @@ public class Control extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String command = RequestURI.substring(contextPath.length());
 		
-		System.out.println(command);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		RequestDispatcher rd;

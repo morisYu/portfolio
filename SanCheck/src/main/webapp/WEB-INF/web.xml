@@ -11,11 +11,20 @@
   </welcome-file-list>
   
   <servlet>
-  	<servlet-name>BoardController</servlet-name>
+  	<servlet-name>NoticeController</servlet-name>
   	<servlet-class>controller.Control</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>BoardController</servlet-name>
+  	<servlet-name>NoticeController</servlet-name>
   	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>BoardController</servlet-name>
+  	<servlet-class>controller.BoardControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BoardController</servlet-name>
+  	<url-pattern>*.bc</url-pattern>
   </servlet-mapping>
 </web-app>
