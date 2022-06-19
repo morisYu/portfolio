@@ -123,6 +123,7 @@ CREATE TABLE notice_tbl (
     ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8mb4;
 
+SELECT * FROM notice_tbl;
 -- 제약조건 확인
 SELECT * FROM information_schema.table_constraints 
 	WHERE  table_name = 'notice_tbl';
@@ -130,3 +131,4 @@ SELECT * FROM information_schema.table_constraints
 -- 테이블 목록 확인
 SHOW TABLES;
 
+DELETE FROM notice_tbl WHERE notice_no = 40;

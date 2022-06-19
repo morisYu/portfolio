@@ -6,6 +6,7 @@
 <%@ page import="dao.NoticeDAO" %>
 <%
 	String sessionId = (String) session.getAttribute("sessionId");
+	String admin = "admin";
 	List noticeList = (List) request.getAttribute("noticeList");
 	int total_record = ((Integer) request.getAttribute("total_record")).intValue();
 	int pageNum = ((Integer) request.getAttribute("pageNum")).intValue();
@@ -38,6 +39,7 @@
 			<!-- table -->
 			<p class="display-6 text-center"> 테이블 목록 </p>
 			<div class="pt-5 text-center">
+				<a href="./NoticeWriteForm.do?id=<%= sessionId %>">글쓰기</a>
 				<table class="table table-hover">
 					<tr>
 						<th>번호</th>
@@ -86,11 +88,17 @@
 				    </h2>
 				    <div id="collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="heading<%= i %>" data-bs-parent="#accordionExample">
 				      <div class="accordion-body px-5 py-5">
-				      	<span class="fs-6"><%= notice.getNotice_content() %></span>
+				      		<div class="col-sm-8 fs-6">
+					      		<%= notice.getNotice_content() %>
+					      	</div>
 				      </div>
+				      <c:if test="${ sessionId == 'admin' }">
+					      <div class="text-end px-3 pb-3">
+					      	<a class="btn btn-danger" href="./NoticeViewAction.do?num=<%=notice.getNotice_no() %>&pageNum=<%= pageNum %>">수정</a>
+					      </div>
+					     </c:if>
 				    </div>
 				  </div>
-				
 				<%
 					}
 				%>  

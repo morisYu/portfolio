@@ -169,6 +169,8 @@ public class Control extends HttpServlet {
 		notice.setNotice_reg_date(reg_date);
 		
 		dao.updateNotice(notice);
+		request.setAttribute("num", num);
+		request.setAttribute("pageNum", pageNum);
 	}
 	
 	// 공지사항 삭제하기
@@ -178,5 +180,7 @@ public class Control extends HttpServlet {
 		
 		NoticeDAO dao = NoticeDAO.getInstance();
 		dao.deleteNotice(num);
+		request.setAttribute("num", num);
+		request.setAttribute("pageNum", pageNum);
 	}
 }

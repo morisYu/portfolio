@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import dbconnect.DBConnection;
@@ -166,25 +164,138 @@ public class NoticeDAO {
 	}
 
 	public String getLoginNameById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String name = null;
+
+		String sql = "SELECT user_nickname FROM user_tbl WHERE user_id = ?";
+		
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				name = rs.getString("user_name");
+			}
+		} catch (Exception e) {
+			System.out.println("getLoginNameById() 에러 : " + e);
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return name;
 	}
 
+	// 공지사항 등록
 	public void insertNotice(NoticeDTO notice) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 		
+		String sql = "INSERT INTO notice_tbl(notice_no, notice_nickname, notice_title, notice_content, notice_reg_date) "
+					+ " VALUES(0, ?, ?, ?, ?)";
+		
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, notice.getNotice_nickname());
+			pstmt.setString(2, notice.getNotice_title());
+			pstmt.setString(3, notice.getNotice_content());
+			pstmt.setString(4, notice.getNotice_reg_date());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("insertNotice() 에러 : " + e);
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
 	}
-
 	
-
-	public void deleteNotice(int num) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	// 공지사항 수정하기
 	public void updateNotice(NoticeDTO notice) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 		
+		String sql = "UPDATE notice_tbl SET notice_title = ?, notice_content = ? WHERE notice_no = ?";
+		
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			conn.setAutoCommit(false);
+			
+			pstmt.setString(1, notice.getNotice_title());
+			pstmt.setString(2, notice.getNotice_content());
+			pstmt.setInt(3, notice.getNotice_no());
+			
+			pstmt.executeUpdate();
+			conn.commit();
+			
+		} catch(Exception e) {
+			System.out.println("updateNotice() 에러 : " + e);
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
 	}
-
+	
+	// 공지사항 삭제하기
+	public void deleteNotice(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM notice_tbl WHERE notice_no = ?";
+		
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("deleteNotice() 에러 : " + e);
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
 }

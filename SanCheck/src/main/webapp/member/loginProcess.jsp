@@ -12,7 +12,7 @@
 	String user_id = null;
 	
 	try{
-		String sql = "SELECT * FROM user_tbl WHERE user_id = '" + login_id + "'";
+		String sql = "SELECT * FROM user_tbl WHERE user_id = '" + login_id + "' AND user_password = '" + login_password + "'";
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
@@ -42,7 +42,7 @@
 	}
 	
 	if(user_id == null){
-		response.sendRedirect("/SanCheck/member/login.jsp");
+		response.sendRedirect("/SanCheck/member/resultMember.jsp?msg=3");
 	}else{
 		response.sendRedirect("/SanCheck/index.jsp");
 	}
