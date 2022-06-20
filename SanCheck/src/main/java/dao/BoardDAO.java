@@ -334,7 +334,7 @@ public class BoardDAO {
 		ResultSet rs = null;
 
 		String nickname = null;
-		String sql = "SELECT * FROM user_tbl WHERE id = ?";
+		String sql = "SELECT * FROM user_tbl WHERE user_id = ?";
 
 		try {
 			conn = DBConnection.getConnection();

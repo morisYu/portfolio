@@ -41,7 +41,8 @@
 						<tr>
 							<td>${ board['board_no'] }</td>
 							<td>
-								<a class="fw-bold text-decoration-none" href="${ path }/BoardView.bc?num=${ board['board_no'] }"> ${ board['board_title'] } </a>	
+								<a class="fw-bold text-decoration-none" 
+									href="${ path }/BoardViewAction.bc?num=${ board['board_no'] }&pageNum=${ pageNum }"> ${ board['board_title'] } </a>	
 							</td>
 							<td>${ board['board_reg_date'] }</td>
 							<td>${ board['board_nice'] }</td>
@@ -76,7 +77,7 @@
 					</select>
 					<input name="text" type="text" />
 					<input type="submit" class="btn btn-primary" value="검색"/>
-					<button onclick="checkForm()" class="btn btn-secondary">글쓰기&raquo;</button>
+					<button onclick="checkForm(); return false;" class="btn btn-secondary">글쓰기&raquo;</button>
 				</div>
 			</div>
 		</form>
@@ -84,10 +85,13 @@
 	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 		function checkForm(){
-				if(${ sessionScope.sessionId.trim() == ""}){
-					alert("test");
-				}
-			
+			var id = "<c:out value="${ sessionId }"/>";
+			if(id == ""){
+				alert("로그인이 필요합니다.");
+				location.href="./member/login.jsp";
+				return false;
+			}
+			location.href="./BoardWriteForm.bc?user_id=<c:out value="${ sessionId }"/>";
 		}
 	
 	</script>

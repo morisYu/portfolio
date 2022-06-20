@@ -1,10 +1,10 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,7 +17,6 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.BoardDAO;
-import dbconnect.DBConnection;
 import dto.BoardDTO;
 
 public class BoardControl extends HttpServlet {
@@ -53,9 +52,40 @@ public class BoardControl extends HttpServlet {
 			rd = request.getRequestDispatcher("/board/boardList.jsp");
 			rd.forward(request, response);
 			break;
+			
+		case "/BoardWriteForm.bc":
+			requestLoginName(request);
+			rd = request.getRequestDispatcher("/board/boardWriteForm.jsp");
+			rd.forward(request, response);
+			break;
+			
+		case "/BoardWriteAction.bc":
+			requestBoardWrite(request);
+			rd = request.getRequestDispatcher("/BoardListAction.bc");
+			rd.forward(request, response);
+			break;
+			
+		case "/BoardViewAction.bc":
+			requestBoardView(request);
+			rd = request.getRequestDispatcher("/BoardView.bc");
+			rd.forward(request, response);
+			break;
+			
+		case "/BoardView.bc":
+			rd = request.getRequestDispatcher("/board/boardView.jsp");
+			rd.forward(request, response);
+			break;
 		}
 	}
-	
+
+	// 인증된 사용자 별명 가져오기
+	private void requestLoginName(HttpServletRequest request) {
+		String user_id = request.getParameter("user_id");
+		BoardDAO dao = BoardDAO.getInstance();
+		String nickname = dao.getLoginNameById(user_id);
+		request.setAttribute("nickname", nickname);
+	}
+
 	// 게시글 목록 가져오기
 	public void requestBoardList(HttpServletRequest request) {
 		BoardDAO dao = BoardDAO.getInstance();
@@ -87,5 +117,64 @@ public class BoardControl extends HttpServlet {
 		request.setAttribute("boardList", boardList);
 	}
 
+	// 게시글 등록하기
+	private void requestBoardWrite(HttpServletRequest request) throws IOException {
+		BoardDAO dao = BoardDAO.getInstance();
+		
+		String filePath = "D:/upload";
+		int fileSize = 5 * 1024 *1024;
+		String encType = "UTF-8";
+		
+		MultipartRequest multi = new MultipartRequest(request, filePath, fileSize, encType, new DefaultFileRenamePolicy());
+		
+		BoardDTO dto = new BoardDTO();
+		
+		dto.setBoard_no(0);
+		dto.setBoard_nickname(multi.getParameter("board_nickname"));
+		dto.setBoard_title(multi.getParameter("board_title"));
+		dto.setBoard_content(multi.getParameter("board_content"));
+		dto.setBoard_nice(0);
+		
+		Enumeration files = multi.getFileNames();
+		String fname = (String) files.nextElement();
+		String fileName = multi.getFilesystemName(fname);
+		
+		dto.setBoard_photo(fileName);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
+		String reg_date = formatter.format(new Date());
+		
+		dto.setBoard_reg_date(reg_date);
+		dto.setBoard_ip(request.getRemoteAddr());
+		
+		dao.insertBoard(dto);
+	}
+	
+	// 게시판 상세내용 보기
+	private void requestBoardView(HttpServletRequest request) {
+		BoardDAO dao = BoardDAO.getInstance();
+		int num = Integer.parseInt(request.getParameter("num"));
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		
+		BoardDTO board = new BoardDTO();
+		board = dao.getBoardByNum(num);
+		
+		request.setAttribute("num", num);
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("board", board);
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
