@@ -21,7 +21,7 @@
 			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">일정관리</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">게시판</a>
+			<a class="navbar-brand text-danger fs-4" href="${ path }/BoardListAction.bc">게시판</a>
 		</div>
 		<div class="navbar-header">
 			<a class="navbar-brand text-success fs-4" href="${ path }/NoticeListAction.do?pageNum=1">공지사항</a>

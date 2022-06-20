@@ -28,49 +28,19 @@
 				<h1 class="display-3">공지사항</h1>
 			</div>
 		</div>
-
-		<div class="container">
-			<div>
-				<div class="text-right">
-					<span class="badge bg-success">전체 ${ total_record } 건</span>
-				</div>
-			</div>
 		
-			<!-- table -->
-			<p class="display-6 text-center"> 테이블 목록 </p>
-			<div class="pt-5 text-center">
-				<a href="./NoticeWriteForm.do?id=<%= sessionId %>">글쓰기</a>
-				<table class="table table-hover">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성일</th>
-						<th>작성자</th>
-					</tr>
-					
-					<%
-						for(int i = 0; i < noticeList.size(); i++){
-							NoticeDTO notice = (NoticeDTO) noticeList.get(i);
-					%>
-					
-					<tr>
-						<td><%= notice.getNotice_no() %></td>
-						<td><a href="./NoticeViewAction.do?num=<%=notice.getNotice_no() %>&pageNum=<%= pageNum %>"><%= notice.getNotice_title() %></a></td>
-						<td><%= notice.getNotice_reg_date() %></td>
-						<td><%= notice.getNotice_nickname() %></td>
-					</tr>
-					
-					<%
-						}
-					%>
-				</table>
+		<div class="container">
+			<div class="text-end mb-2">
+				<span class="badge bg-success fs-6">전체 ${ requestScope.total_record } 건</span>			
 			</div>
-			
-			<hr>
-				<p class="display-6 text-center"> 아코디언 목록 </p>
-			<hr>
 			
 			<!-- accordion -->
+			<c:if test="${ sessionId == 'admin' }">
+				<div class="container text-end mb-3">
+					<button class="btn btn-success" onclick="location.href='./NoticeWriteForm.do?id=<%= sessionId %>'">글쓰기</button>
+				</div>
+			</c:if>
+			
 			<div class="accordion" id="accordionExample">
 				<%
 					for(int i = 0; i < noticeList.size(); i++){

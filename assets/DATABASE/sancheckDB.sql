@@ -19,8 +19,12 @@ INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname,
            (NULL, 'guest', 'guest', '게스트', 'GUEST', '011-1111-2222', '제주', 'guest@sancheck.com', 'user', '2022/01/01(21:15:18)');
 
 SELECT * FROM user_tbl;
-
+INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname, 
+					  user_mobile, user_region, user_email, user_grade, user_join_date)
+	VALUES (0, 'aaa',  '0000', '유성화', 'aaa', '010-1234-5543', '구미', 'YSH@sancheck.com', 'admin', '2022/05/10(10:30:23)');
 SELECT * FROM user_tbl WHERE user_id = 'admin';
+
+SELECT user_nickname FROM user_tbl WHERE user_id = 'admin';
 
 UPDATE user_tbl 
 	SET user_password = 'test', user_name = 'test', 
@@ -106,15 +110,17 @@ SELECT * FROM record_comment_tbl;
 
 /************************* 게시판(board) 테이블 데이터***************************/
 DESC board_tbl;
-INSERT INTO board_tbl (board_No, board_nickname, board_title, board_content, board_nice, board_photo, board_DT)
-	VALUES (NULL, 'SSG', '게시판에는 뭐 써요', '여기에는 어떤 내용을 쓰나요?', 0, NULL, DEFAULT),
-		   (NULL, 'KKH', '게시판에는 뭐 써요', '여기에는 어떤 내용을 쓰나요?', 0, NULL, DEFAULT),
-           (NULL, 'YJS', '게시판에는 뭐 써요', '여기에는 어떤 내용을 쓰나요?', 0, NULL, DEFAULT),
-           (NULL, 'PJB', '게시판에는 뭐 써요', '여기에는 어떤 내용을 쓰나요?', 0, NULL, DEFAULT),
-           (NULL, 'SSW', '게시판에는 뭐 써요', '여기에는 어떤 내용을 쓰나요?', 0, NULL, DEFAULT),
-           (NULL, 'SSG', '게시판에는 뭐 써요', '여기에는 어떤 내용을 쓰나요?', 0, NULL, DEFAULT);
+INSERT INTO board_tbl (board_no, board_nickname, board_title, board_content, board_nice, board_photo, board_reg_date, board_ip)
+	VALUES (0, '관리자', '게시판에는 뭐 써요 001', '여기에는 어떤 내용을 쓰나요? 001', 10, NULL, '2022/01/10(13:10:53)', '127:0:0:1'),
+		   (0, 'LSG', '게시판에는 뭐 써요 002', '여기에는 어떤 내용을 쓰나요? 002', 3, NULL, '2022/01/17(12:11:13)', '127:8:64:1'),
+           (0, 'SSG', '게시판에는 뭐 써요 003', '여기에는 어떤 내용을 쓰나요? 003', 0, NULL, '2022/01/19(11:34:21)', '127:9:66:1'),
+           (0, 'PJB', '게시판에는 뭐 써요 004', '여기에는 어떤 내용을 쓰나요? 004', 2, NULL, '2022/02/02(09:55:12)', '127:100:87:1'),
+           (0, 'SSW', '게시판에는 뭐 써요 005', '여기에는 어떤 내용을 쓰나요? 005', 0, NULL, '2022/02/15(21:10:11)', '127:68:6:1'),
+           (0, 'PJY', '게시판에는 뭐 써요 006', '여기에는 어떤 내용을 쓰나요? 006', 1, NULL, '2022/03/16(11:51:22)', '127:44:5:1');
            
-SELECT * FROM board_tbl ORDER BY board_DT DESC;
+SELECT * FROM board_tbl ORDER BY board_reg_date DESC;
+
+SELECT count(*) FROM board_tbl WHERE board_title LIKE '%뭐%';
 
 /************************* 게시판 댓글(board_comment) 테이블 데이터 ***************************/
 DESC board_comment_tbl;
@@ -150,6 +156,6 @@ INSERT INTO notice_tbl (notice_no, notice_nickname, notice_title, notice_content
            (NULL, '관리자', '공지사항입니다018', '내용00685743', '2022/05/29(20:40:29)');
 SELECT * FROM notice_tbl;
 SELECT * FROM notice_tbl ORDER BY notice_no DESC;
-UPDATE user_tbl SET user_nickname = '관리자' WHERE user_id = 'admin';
+UPDATE notice_tbl SET notice_title = 'test11', notice_content = 'test1111' WHERE notice_no = '3';
 
 SELECT * FROM notice_tbl WHERE notice_no = 3;

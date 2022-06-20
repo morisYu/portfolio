@@ -69,22 +69,23 @@ CREATE TABLE plan_tbl (
 /************************* 산책기록(record) ***************************/
 -- 산책기록 테이블 생성
 CREATE TABLE record_tbl (
-	record_No INT AUTO_INCREMENT PRIMARY KEY,
+	record_no INT AUTO_INCREMENT PRIMARY KEY,
     record_nickname VARCHAR(20),
     record_title VARCHAR(20),
     record_content TEXT,
     record_photo BLOB,
     record_nice INT,
-    record_DT DATETIME
+    record_reg_date VARCHAR(20),
+    record_ip VARCHAR(50)
 );
 
 /************************* 산책기록 댓글(record_comment) ***************************/
 -- 산책기록 댓글 테이블 생성
 CREATE TABLE record_comment_tbl (
-	record_comment_No INT AUTO_INCREMENT PRIMARY KEY,
+	record_comment_no INT AUTO_INCREMENT PRIMARY KEY,
     record_comment_nickname VARCHAR(20),
     record_comment VARCHAR(20),
-    record_comment_DT TIMESTAMP DEFAULT NOW()
+    record_comment_reg_date VARCHAR(50)
 );
 
 /************************* 게시판(board) ***************************/
@@ -97,8 +98,12 @@ CREATE TABLE board_tbl (
     board_nice INT,
     board_photo TEXT,
     board_reg_date VARCHAR(50),
-    board_ip VARCHAR(50)
-);
+    board_ip VARCHAR(50),
+    CONSTRAINT user_board_nickname_fk
+    FOREIGN KEY (board_nickname)
+    REFERENCES user_tbl(user_nickname)
+    ON UPDATE CASCADE
+)DEFAULT CHARSET=utf8mb4;
 
 /************************* 게시판 댓글(board_comment) ***************************/
 -- 게시판 댓글 테이블 생성

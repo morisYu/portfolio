@@ -163,13 +163,14 @@ public class NoticeDAO {
 		return notice;
 	}
 
+	// 로그인 아이디로 별명 가져오기
 	public String getLoginNameById(String id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String name = null;
 
-		String sql = "SELECT user_nickname FROM user_tbl WHERE user_id = ?";
+		String sql = "SELECT * FROM user_tbl WHERE user_id = ?";
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -178,7 +179,7 @@ public class NoticeDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				name = rs.getString("user_name");
+				name = rs.getString("user_nickname");
 			}
 		} catch (Exception e) {
 			System.out.println("getLoginNameById() 에러 : " + e);

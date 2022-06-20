@@ -18,7 +18,7 @@ import dto.NoticeDTO;
 public class Control extends HttpServlet {
 
 	private static final long serialVersionUID = -1L;
-	static final int LISTCOUNT = 5;
+	static final int LISTCOUNT = 10;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -118,8 +118,8 @@ public class Control extends HttpServlet {
 	private void requestLoginName(HttpServletRequest request) {
 		String id = request.getParameter("id");
 		NoticeDAO dao = NoticeDAO.getInstance();
-		String name = dao.getLoginNameById(id);
-		request.setAttribute("name", name);
+		String nickname = dao.getLoginNameById(id);
+		request.setAttribute("nickname", nickname);
 	}
 	
 	// 공지사항 작성하기
@@ -127,9 +127,9 @@ public class Control extends HttpServlet {
 		NoticeDAO dao = NoticeDAO.getInstance();
 		
 		NoticeDTO notice = new NoticeDTO();
-		notice.setNotice_nickname(request.getParameter("notice_nickname"));
-		notice.setNotice_title(request.getParameter("notice_title"));
-		notice.setNotice_content(request.getParameter("notice_content"));
+		notice.setNotice_nickname(request.getParameter("nickname"));
+		notice.setNotice_title(request.getParameter("title"));
+		notice.setNotice_content(request.getParameter("content"));
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
 		String reg_date = formatter.format(new java.util.Date());
@@ -159,6 +159,7 @@ public class Control extends HttpServlet {
 		NoticeDAO dao = NoticeDAO.getInstance();
 		
 		NoticeDTO notice = new NoticeDTO();
+		notice.setNotice_no(num);
 		notice.setNotice_nickname(request.getParameter("name"));
 		notice.setNotice_title(request.getParameter("title"));
 		notice.setNotice_content(request.getParameter("content"));
