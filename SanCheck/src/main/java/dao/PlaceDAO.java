@@ -24,6 +24,86 @@ public class PlaceDAO {
 		return instance;
 	}
 	
+	// 검색된 장소정보 목록 갯수
+	public int getPlaceCount(String items, String text) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		String sql = null;
+		
+		if(items != null && text != null) {
+			sql = "SELECT count(*) FROM place_tbl WHERE " + items + " LIKE '%" + text + "%'";
+		} else {
+			sql = "SELECT count(*) FROM place_tbl";
+		}
+		
+		try {
+			conn = DBConnection.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("getPlaceCount() 에러 : " + e.getMessage());
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(stmt != null) {
+					stmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception ex) {
+				throw new RuntimeException(ex.getMessage());
+			}
+		}
+		return count;
+	}
+	
+	// 장소정보 번호로 항목 가져오기
+	public PlaceDTO getPlaceByNum(int num) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		PlaceDTO place = new PlaceDTO();
+		
+		String sql = "SELECT * FROM place_tbl WHERE place_no = " + num;
+		
+		try {
+			conn = DBConnection.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			rs.next();
+			
+			place.setPlace_no(rs.getInt("place_no"));
+			place.setPlace_name(rs.getString("place_name"));
+			place.setPlace_addr(rs.getString("place_addr"));
+			place.setPlace_tel(rs.getString("place_tel"));
+			place.setPlace_business_hours(rs.getString("place_business_hours"));
+			place.setPlace_other(rs.getString("place_other"));
+			place.setPlace_photo(rs.getString("place_photo"));
+			
+		} catch (Exception e) {
+			System.out.println("getPlaceByNum() 에러 : " + e.getMessage());
+		} finally {
+			try {
+				
+			} catch (Exception ex) {
+				throw new RuntimeException(ex.getMessage());
+			}
+		}
+		return place;
+	}
+	
 	// 장소정보 목록 가져오기
 	public List<PlaceDTO> getPlaceList(String items, String text){
 		Connection conn = null;

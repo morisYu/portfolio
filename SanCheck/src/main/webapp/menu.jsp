@@ -24,7 +24,7 @@
 			<a class="navbar-brand fs-1" href="${ path }/index.jsp">Home</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand text-warning fs-4" href="${ path }/index.jsp">장소정보</a>
+			<a class="navbar-brand text-warning fs-4" href="${ path }/PlaceListAction.pc?pageNum=1">장소정보</a>
 		</div>
 		<div class="navbar-header">
 			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">산책기록</a>

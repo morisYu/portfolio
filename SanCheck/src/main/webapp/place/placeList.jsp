@@ -1,73 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="dto.PlaceDTO" %>
+<%@ page import="java.util.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String sessionId = (String) session.getAttribute("sessionId");
+	int pageNum = ((Integer) request.getAttribute("pageNum")).intValue();
+	int total_count = ((Integer) request.getAttribute("total_count")).intValue();
+	int total_page = ((Integer) request.getAttribute("total_page")).intValue();
+	List<PlaceDTO> placeList = (List) request.getAttribute("placeList");
+	
+%>
+
 
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<link rel="stylesheet" href="../assets/CSS/bootstrap.css" />
+	<link rel="stylesheet" href="./assets/CSS/bootstrap.css" />
 	<title>장소목록</title>
+	<style type="text/css">
+		@font-face {
+	    font-family: 'ImcreSoojin';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+		}
+		.font-soojin{
+			font-family: 'ImcreSoojin';
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="../menu.jsp" />
 	
 	<div class="container-fluid">
-		<h1 class="display-4 text-center">장소목록</h1>
+		<h1 class="display-4 text-center my-3">장소목록</h1>
 	</div>
 	
+	<hr>
 	
-	<main class="container">
+	<div class="container">
 		<div class="row">
-		
-		  <div class="col-md-6 col-lg-3">
-		    <div class="card" style="width: 16rem;">
-		    	<div class="text-center bg-dark">
-		    		<img src="https://cdn.pixabay.com/photo/2020/03/27/08/45/stone-lotus-4972881__340.jpg" class="card-img-top">
-		    	</div>
-		      <div class="card-body">
-		        <h5 class="card-title">Special title treatment</h5>
-		        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		        <a href="#" class="btn btn-primary">Go somewhere</a>
-		      </div>
-		    </div>
-		  </div>
-		  
-		  <div class="col-md-6 col-lg-3">
-		    <div class="card" style="width: 16rem;">
-		    	<div class="text-center bg-dark">
-		    		<img src="https://cdn.pixabay.com/photo/2021/09/13/08/13/dahlia-6620610__340.jpg" class="card-img-top" style="width: auto; height: 200px;">
-		    	</div>
-		      <div class="card-body">
-		        <h5 class="card-title">Special title treatment</h5>
-		        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		        <a href="#" class="btn btn-primary text-center">Go somewhere</a>
-		      </div>
-		    </div>
-		  </div>
-		  
-		  <div class="col-md-6 col-lg-3">
-		    <div class="card" style="width: 16rem;">
-		    	<img src="https://cdn.pixabay.com/photo/2021/12/29/18/28/animal-6902459__340.jpg" class="card-img-top" alt="...">
-		      <div class="card-body">
-		        <h5 class="card-title">Special title treatment</h5>
-		        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		        <a href="#" class="btn btn-primary">Go somewhere</a>
-		      </div>
-		    </div>
-		  </div>
-		  
-		  <div class="col-md-6 col-lg-3">
-		    <div class="card" style="width: 16rem;">
-		    	<img src="https://cdn.pixabay.com/photo/2022/05/06/17/09/sheep-7178748__340.jpg" class="card-img-top" alt="..." style="height: 200px">
-		      <div class="card-body">
-		        <h5 class="card-title">Special title treatment</h5>
-		        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		        <a href="#" class="btn btn-primary">Go somewhere</a>
-		      </div>
-		    </div>
-		  </div>
-		  
-		</div>	
-	</main>
+			<c:forEach var="place" items="${ placeList }">
+			
+				<div class="col-md-6 col-lg-3 mb-3">
+			    <div class="card" style="width: 18rem;">
+			    	<div class="bd-placeholder-img card-img-top">
+			    		<img src="https://cdn.pixabay.com/photo/2020/03/27/08/45/stone-lotus-4972881__340.jpg" class="h-100 w-100">
+			    	</div>
+			      <div class="card-body">
+			        <h4 class="card-title mb-3 font-soojin">${ place.place_name }</h4>
+			        <p class="fs-6 mb-3">${ place.place_addr }</p>
+			        <div class="text-center">
+			        	<a href="./PlaceViewAction.pc?num=${ place.place_no }&pageNum=${ pageNum }" class="btn btn-primary">상세보기</a>
+			      	</div>
+			      </div>
+			    </div>
+			  </div>
+				
+			</c:forEach>
+		</div>
+	</div>
+	
+	<ul class="pagination pagination-lg justify-content-center mt-3">
+		<c:set var="pageNum" value="<%= pageNum %>" />
+		<li class="page-item"><a class="page-link px-3" href="./PreView.pc?pageNum=${ pageNum }">&laquo;</a></li>
+		<c:forEach var="i" begin="1" end="<%= total_page %>">
+			<li class="page-item">
+				<c:choose>
+					<c:when test="${ pageNum == i }">
+						<a class="page-link active" href="<c:url value="./PlaceListAction.pc?pageNum=${ i }" />">${ i }</a>
+					</c:when>
+					<c:otherwise>
+						<a class="page-link" href="<c:url value="./PlaceListAction.pc?pageNum=${ i }" />">${ i }</a>
+					</c:otherwise>
+				</c:choose>
+			</li>
+		</c:forEach>
+		<li class="page-item"><a class="page-link px-3" href="./Nextview.pc?pageNum=${ pageNum }">&raquo;</a></li>
+	 </ul>
+	
+	<hr>
 	
 	
 	

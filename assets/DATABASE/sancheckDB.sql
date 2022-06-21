@@ -37,7 +37,7 @@ DELETE FROM user_tbl WHERE user_id = 'LSG@example.com';
 DESC place_tbl;
 INSERT INTO place_tbl (place_No, place_name, place_addr, place_tel, place_business_hours, place_other, place_photo)
 	VALUES (NULL, '동락공원', '경상북도 구미시 3공단1로 191', '054-480-4612', '24 시간', '입장료: 무료', NULL),
-		   (NULL, '낙동강체육공워', '경상북도 구미시 낙동제방길 200', '없음', '24 시간', '일부 시설 유료', NULL),
+		   (NULL, '낙동강체육공원', '경상북도 구미시 낙동제방길 200', '없음', '24 시간', '일부 시설 유료', NULL),
            (NULL, '월광수변공원', '대구광역시 달서구 월곡로 5', '053-667-2851', '24 시간', '입장료: 무료', NULL),
            (NULL, '디아크문화관', '대구 달성군 다사읍 강정본길 57', '053-585-0916', '10:00 ~ 18:00(매주 월요일 휴무)', '입장료: 일부 유료', NULL),
            (NULL, '북서울꿈의숲', '서울 강북구 월계로 173', '02-2289-4001', '24 시간', '입장료: 무료', NULL),
