@@ -35,7 +35,7 @@ DELETE FROM user_tbl WHERE user_id = 'LSG@example.com';
 
 /************************* 장소정보(place) 테이블 데이터 ***************************/
 DESC place_tbl;
-INSERT INTO place_tbl (place_No, place_name, place_addr, place_telephone, place_business_hours, place_other, place_photo)
+INSERT INTO place_tbl (place_No, place_name, place_addr, place_tel, place_business_hours, place_other, place_photo)
 	VALUES (NULL, '동락공원', '경상북도 구미시 3공단1로 191', '054-480-4612', '24 시간', '입장료: 무료', NULL),
 		   (NULL, '낙동강체육공워', '경상북도 구미시 낙동제방길 200', '없음', '24 시간', '일부 시설 유료', NULL),
            (NULL, '월광수변공원', '대구광역시 달서구 월곡로 5', '053-667-2851', '24 시간', '입장료: 무료', NULL),
@@ -47,6 +47,12 @@ INSERT INTO place_tbl (place_No, place_name, place_addr, place_telephone, place_
            (NULL, '유림공원', '대전 유성구 어은로 27', '042-824-4581', '24 시간', '입장료: 무료', NULL),
            (NULL, '은구비공원', '대전 유성구 노은동로 166', '042-611-2718', '24 시간', '입장료: 무료', NULL),
            (NULL, '용두산공원', '부산 중구 용두산길 37-55', '051-860-7820', '24 시간', '입장료: 무료', NULL);
+
+-- 데이터 전체 조회
+SELECT * FROM place_tbl;
+
+-- 조건으로 데이터 조회
+SELECT * FROM place_tbl WHERE place_name LIKE '%공원%';
 
 /************************* 일정관리(plan) 테이블 데이터 ***************************/
 DESC plan_tbl;

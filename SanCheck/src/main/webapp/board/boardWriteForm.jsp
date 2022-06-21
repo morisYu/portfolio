@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<link rel="stylesheet" href="${ path }/assets/CSS/bootstrap.css" />
-	<link rel="stylesheet" href="${ path }/assets/CSS/common.css" />
+	<link rel="stylesheet" href="./assets/CSS/bootstrap.css" />
+	<link rel="stylesheet" href="./assets/CSS/common.css" />
 	<title>게시글 작성</title>
 </head>
 <body>

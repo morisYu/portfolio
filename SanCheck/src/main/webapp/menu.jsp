@@ -5,7 +5,19 @@
 	String sessionGrade = (String) session.getAttribute("sessionGrade");
 %>
 <c:set var="path" value="<%= request.getContextPath() %>" scope="application"/>
-
+<style type="text/css">
+	@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+	nav{
+		font-family: 'Single Day', cursive;
+	}
+	.menu_text{
+		color: #FFB2F5;
+		font-size: 1.8rem;
+	}
+	.menu_text:hover{
+		color: #B7F0B1;
+	}
+</style>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 	<div class="container">
 		<div class="navbar-header">
@@ -21,10 +33,10 @@
 			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">일정관리</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand text-danger fs-4" href="${ path }/BoardListAction.bc">게시판</a>
+			<a class="navbar-brand menu_text" href="${ path }/BoardListAction.bc">게시판</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand text-success fs-4" href="${ path }/NoticeListAction.do?pageNum=1">공지사항</a>
+			<a class="navbar-brand menu_text" href="${ path }/NoticeListAction.do?pageNum=1">공지사항</a>
 		</div>
 	</div>
 	

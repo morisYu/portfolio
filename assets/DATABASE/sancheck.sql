@@ -45,15 +45,16 @@ CREATE TABLE user_tbl (
 
 /************************* 장소정보(place) ***************************/
 -- 장소정보 테이블 생성
+DROP TABLE place_tbl;
 CREATE TABLE place_tbl (
-	place_No INT AUTO_INCREMENT PRIMARY KEY,
+	place_no INT AUTO_INCREMENT PRIMARY KEY,
     place_name VARCHAR(20) NOT NULL,
-    place_addr VARCHAR(20) NOT NULL,
-    place_telephone VARCHAR(20),
-    place_business_hours VARCHAR(20),
-    place_other VARCHAR(20),
-    place_photo BLOB
-);
+    place_addr VARCHAR(50) NOT NULL,
+    place_tel VARCHAR(20),
+    place_business_hours VARCHAR(50),
+    place_other VARCHAR(50),
+    place_photo TEXT
+)DEFAULT CHARSET=utf8mb4;
 
 /************************* 일정관리(plan) ***************************/
 -- 일정관리 테이블 생성

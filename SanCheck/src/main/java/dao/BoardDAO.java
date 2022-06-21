@@ -187,7 +187,7 @@ public class BoardDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				nice = rs.getInt("board_no") + 1;
+				nice = rs.getInt("board_nice") + 1;
 			}
 			
 			sql = "UPDATE board_tbl SET board_nice = ? WHERE board_no = ?";

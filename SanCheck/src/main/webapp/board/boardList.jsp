@@ -9,8 +9,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<link rel="stylesheet" href="./assets/CSS/bootstrap.css" />
-	<link rel="stylesheet" href="./assets/CSS/common.css" />
+	<link rel="stylesheet" href="<c:url value="/assets/CSS/bootstrap.css"/>" />
 	<title>게시판</title>
 </head>
 <body>

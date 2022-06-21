@@ -27,4 +27,13 @@
   	<servlet-name>BoardController</servlet-name>
   	<url-pattern>*.bc</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>PlaceController</servlet-name>
+  	<servlet-class>controller.PlaceControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>PlaceController</servlet-name>
+  	<url-pattern>*.pc</url-pattern>
+  </servlet-mapping>
 </web-app>

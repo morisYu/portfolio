@@ -75,6 +75,18 @@ public class BoardControl extends HttpServlet {
 			rd = request.getRequestDispatcher("/board/boardView.jsp");
 			rd.forward(request, response);
 			break;
+			
+		case "/BoardUpdateAction.bc":
+			requestBoardUpdate(request);
+			rd = request.getRequestDispatcher("/BoardListAction.bc");
+			rd.forward(request, response);
+			break;
+			
+		case "/BoardDeleteAction.bc":
+			requestBoardDelete(request);
+			rd = request.getRequestDispatcher("/BoardListAction.bc");
+			rd.forward(request, response);
+			break;
 		}
 	}
 
@@ -163,7 +175,45 @@ public class BoardControl extends HttpServlet {
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("board", board);
 	}
+
+	// 게시글 수정하기
+	private void requestBoardUpdate(HttpServletRequest request) {
+		int board_no = Integer.parseInt(request.getParameter("num"));
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		
+		BoardDAO dao = BoardDAO.getInstance();
+		
+		BoardDTO board = new BoardDTO();
+		board.setBoard_no(board_no);
+		board.setBoard_nickname(request.getParameter("board_nickname"));
+		board.setBoard_title(request.getParameter("board_title"));
+		board.setBoard_content(request.getParameter("board_content"));
+		board.setBoard_photo(request.getParameter("board_photo"));
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
+		String board_reg_date = formatter.format(new Date());
+		
+		board.setBoard_reg_date(board_reg_date);
+		board.setBoard_nice(0);
+		board.setBoard_ip(request.getRemoteAddr());
+		
+		dao.updateBoard(board);
+		
+		request.setAttribute("num", board_no);
+		request.setAttribute("pageNum", pageNum);
+	}
 	
+	// 게시글 삭제하기
+	private void requestBoardDelete(HttpServletRequest request) {
+		int num = Integer.parseInt(request.getParameter("num"));
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		
+		BoardDAO dao = BoardDAO.getInstance();
+		dao.deleteBoard(num);
+		
+		request.setAttribute("num", num);
+		request.setAttribute("pageNum", pageNum);
+	}
 }
 
 
