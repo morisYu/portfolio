@@ -2,9 +2,15 @@
 <%@ page import="dto.PlaceDTO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
+	String sessionId = (String) session.getAttribute("sessionId");
+	String sessionGrade = (String) session.getAttribute("sessionGrade");
 	int num = ((Integer) request.getAttribute("num")).intValue();
 	int pageNum = ((Integer) request.getAttribute("pageNum")).intValue();
 	PlaceDTO place = (PlaceDTO) request.getAttribute("place");
+	String[] place_photos = null;
+	if(place.getPlace_photo() != null){
+		place_photos = place.getPlace_photo().split(",");
+	}
 %>
 
 <!DOCTYPE html>
@@ -12,6 +18,31 @@
 <head>
 	<link rel="stylesheet" href="./assets/CSS/bootstrap.css" />
 	<title>장소정보</title>
+	<style type="text/css">
+		.carousel-item{
+			height: 32rem;
+			background: black;
+			color: white;
+			position: relative;
+		}
+		.carousel-text{
+			position: absolute;
+			bottom: 0;
+			left: 50px;
+			right: 0;
+			padding-bottom: 50px;
+		}
+		.overlay-img{
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0px;
+			right: 0;
+			opacity: 1;
+			background-position: center;
+			background-size: cover;
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="../menu.jsp" />
@@ -22,70 +53,84 @@
 	
 	<div class="container mb-5">
 		<div class="row">
-			<div class="col-sm-5">
+			<div class="col-sm-6">
 				<img src="/fileupload/${ place.place_photo }" class="w-100" height="350px" />
 			</div>
 			
 			<div class="col-sm-6">
 				<table class="table">
 					<tr>
-						<td scope="col"><h4 class="fs-4">장소명: </h4></td>
-						<td scope="col"><h6 class="fs-5"><c:out value="${ place.place_name }" /></h6></td>
+						<td width="25%"><p class="fs-5 fw-bold my-0">장소명: </p></td>
+						<td><p class="fs-6 my-0 py-1"><c:out value="${ place.place_name }" /></p></td>
 					</tr>
 					<tr>
-						<td scope="col"><h4 class="fs-4">주소: </h4></td>
-						<td scope="col"><h6 class="fs-5"><c:out value="${ place.place_addr }" /></h6></td>
+						<td><p class="fs-5 fw-bold my-0">주소: </p></td>
+						<td><p class="fs-6 my-0 py-1"><c:out value="${ place.place_addr }" /></p></td>
 					</tr>
 					<tr>
-						<td scope="col"><h4 class="fs-4">연락처: </h4></td>
-						<td scope="col"><h6 class="fs-5"><c:out value="${ place.place_tel }" /></h6></td>
+						<td><p class="fs-5 fw-bold my-0">연락처: </p></td>
+						<td><p class="fs-6 my-0 py-1"><c:out value="${ place.place_tel }" /></p></td>
 					</tr>
 					<tr>
-						<td scope="col"><h4 class="fs-4">운영시간: </h4></td>
-						<td scope="col"><h6 class="fs-5"><c:out value="${ place.place_business_hours }" /></h6></td>
+						<td><p class="fs-5 fw-bold my-0">운영시간: </p></td>
+						<td><p class="fs-6 my-0 py-1"><c:out value="${ place.place_business_hours }" /></p></td>
 					</tr>
 					<tr>
-						<td scope="col"><h4 class="fs-4">기타: </h4></td>
-						<td scope="col"><h6 class="fs-5"><c:out value="${ place.place_other }" /></h6></td>
+						<td><p class="fs-5 fw-bold my-0">기타: </p></td>
+						<td><p class="fs-6 my-0 py-1"><c:out value="${ place.place_other }" /></p></td>
 					</tr>
 				</table>
+				<c:if test="${ sessionGrade == 'admin' }">
+					<a href="/UpdatePlaceAction.pc?num=${ place.place_no }" class="btn btn-warning px-5 py-1 fs-5 me-3" >수정</a>
+					<a href="/DeletePlaceAction.pc?num=${ place.place_no }" class="btn btn-danger px-5 py-1 fs-5" >삭제</a>
+				</c:if>
 			</div>
 		</div>
 	</div>
 	
 	<!-- carousel -->
-	<!-- https://nowonbun.tistory.com/707 참고해서 시간 조절 및 버튼으로 조작 설정할 것 -->
-	<div id="carouselExampleControls" class="container" style="width: 50%; height: auto">
-		<div class="carousel slide" data-bs-ride="carousel">
+	<div class="container mb-5" style="width: 70%;">
+	
+		<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+		
 		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="https://cdn.pixabay.com/photo/2022/06/12/22/35/village-7258991__340.jpg" class="d-block w-100" alt="...">
+		    <div class="carousel-item active" data-bs-interval="2000" >
+		    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/15/11/07/konigssee-7263638__340.jpg)"></div>
+		    	<div class="carousel-text">
+		    		<h2>PHOTO-1</h2>
+		    		<p>loremasklhfahjsfhakhfhjkahkhwjkyrqywfykah  jakhwfkhakhfkahksfhjhj</p>
+		    	</div>
 		    </div>
-		    <div class="carousel-item">
-		      <img src="https://cdn.pixabay.com/photo/2022/03/09/07/12/nature-7057191__340.jpg" class="d-block w-100" alt="...">
+		    
+		    <div class="carousel-item" data-bs-interval="2000" >
+		    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/14/17/30/beach-7262492__340.jpg)"></div>
+		    	<div class="carousel-text">
+		    		<h2>PHOTO-2</h2>
+		    		<p>alksjdgklajsklgjawejjlkS,.xcnbm,nkljalksejtkljklkl</p>
+		    	</div>
 		    </div>
-		    <div class="carousel-item">
-		      <img src="https://cdn.pixabay.com/photo/2022/05/12/10/02/mountains-7191235__340.jpg" class="d-block w-100" alt="...">
+		    
+		    <div class="carousel-item" data-bs-interval="2000" >
+		    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/05/12/10/02/mountains-7191235__340.jpg)"></div>
+		    	<div class="carousel-text">
+		    		<h2>PHOTO-3</h2>
+		    		<p>akljdfklajlkjjklklJK LAULUKLjljljwkljefjojl;asnmdfl jlkjwoitoppjslkd</p>
+		    	</div>
 		    </div>
-		  </div>
-		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		    <span class="visually-hidden">Previous</span>
-		  </button>
-		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		    <span class="visually-hidden">Next</span>
-		  </button>
+		  
+			  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Next</span>
+			  </button>
+			</div>
 		</div>
 	</div>
 	
-	
 	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript" src="./assets/JS/bootstrap.js"></script>
-	<script type="text/javascript">
-			$('#carouselExampleControls').carousel({
-	      interval: 1000
-	    });
-	</script>
 </body>
 </html>
