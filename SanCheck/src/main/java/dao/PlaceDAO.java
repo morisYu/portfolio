@@ -164,19 +164,20 @@ public class PlaceDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "INSERT INTO place_tbl (place_no, place_name, place_addr, place_tel, place_business_hours, place_other, place_photo) "
-					+ " VALUES(?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO place_tbl (place_no, place_write_id, place_name, place_addr, place_tel, place_business_hours, place_other, place_photo) "
+					+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			conn = DBConnection.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, 0);
-			pstmt.setString(2, place.getPlace_name());
-			pstmt.setString(3, place.getPlace_addr());
-			pstmt.setString(4, place.getPlace_tel());
-			pstmt.setString(5, place.getPlace_business_hours());
-			pstmt.setString(6, place.getPlace_other());
-			pstmt.setString(7, place.getPlace_photo());
+			pstmt.setString(2, place.getPlace_write_id());
+			pstmt.setString(3, place.getPlace_name());
+			pstmt.setString(4, place.getPlace_addr());
+			pstmt.setString(5, place.getPlace_tel());
+			pstmt.setString(6, place.getPlace_business_hours());
+			pstmt.setString(7, place.getPlace_other());
+			pstmt.setString(8, place.getPlace_photo());
 			
 			pstmt.executeUpdate();
 			
@@ -262,7 +263,42 @@ public class PlaceDAO {
 		}
 	}
 	
-	
+	// id 로 별명 가져오기
+	public String getNicknameById(String user_id) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String nickname = null;
+					  
+		String sql = "SELECT user_nickname FROM user_tbl WHERE user_id = '" + user_id + "'";
+		
+		try {
+			conn = DBConnection.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				nickname = rs.getString(1);
+			}
+		} catch (Exception e) {
+			System.out.println("getNicknameById() 에러: " + e.getMessage());
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(stmt != null) {
+					stmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception ex) {
+				throw new RuntimeException(ex.getMessage());
+			}
+		}
+		return nickname;
+	}
 	
 	
 	

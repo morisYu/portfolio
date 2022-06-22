@@ -4,11 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String sessionId = (String) session.getAttribute("sessionId");
+	String sessionGrade = (String) session.getAttribute("sessionGreade");
 	int pageNum = ((Integer) request.getAttribute("pageNum")).intValue();
 	int total_count = ((Integer) request.getAttribute("total_count")).intValue();
 	int total_page = ((Integer) request.getAttribute("total_page")).intValue();
 	List<PlaceDTO> placeList = (List) request.getAttribute("placeList");
-	
 %>
 
 
@@ -36,6 +36,36 @@
 	<div class="container-fluid">
 		<h1 class="display-4 text-center my-3">장소목록</h1>
 	</div>
+	
+		<form action="./PlaceListAction.pc" method="post">
+			<div class="container text-center">
+				<div class="row" style="margin: auto;">
+				
+					<div class="col-auto ps-0 pe-2">
+						<select name="items" class="form-select">
+							<option value="place_name">장소명</option>
+							<option value="place_addr">주소</option>
+							<option value="place_other">기타</option>
+						</select>
+					</div>
+					
+					<div class="col-auto ps-0 pe-2">
+						<input name="text" type="text" class="form-control"/>
+					</div>
+					
+					<div class="col-auto ps-0 pe-2 mx-0">
+						<input type="submit" class="btn btn-primary px-3" value="검색"/>
+					</div>
+					
+					<c:if test="${ sessionGrade == 'admin' }">
+						<div class="col-auto ps-0 pe-2 mx-0">
+							<a href="./PlaceWriteForm.pc?id=${ sessionId }" class="btn btn-secondary">글쓰기&raquo;</a>
+						</div>
+					</c:if>
+				</div>
+				
+			</div>
+		</form>
 	
 	<hr>
 	

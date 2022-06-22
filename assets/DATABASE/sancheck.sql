@@ -48,12 +48,16 @@ CREATE TABLE user_tbl (
 DROP TABLE place_tbl;
 CREATE TABLE place_tbl (
 	place_no INT AUTO_INCREMENT PRIMARY KEY,
+    place_write_id VARCHAR(20),
     place_name VARCHAR(20) NOT NULL,
     place_addr VARCHAR(50) NOT NULL,
     place_tel VARCHAR(20),
     place_business_hours VARCHAR(50),
     place_other VARCHAR(50),
-    place_photo TEXT
+    place_photo TEXT,
+    CONSTRAINT user_place_id_fk
+    FOREIGN KEY (place_write_id)
+    REFERENCES user_tbl(user_id) 
 )DEFAULT CHARSET=utf8mb4;
 
 /************************* 일정관리(plan) ***************************/

@@ -1,17 +1,30 @@
 package controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import dao.PlaceDAO;
 import dto.PlaceDTO;
+
+@MultipartConfig(
+	location="/tmp",
+	fileSizeThreshold=1024*1024,
+	maxFileSize=1024*1024*5,
+	maxRequestSize=1024*1024*5*5
+)
 
 public class PlaceControl extends HttpServlet {
 	private static final long serialVersionUID = -2L;
@@ -53,8 +66,70 @@ public class PlaceControl extends HttpServlet {
 			rd = request.getRequestDispatcher("/place/placeView.jsp");
 			rd.forward(request, response);
 			break;
+			
+		case "/PlaceWriteForm.pc":
+			rd = request.getRequestDispatcher("/place/placeWriteForm.jsp");
+			rd.forward(request, response);
+			break;
+			
+		case "/PlaceWriteAction.pc":
+			requestPlaceWrite(request);
+			rd = request.getRequestDispatcher("/PlaceListAction.pc");
+			rd.forward(request, response);
 		}
 
+	}
+
+	// 장소정보 작성내용 저장하기
+	private void requestPlaceWrite(HttpServletRequest request) throws IOException, ServletException {
+		
+		PlaceDAO dao = PlaceDAO.getInstance();
+		PlaceDTO place = new PlaceDTO();
+		
+		Collection<Part> parts = request.getParts();
+		StringBuilder sb = new StringBuilder();
+		
+		for(Part p : parts) {
+			if(!p.getName().equals("place_photo")) {
+				continue;
+			}
+			
+			Part filePart = p;
+			String fileName = filePart.getSubmittedFileName();
+			sb.append(fileName);
+			sb.append(",");
+			
+			InputStream fis = filePart.getInputStream();
+			
+			String realPath = "D:/upload";
+			String filePath = realPath + File.separator + fileName;
+			FileOutputStream fos = new FileOutputStream(filePath);
+			
+			byte[] buf = new byte[1024];
+			int size = 0;
+			while((size=fis.read(buf)) != -1) {
+				fos.write(buf, 0, size);
+			}
+			
+			fos.close();
+			fis.close();
+		}
+		
+		if(sb.length() > 0) {
+			sb.delete(sb.length()-1, sb.length());
+		}
+		
+		place.setPlace_no(0);
+		place.setPlace_write_id(request.getParameter("place_write_id"));
+		place.setPlace_name(request.getParameter("place_name"));
+		place.setPlace_addr(request.getParameter("place_addr"));
+		place.setPlace_tel(request.getParameter("place_tel"));
+		place.setPlace_business_hours(request.getParameter("place_business_hours"));
+		place.setPlace_other(request.getParameter("place_other"));
+		place.setPlace_photo(sb.toString());
+		
+		dao.addPlace(place);
+		
 	}
 
 	// 장소정보 상세내용 가져오기

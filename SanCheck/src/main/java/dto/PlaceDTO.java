@@ -2,6 +2,7 @@ package dto;
 
 public class PlaceDTO {
 	private int place_no;
+	private String place_write_id;
 	private String place_name;
 	private String place_addr;
 	private String place_tel;
@@ -20,7 +21,14 @@ public class PlaceDTO {
 	public void setPlace_no(int place_no) {
 		this.place_no = place_no;
 	}
+	
+	public String getPlace_write_id() {
+		return place_write_id;
+	}
 
+	public void setPlace_write_id(String place_write_id) {
+		this.place_write_id = place_write_id;
+	}
 	public String getPlace_name() {
 		return place_name;
 	}

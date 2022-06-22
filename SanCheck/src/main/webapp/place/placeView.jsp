@@ -22,8 +22,8 @@
 	
 	<div class="container mb-5">
 		<div class="row">
-			<div class="col-sm-6">
-				<img src="/fileupload/P1234" class="w-100" height="350px" />
+			<div class="col-sm-5">
+				<img src="/fileupload/${ place.place_photo }" class="w-100" height="350px" />
 			</div>
 			
 			<div class="col-sm-6">
@@ -53,6 +53,39 @@
 		</div>
 	</div>
 	
+	<!-- carousel -->
+	<!-- https://nowonbun.tistory.com/707 참고해서 시간 조절 및 버튼으로 조작 설정할 것 -->
+	<div id="carouselExampleControls" class="container" style="width: 50%; height: auto">
+		<div class="carousel slide" data-bs-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="https://cdn.pixabay.com/photo/2022/06/12/22/35/village-7258991__340.jpg" class="d-block w-100" alt="...">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="https://cdn.pixabay.com/photo/2022/03/09/07/12/nature-7057191__340.jpg" class="d-block w-100" alt="...">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="https://cdn.pixabay.com/photo/2022/05/12/10/02/mountains-7191235__340.jpg" class="d-block w-100" alt="...">
+		    </div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Next</span>
+		  </button>
+		</div>
+	</div>
+	
+	
 	<jsp:include page="../footer.jsp" />
+	<script type="text/javascript" src="./assets/JS/bootstrap.js"></script>
+	<script type="text/javascript">
+			$('#carouselExampleControls').carousel({
+	      interval: 1000
+	    });
+	</script>
 </body>
 </html>
