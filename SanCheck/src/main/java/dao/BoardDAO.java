@@ -82,9 +82,9 @@ public class BoardDAO {
 		String sql;
 		
 		if(items != null && text != null) {
-			sql = "SELECT * FROM board_tbl WHERE " + items + " LIKE '%" + text + "%' ORDER BY board_reg_date DESC";
+			sql = "SELECT * FROM board_tbl WHERE " + items + " LIKE '%" + text + "%' ORDER BY board_no DESC";
 		} else {
-			sql = "SELECT * FROM board_tbl ORDER BY board_reg_date DESC";
+			sql = "SELECT * FROM board_tbl ORDER BY board_no DESC";
 		}
 		
 		ArrayList<BoardDTO> boardList = new ArrayList<BoardDTO>();

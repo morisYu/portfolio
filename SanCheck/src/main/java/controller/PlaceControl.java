@@ -97,6 +97,7 @@ public class PlaceControl extends HttpServlet {
 			rd = request.getRequestDispatcher("/PlaceListAction.pc");
 			rd.forward(request, response);
 			break;
+			
 		}
 	}
 
@@ -242,7 +243,7 @@ public class PlaceControl extends HttpServlet {
 		if (request.getParameter("pageNum") != null) {
 			pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		}
-
+		
 		String items = request.getParameter("items");
 		String text = request.getParameter("text");
 
@@ -264,6 +265,12 @@ public class PlaceControl extends HttpServlet {
 			}
 		}
 		
+		if(pageNum < 1) {
+			pageNum = 1;
+		} else if(pageNum > total_page) {
+			pageNum = total_page;
+		}
+
 		int start = (pageNum - 1) * limit;
 		int end = start + limit - 1;
 		
@@ -272,6 +279,26 @@ public class PlaceControl extends HttpServlet {
 				placeList.add(totalPlaceList.get(i));
 			}
 		}
+		
+		// 한 페이지에 표시할 페이지 번호 갯수
+		int pageLimit = 3;
+		int pageIndex = 1;
+		
+		while(true) {
+			if(pageIndex * pageLimit  >=  pageNum) {
+				break;
+			}
+			pageIndex++;
+		}
+		
+		int startPageIndex = (pageIndex - 1) * pageLimit + 1;
+		int endPageIndex = startPageIndex + pageLimit - 1;
+		if(endPageIndex > total_page) {
+			endPageIndex = total_page;
+		}
+		
+		request.setAttribute("startPageIndex", startPageIndex);
+		request.setAttribute("endPageIndex", endPageIndex);
 
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("total_count", total_count);

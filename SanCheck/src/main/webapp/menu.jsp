@@ -20,8 +20,8 @@
 </style>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand fs-1" href="${ path }/index.jsp">SanCheck</a>
+		<div class="navbar-header ms-3">
+			<a class="navbar-brand" href="${ path }/index.jsp" style="font-size: 3rem">Home</a>
 		</div>
 		<div class="navbar-header">
 			<a class="navbar-brand menu_text" href="${ path }/PlaceListAction.pc?pageNum=1">장소정보</a>

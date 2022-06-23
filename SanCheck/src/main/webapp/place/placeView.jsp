@@ -61,24 +61,18 @@
 				    <div class="carousel-item active" data-bs-interval="2000" >
 				    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/15/11/07/konigssee-7263638__340.jpg)"></div>
 				    	<div class="carousel-text">
-				    		<h2>PHOTO-1</h2>
-				    		<p>loremasklhfahjsfhakhfhjkahkhwjkyrqywfykah  jakhwfkhakhfkahksfhjhj</p>
 				    	</div>
 				    </div>
 				    
 				    <div class="carousel-item" data-bs-interval="2000" >
 				    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/14/17/30/beach-7262492__340.jpg)"></div>
 				    	<div class="carousel-text">
-				    		<h2>PHOTO-2</h2>
-				    		<p>alksjdgklajsklgjawejjlkS,.xcnbm,nkljalksejtkljklkl</p>
 				    	</div>
 				    </div>
 				    
 				    <div class="carousel-item" data-bs-interval="2000" >
 				    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/05/12/10/02/mountains-7191235__340.jpg)"></div>
 				    	<div class="carousel-text">
-				    		<h2>PHOTO-3</h2>
-				    		<p>akljdfklajlkjjklklJK LAULUKLjljljwkljefjojl;asnmdfl jlkjwoitoppjslkd</p>
 				    	</div>
 				    </div>
 				  

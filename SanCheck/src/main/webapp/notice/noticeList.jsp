@@ -25,7 +25,7 @@
 	
 		<div class="jumbotron">
 			<div class="container">
-				<h1 class="display-3">공지사항</h1>
+				<h1 class="display-3 text-center my-3">공지사항</h1>
 			</div>
 		</div>
 		

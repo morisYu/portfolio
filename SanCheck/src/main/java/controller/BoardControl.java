@@ -21,7 +21,7 @@ import dto.BoardDTO;
 
 public class BoardControl extends HttpServlet {
 	private static final long serialVersionUID = -1L;
-	static final int LISTCOUNT = 5;
+	static final int LISTCOUNT = 10;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

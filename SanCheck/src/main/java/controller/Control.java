@@ -18,7 +18,7 @@ import dto.NoticeDTO;
 public class Control extends HttpServlet {
 
 	private static final long serialVersionUID = -1L;
-	static final int LISTCOUNT = 10;
+	static final int LISTCOUNT = 6;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

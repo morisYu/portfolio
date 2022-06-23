@@ -9,6 +9,9 @@
 	int total_count = ((Integer) request.getAttribute("total_count")).intValue();
 	int total_page = ((Integer) request.getAttribute("total_page")).intValue();
 	List<PlaceDTO> placeList = (List) request.getAttribute("placeList");
+	
+	int startPageIndex = ((Integer) request.getAttribute("startPageIndex"));
+	int endPageIndex = ((Integer) request.getAttribute("endPageIndex"));
 %>
 
 
@@ -92,10 +95,12 @@
 		</div>
 	</div>
 	
+	
+	
 	<ul class="pagination pagination-lg justify-content-center mt-3">
 		<c:set var="pageNum" value="<%= pageNum %>" />
-		<li class="page-item"><a class="page-link px-3" href="./PreView.pc?pageNum=${ pageNum }">&laquo;</a></li>
-		<c:forEach var="i" begin="1" end="<%= total_page %>">
+		<li class="page-item"><button class="page-link px-3" onclick="prePage()">&laquo;</button></li>
+		<c:forEach var="i" begin="${ startPageIndex }" end="${ endPageIndex }">
 			<li class="page-item">
 				<c:choose>
 					<c:when test="${ pageNum == i }">
@@ -107,30 +112,22 @@
 				</c:choose>
 			</li>
 		</c:forEach>
-		<li class="page-item"><a class="page-link px-3" href="./Nextview.pc?pageNum=${ pageNum }">&raquo;</a></li>
+		<li class="page-item"><button class="page-link px-3" onclick="nextPage()">&raquo;</button></li>
 	 </ul>
 	
 	<hr>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<jsp:include page="../footer.jsp" />
+	<script type="text/javascript">
+		function prePage(){
+			var num = ${ pageNum } - 1;
+			location.href = "./PlaceListAction.pc?pageNum=" + num;
+		}
+		
+		function nextPage(){
+			var num = ${ pageNum} + 1;
+			location.href = "./PlaceListAction.pc?pageNum=" + num;
+		}
+	
+	</script>
 </body>
 </html>
