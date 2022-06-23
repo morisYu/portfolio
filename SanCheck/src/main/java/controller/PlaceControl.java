@@ -74,10 +74,75 @@ public class PlaceControl extends HttpServlet {
 			
 		case "/PlaceWriteAction.pc":
 			requestPlaceWrite(request);
+			// form 양식 제출의 경우 request forward 로 페이지 이동하면 새로고침 시 양식이 다시 제출되어 데이터가 중복 입력될 수 있음
+			response.sendRedirect("./PlaceListAction.pc");
+//			rd = request.getRequestDispatcher("/PlaceListAction.pc");
+//			rd.forward(request, response);
+			break;
+			
+		case "/PlaceUpdateForm.pc":
+			requestPlaceUpdateForm(request);
+			rd = request.getRequestDispatcher("/place/placeUpdate.jsp");
+			rd.forward(request, response);
+			break;
+			
+		case "/PlaceUpdateAction.pc":
+			requestPlaceUpdate(request);
+			rd = request.getRequestDispatcher("/PlaceViewAction.pc");
+			rd.forward(request, response);
+			break;
+			
+		case "/DeletePlaceAction.pc":
+			requestPlaceDelete(request);
 			rd = request.getRequestDispatcher("/PlaceListAction.pc");
 			rd.forward(request, response);
+			break;
 		}
+	}
 
+	// 장소정보 삭제
+	private void requestPlaceDelete(HttpServletRequest request) {
+		PlaceDAO dao = PlaceDAO.getInstance();
+		int place_no = Integer.parseInt(request.getParameter("num"));
+		
+		dao.deletePlace(place_no);
+	}
+
+	// 장소정보 업데이트
+	private void requestPlaceUpdate(HttpServletRequest request) {
+		PlaceDAO dao = PlaceDAO.getInstance();
+		PlaceDTO place = new PlaceDTO();
+		
+		place.setPlace_no(Integer.parseInt(request.getParameter("place_no")));
+		place.setPlace_write_id(request.getParameter("place_write_id"));
+		place.setPlace_name(request.getParameter("place_name"));
+		place.setPlace_tel(request.getParameter("place_tel"));
+		place.setPlace_addr(request.getParameter("place_addr"));
+		place.setPlace_business_hours(request.getParameter("place_business_hours"));
+		place.setPlace_other(request.getParameter("place_other"));
+		place.setPlace_photo(request.getParameter("place_photo"));
+		
+		dao.updatePlace(place);
+		request.setAttribute("num", request.getParameter("num"));
+		request.setAttribute("pageNum", request.getParameter("pageNum"));
+		
+	}
+
+	// 장소정보 업데이트 전처리
+	private void requestPlaceUpdateForm(HttpServletRequest request) {
+		
+		PlaceDAO dao = PlaceDAO.getInstance();
+		PlaceDTO place = new PlaceDTO();
+		
+		int num = Integer.parseInt(request.getParameter("num"));
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		
+		place = dao.getPlaceByNum( num);
+		
+		request.setAttribute("place", place);
+		request.setAttribute("num", num);
+		request.setAttribute("pageNum", pageNum);
+		
 	}
 
 	// 장소정보 작성내용 저장하기
@@ -93,6 +158,9 @@ public class PlaceControl extends HttpServlet {
 			if(!p.getName().equals("place_photo")) {
 				continue;
 			}
+			if(p.getSize() == 0) {
+				continue;
+			}
 			
 			Part filePart = p;
 			String fileName = filePart.getSubmittedFileName();
@@ -101,8 +169,31 @@ public class PlaceControl extends HttpServlet {
 			
 			InputStream fis = filePart.getInputStream();
 			
-			String realPath = "D:/upload";
-			String filePath = realPath + File.separator + fileName;
+			String realPath = request.getServletContext().getRealPath("/place/upload");
+			System.out.println(realPath);
+			
+			File path = new File(realPath);
+			if(!path.exists()) {
+				path.mkdirs();
+			}
+		     
+		    String filePath = realPath + File.separator + fileName;
+		    
+		    // 파일 이름 중복 처리
+		    String tmpName = filePath;
+		    int i = 1;
+			while(true) {
+				File duplicateName = new File(tmpName);
+				if(!duplicateName.exists()) {
+					filePath = tmpName;
+					break;
+				}
+				i++;
+				
+				String[] tmpNames = fileName.split("[.]");
+				tmpName = realPath + File.separator + tmpNames[0] + "(" + i + ")." + tmpNames[1];
+			}
+			
 			FileOutputStream fos = new FileOutputStream(filePath);
 			
 			byte[] buf = new byte[1024];

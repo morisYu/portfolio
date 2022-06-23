@@ -20,7 +20,7 @@
 	<title>장소정보</title>
 	<style type="text/css">
 		.carousel-item{
-			height: 32rem;
+			height: 25rem;
 			background: black;
 			color: white;
 			position: relative;
@@ -54,10 +54,48 @@
 	<div class="container mb-5">
 		<div class="row">
 			<div class="col-sm-6">
-				<img src="/fileupload/${ place.place_photo }" class="w-100" height="350px" />
+			
+				<!-- carousel -->
+				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+				  <div class="carousel-inner">
+				    <div class="carousel-item active" data-bs-interval="2000" >
+				    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/15/11/07/konigssee-7263638__340.jpg)"></div>
+				    	<div class="carousel-text">
+				    		<h2>PHOTO-1</h2>
+				    		<p>loremasklhfahjsfhakhfhjkahkhwjkyrqywfykah  jakhwfkhakhfkahksfhjhj</p>
+				    	</div>
+				    </div>
+				    
+				    <div class="carousel-item" data-bs-interval="2000" >
+				    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/14/17/30/beach-7262492__340.jpg)"></div>
+				    	<div class="carousel-text">
+				    		<h2>PHOTO-2</h2>
+				    		<p>alksjdgklajsklgjawejjlkS,.xcnbm,nkljalksejtkljklkl</p>
+				    	</div>
+				    </div>
+				    
+				    <div class="carousel-item" data-bs-interval="2000" >
+				    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/05/12/10/02/mountains-7191235__340.jpg)"></div>
+				    	<div class="carousel-text">
+				    		<h2>PHOTO-3</h2>
+				    		<p>akljdfklajlkjjklklJK LAULUKLjljljwkljefjojl;asnmdfl jlkjwoitoppjslkd</p>
+				    	</div>
+				    </div>
+				  
+					  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Next</span>
+					  </button>
+					</div>
+				</div>
+			
 			</div>
 			
-			<div class="col-sm-6">
+			<div class="col-sm-6 pt-3">
 				<table class="table">
 					<tr>
 						<td width="25%"><p class="fs-5 fw-bold my-0">장소명: </p></td>
@@ -81,52 +119,44 @@
 					</tr>
 				</table>
 				<c:if test="${ sessionGrade == 'admin' }">
-					<a href="/UpdatePlaceAction.pc?num=${ place.place_no }" class="btn btn-warning px-5 py-1 fs-5 me-3" >수정</a>
-					<a href="/DeletePlaceAction.pc?num=${ place.place_no }" class="btn btn-danger px-5 py-1 fs-5" >삭제</a>
+					<a href="./PlaceUpdateForm.pc?num=${ place.place_no }&pageNum=${ pageNum }" class="btn btn-warning px-5 py-1 fs-5 me-3" >수정</a>
+					<a href="./DeletePlaceAction.pc?num=${ place.place_no }" class="btn btn-danger px-5 py-1 fs-5" >삭제</a>
 				</c:if>
 			</div>
-		</div>
-	</div>
-	
-	<!-- carousel -->
-	<div class="container mb-5" style="width: 70%;">
-	
-		<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-		
-		  <div class="carousel-inner">
-		    <div class="carousel-item active" data-bs-interval="2000" >
-		    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/15/11/07/konigssee-7263638__340.jpg)"></div>
-		    	<div class="carousel-text">
-		    		<h2>PHOTO-1</h2>
-		    		<p>loremasklhfahjsfhakhfhjkahkhwjkyrqywfykah  jakhwfkhakhfkahksfhjhj</p>
-		    	</div>
-		    </div>
-		    
-		    <div class="carousel-item" data-bs-interval="2000" >
-		    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/14/17/30/beach-7262492__340.jpg)"></div>
-		    	<div class="carousel-text">
-		    		<h2>PHOTO-2</h2>
-		    		<p>alksjdgklajsklgjawejjlkS,.xcnbm,nkljalksejtkljklkl</p>
-		    	</div>
-		    </div>
-		    
-		    <div class="carousel-item" data-bs-interval="2000" >
-		    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/05/12/10/02/mountains-7191235__340.jpg)"></div>
-		    	<div class="carousel-text">
-		    		<h2>PHOTO-3</h2>
-		    		<p>akljdfklajlkjjklklJK LAULUKLjljljwkljefjojl;asnmdfl jlkjwoitoppjslkd</p>
-		    	</div>
-		    </div>
-		  
-			  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="visually-hidden">Previous</span>
-			  </button>
-			  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="visually-hidden">Next</span>
-			  </button>
-			</div>
+			
+			
+			
+			
+			
+			<!-- 업로드 사진을 장소정보 상세페이지에서 보게 작업 중 -->
+				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+				  <div class="carousel-inner">
+				  	<c:if test="<%= place_photos != null %>" >
+					  	<c:forEach var="photo" items="<%= place_photos %>">
+					  		 <div class="carousel-item active" data-bs-interval="2000" >
+						    	 <div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/15/11/07/konigssee-7263638__340.jpg)"></div>
+						    	 <div class="carousel-text">
+						    		 <h2>PHOTO-1</h2>
+						    		 <p>loremasklhfahjsfhakhfhjkahkhwjkyrqywfykah  jakhwfkhakhfkahksfhjhj</p>
+						    	 </div>
+						    </div>
+					  	</c:forEach>
+				  	</c:if>
+				    
+				  
+					  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Next</span>
+					  </button>
+					</div>
+				</div>
+			
+			
+			
 		</div>
 	</div>
 	

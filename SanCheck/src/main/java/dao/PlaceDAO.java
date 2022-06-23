@@ -202,19 +202,20 @@ public class PlaceDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "UPDATE place_tbl SET place_name = ?, place_addr = ?, place_tel = ?, "
+		String sql = "UPDATE place_tbl SET place_name = ?, place_write_id = ?, place_addr = ?, place_tel = ?, "
 					+ " place_business_hours = ?, place_other = ?, place_photo = ? WHERE place_no = ?";
 		
 		try {
 			conn = DBConnection.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, place.getPlace_name());
-			pstmt.setString(2, place.getPlace_addr());
-			pstmt.setString(3, place.getPlace_tel());
-			pstmt.setString(4, place.getPlace_business_hours());
-			pstmt.setString(5, place.getPlace_other());
-			pstmt.setString(6, place.getPlace_photo());
-			pstmt.setInt(7, place.getPlace_no());
+			pstmt.setString(2, place.getPlace_write_id());
+			pstmt.setString(3, place.getPlace_addr());
+			pstmt.setString(4, place.getPlace_tel());
+			pstmt.setString(5, place.getPlace_business_hours());
+			pstmt.setString(6, place.getPlace_other());
+			pstmt.setString(7, place.getPlace_photo());
+			pstmt.setInt(8, place.getPlace_no());
 			
 			pstmt.executeUpdate();
 			
@@ -299,24 +300,4 @@ public class PlaceDAO {
 		}
 		return nickname;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

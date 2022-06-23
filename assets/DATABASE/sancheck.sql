@@ -68,7 +68,7 @@ CREATE TABLE plan_tbl (
     plan_kind VARCHAR(20),
     plan_color VARCHAR(20),
     plan_content VARCHAR(20),
-    plan_DT DATETIME
+    plan_reg_date VARCHAR(20)
 );
 
 /************************* 산책기록(record) ***************************/
@@ -78,9 +78,10 @@ CREATE TABLE record_tbl (
     record_nickname VARCHAR(20),
     record_title VARCHAR(20),
     record_content TEXT,
-    record_photo BLOB,
+    record_photo TEXT,
     record_nice INT,
     record_reg_date VARCHAR(20),
+    record_open BOOL,
     record_ip VARCHAR(50)
 );
 
