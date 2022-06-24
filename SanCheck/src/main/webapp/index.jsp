@@ -31,6 +31,7 @@
 	background-size: cover;
 }
 </style>
+
 </head>
 <body>
 	<jsp:include page="./menu.jsp" />

@@ -17,7 +17,7 @@ INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname,
 		   (NULL, 'user08', '8888', '신성우', 'SSW', '010-3455-6789', '세종', 'SSW@hanmaum.net', 'user', '2022/06/05(21:15:18)'),
 		   (NULL, 'user09', '9999', '박진영', 'PJY', '010-9876-5432', '대구', 'PJY@hanmaum.net', 'user', '2022/06/10(17:06:42)'),
            (NULL, 'guest', 'guest', '게스트', 'GUEST', '011-1111-2222', '제주', 'guest@sancheck.com', 'user', '2022/01/01(21:15:18)');
-
+DELETE FROM user_tbl WHERE user_no = 12;
 SELECT * FROM user_tbl;
 INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname, 
 					  user_mobile, user_region, user_email, user_grade, user_join_date)

@@ -17,7 +17,47 @@
 	.menu_text:hover{
 		color: #B7F0B1;
 	}
+	.login_text{
+		text-decoration: none;
+		color: #D1B2FF;
+		font-size: 1.3rem;
+	}
+	.navbar_toggleBtn{
+		display: none;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		color: #d49466;
+		font-size: 2rem;
+		background: none;
+	}
+	@media screen and (max-width: 1024px){
+		.navbar-nav{
+			display: none;
+		}
+		
+		.navbar-nav.active{
+			position: absolute;
+			width: 200px;
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+		}
+		
+		.navbar_toggleBtn{
+			display: flex;
+		}
+		
+		.navbar-nav{
+			position: absolute;
+			top: 80px;
+			right: 0px;
+		}
+	}
 </style>
+
+<script type="text/javascript" src="https://kit.fontawesome.com/3b5371a0e4.js" crossorigin="anonymous"></script>
+
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 	<div class="container">
 		<div class="navbar-header ms-3">
@@ -40,15 +80,15 @@
 		</div>
 	</div>
 	
-	<div class="container justify-content-end">
-		<ul class="navbar-nav">
+	<div class="container justify-content-end hamburger">
+		<ul class="navbar-nav bg-dark">
 			<c:choose>
 				<c:when test="${ empty sessionId }">
 					<li class="nav-item">
-						<a class="nav-link  fs-4" href="<c:url value="/member/login.jsp" />">로그인</a>
+						<a class="nav-link login_text" href="<c:url value="/member/login.jsp" />">로그인</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link  fs-4" href="<c:url value="/member/addMember.jsp" />">회원가입</a>
+						<a class="nav-link login_text" href="<c:url value="/member/addMember.jsp" />">회원가입</a>
 					</li>
 				</c:when>
 				<c:otherwise>
@@ -56,18 +96,31 @@
 						<span class="badge fs-5 mt-2" style="background: yellow; color: black">[ ${ sessionId } ] 님</span>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link  fs-4" href="<c:url value="/member/logout.jsp" />">로그아웃</a>
+						<a class="nav-link login_text" href="<c:url value="/member/logout.jsp" />">로그아웃</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link  fs-4" href="<c:url value="/member/updateMember.jsp" />">회원정보수정</a>
+						<a class="nav-link login_text" href="<c:url value="/member/updateMember.jsp" />">회원정보수정</a>
 					</li>
 					<c:if test="${ sessionGrade eq 'admin' }">
 						<li class="nav-item">
-							<a class="nav-link  fs-4" href="<c:url value="/member/manageMember.jsp"/>">회원관리</a>
+							<a class="nav-link login_text" href="<c:url value="/member/manageMember.jsp"/>">회원관리</a>
 						</li>
 					</c:if>
 				</c:otherwise>
 			</c:choose>
 		</ul>
 	</div>
+	
+	<button class="navbar_toggleBtn">
+    <i class="fa-solid fa-burger"></i>
+  </button>
 </nav>
+<script type="text/javascript">
+  const toggleBtn = document.querySelector(".navbar_toggleBtn");
+  const hamburger = document.querySelector(".navbar-nav");
+
+  toggleBtn.addEventListener('click', () => {
+    console.log('test');
+    hamburger.classList.toggle('active');
+  })
+</script>
