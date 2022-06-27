@@ -63,13 +63,16 @@ CREATE TABLE place_tbl (
 /************************* 일정관리(plan) ***************************/
 -- 일정관리 테이블 생성
 CREATE TABLE plan_tbl (
-	plan_No INT AUTO_INCREMENT PRIMARY KEY,
-    plan_nickname VARCHAR(20),
+	plan_no INT AUTO_INCREMENT PRIMARY KEY,
+    plan_id VARCHAR(20),
     plan_kind VARCHAR(20),
     plan_color VARCHAR(20),
     plan_content VARCHAR(20),
-    plan_reg_date VARCHAR(20)
-);
+    plan_reg_date VARCHAR(20),
+    CONSTRAINT user_plan_id_fk
+    FOREIGN KEY (plan_id)
+    REFERENCES user_tbl(user_id) 
+)DEFAULT CHARSET=utf8mb4;
 
 /************************* 산책기록(record) ***************************/
 -- 산책기록 테이블 생성

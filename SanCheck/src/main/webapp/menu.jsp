@@ -70,7 +70,7 @@
 			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">산책기록</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">일정관리</a>
+			<a class="navbar-brand menu_text" href="${ path }/plan/planList.jsp">일정관리</a>
 		</div>
 		<div class="navbar-header">
 			<a class="navbar-brand menu_text" href="${ path }/BoardListAction.bc">게시판</a>

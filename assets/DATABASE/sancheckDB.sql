@@ -56,20 +56,23 @@ SELECT * FROM place_tbl WHERE place_name LIKE '%공원%';
 
 /************************* 일정관리(plan) 테이블 데이터 ***************************/
 DESC plan_tbl;
-INSERT INTO plan_tbl (plan_No, plan_nickname, plan_kind, plan_color, plan_content, plan_DT)
-	VALUES (NULL, '관리자', '기념일', '#FF0000', '세계야생동물의날', '2022-03-03'),
-		   (NULL, '관리자', '기념일', '#FF0000', '국제강아지의날', '2022-03-23'),
-           (NULL, '관리자', '기념일', '#FF0000', '세계실험동물의날', '2022-04-24'),
-           (NULL, '관리자', '기념일', '#FF0000', '국제떠돌이동물의날', '2022-08-19'),
-           (NULL, 'LSG', '병원', '#FF00DD', '건강검진', '2022-05-05'),
-           (NULL, 'KKH', '모임', '#FF00DD', '강사모 모임', '2022-04-05'),
-           (NULL, 'YJS', '여행', '#FF00DD', '부산 펜션', '2022-07-08'),
-           (NULL, 'SSW', '산책', '#FF00DD', '동락공원산책', '2022-03-15'),
-           (NULL, 'LSG', '일반', '#FF00DD', '일산펫쇼', '2022-05-28'),
-           (NULL, 'PJY', '접종', '#FF00DD', '심장사상충접종', '2022-10-05'),
-           (NULL, 'LSG', '일반', '#FF00DD', '목욕', '2022-07-04');
+INSERT INTO plan_tbl (plan_no, plan_id, plan_kind, plan_color, plan_content, plan_reg_date)
+	VALUES (NULL, 'admin', '기념일', '#FF0000', '세계야생동물의날', '2022/03/03'),
+		   (NULL, 'admin', '기념일', '#FF0000', '국제강아지의날', '2022/03/23'),
+           (NULL, 'admin', '기념일', '#FF0000', '세계실험동물의날', '2022/04/24'),
+           (NULL, 'admin', '기념일', '#FF0000', '국제떠돌이동물의날', '2022/08/19'),
+           (NULL, 'user02', '병원', '#FF00DD', '건강검진', '2022/05/05'),
+           (NULL, 'user03', '모임', '#FF00DD', '강사모 모임', '2022/04/05'),
+           (NULL, 'user01', '여행', '#FF00DD', '부산 펜션', '2022/07/08'),
+           (NULL, 'user01', '산책', '#FF00DD', '동락공원산책', '2022/03/15'),
+           (NULL, 'user05', '일반', '#FF00DD', '일산펫쇼', '2022/05/28'),
+           (NULL, 'user02', '접종', '#FF00DD', '심장사상충접종', '2022/10/05'),
+           (NULL, 'user04', '일반', '#FF00DD', '목욕', '2022/07/04');
 
 SELECT * FROM plan_tbl;
+
+SELECT * FROM plan_tbl WHERE plan_id IN('admin', 'user02');
+
 
 -- 일정관리 테이블 확인
 SELECT ut.user_nickname, pt.plan_kind, pt.plan_content, pt.plan_DT
