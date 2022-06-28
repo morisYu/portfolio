@@ -42,8 +42,11 @@ public class PlanDTO {
 		return plan_reg_date;
 	}
 	public void setPlan_reg_date(String reg_date) {
-		String[] dates = reg_date.split("-");
-		String newDate = dates[0] + "/" + dates[1] + "/" + dates[2];
+		String newDate = reg_date;
+		if(reg_date.indexOf("/") == -1) {
+			String[] dates = reg_date.split("-");
+			newDate = dates[0] + "/" + dates[1] + "/" + dates[2];
+		}
 		this.plan_reg_date = newDate;
 	}
 }

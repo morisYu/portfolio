@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="dao.PlanDAO" %>
+<%@ page import="dto.PlanDTO" %>
+<%@ page import="java.util.List" %>
 
 <%
 	String yy = request.getParameter("year");
@@ -20,11 +23,23 @@
 		m = 11;
 	}
 	
+	int M = m + 1;
+	String year = Integer.toString(y);
+	String month;
+	if(M < 10){
+		month = "0" + M;
+	} else {
+		month = Integer.toString(M);
+	}
 	
 	cal.set(y, m, 1);
 	int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
 	int lastday = cal.getActualMaximum(Calendar.DATE);
 	String sessionId = (String) session.getAttribute("sessionId");
+	String year_month =  year + "/" + month;
+	
+	PlanDAO dao = PlanDAO.getInstance();
+	List<PlanDTO> planList = dao.getPlanList(sessionId, year_month);
 %>
 
 <!DOCTYPE html>
@@ -32,6 +47,14 @@
 <head>
 <link rel="stylesheet" href="../assets/CSS/bootstrap.css" />
 <title>일정관리</title>
+<style type="text/css">
+	.planbtn{
+		font-size: 0.8rem;
+		width: 100%;
+		padding: 0;
+		color: white
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../menu.jsp" />
@@ -47,7 +70,6 @@
 				<input type="button" id="planWrite" class="btn btn-primary mt-1" value="일정등록" >	
 			</div>
 		</div>
-		
 		<table class="table text-center" height="300px">
 			<tr>
 				<th>일</th>
@@ -69,6 +91,13 @@
 					
 					for(int d=1; d<=lastday; d++){
 						count++;
+						String day;
+						if(d < 10){
+							day = "0" + d;
+						} else {
+							day = Integer.toString(d);
+						}
+						String date = year + "/" + month + "/" + day;
 						
 						String color = "#555555";
 						if(count == 7){
@@ -77,9 +106,21 @@
 							color = "red";
 						}
 				%>
-				<td style="color: <%= color %>">
-					<%= d %>
-					<p style="font-size: 0.8rem">일정입니다요..</p>
+				<td style="color: <%= color %>; height: 120px; width: 100px">
+					<p class="fw-bold fs-5 text-end mb-1"><%= d %></p>
+					<%
+						for(int i=0; i<planList.size(); i++){
+							if(planList.get(i).getPlan_reg_date().equals(date)){
+					%>
+						<p class="mb-1">
+							<a href="./planView.jsp?num=<%= planList.get(i).getPlan_no() %>" class="btn planbtn" style="background: <%= planList.get(i).getPlan_color()%>">
+								<%= planList.get(i).getPlan_kind() %>
+							</a>
+						</p>
+					<%
+							}
+						}
+					%>
 				</td>
 				<%
 						if(count == 7){

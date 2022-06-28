@@ -61,6 +61,7 @@ INSERT INTO plan_tbl (plan_no, plan_id, plan_kind, plan_color, plan_content, pla
 		   (NULL, 'admin', '기념일', '#FF0000', '국제강아지의날', '2022/03/23'),
            (NULL, 'admin', '기념일', '#FF0000', '세계실험동물의날', '2022/04/24'),
            (NULL, 'admin', '기념일', '#FF0000', '국제떠돌이동물의날', '2022/08/19'),
+           (NULL, 'admin', '기념일', '#FF0000', '테스트의날', '2022/08/19'),
            (NULL, 'user02', '병원', '#FF00DD', '건강검진', '2022/05/05'),
            (NULL, 'user03', '모임', '#FF00DD', '강사모 모임', '2022/04/05'),
            (NULL, 'user01', '여행', '#FF00DD', '부산 펜션', '2022/07/08'),
@@ -71,9 +72,13 @@ INSERT INTO plan_tbl (plan_no, plan_id, plan_kind, plan_color, plan_content, pla
 
 SELECT * FROM plan_tbl;
 
-SELECT * FROM plan_tbl WHERE plan_id IN('admin', 'user02');
+SELECT * FROM plan_tbl WHERE plan_id IN ('admin', 'user02') AND plan_reg_date LIKE '%2022/03%';
 
+SELECT * FROM plan_tbl WHERE plan_id='admin' AND plan_reg_date LIKE '%2022/06%';
 
+SELECT * FROM plan_tbl WHERE plan_no=3;
+
+UPDATE plan_tbl SET plan_kind='실험실' WHERE plan_no=20;
 -- 일정관리 테이블 확인
 SELECT ut.user_nickname, pt.plan_kind, pt.plan_content, pt.plan_DT
 	FROM user_tbl AS ut
