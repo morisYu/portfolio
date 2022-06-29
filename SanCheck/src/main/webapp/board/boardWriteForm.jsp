@@ -16,46 +16,46 @@
 	
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">게시글 작성</h1>
+			<h6 class="display-6 fw-bold text-center my-3">게시글 작성</h5>
 		</div>
 	</div>
 	
-	<div class="container">
+	<div class="container text-center">
 		
 		<form name="newWrite" action="${ path }/BoardWriteAction.bc" class="form-horizontal"
 			method="post" oncubmit="return checkForm()" enctype="multipart/form-data">
 			<input name="id" type="hidden" class="form-control" value="${ sessionSciosessionId }" />
 			
-			<div class="form-group row">
+			<div class="form-group row mb-2">
 				<label class="col-sm-2 control-label">별명</label>
 				<div class="col-sm-3">
 					<input name="board_nickname" type="text" class="form-control" value="<%= nickname %>" readonly/>
 				</div>
 			</div>
 			
-			<div class="form-group row">
+			<div class="form-group row mb-2">
 				<label class="col-sm-2 control-label">제목</label>
 				<div class="col-sm-5">
 					<input name="board_title" type="text" class="form-control" placeholder="title" />
 				</div>
 			</div>
 			
-			<div class="form-group row">
+			<div class="form-group row mb-2">
 				<label class="col-sm-2 control-label">내용</label>
-				<div class="col-sm-8">
+				<div class="col-sm-5">
 					<textarea name="board_content" rows="5" class="form-control" style="resize: none" ></textarea>
 				</div>
 			</div>
 			
-			<div class="form-group row">
+			<div class="form-group row mb-2">
 				<label class="col-sm-2">사진 등록</label>
 				<div class="col-sm-5">
 					<input name="board_photo" type="file" class="form-control" />
 				</div>
 			</div>
 		
-			<div class="form-group row">
-				<div class="col-sm-offset-2 col-sm-10">
+			<div class="form-group row mb-2">
+				<div class="col-sm-offset-2 col-sm-6">
 					<input type="submit" class="btn btn-primary" value="등록" />
 					<input type="reset" class="btn btn-secondary" value="취소" />
 				</div>

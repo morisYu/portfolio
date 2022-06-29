@@ -25,22 +25,19 @@
 	
 		<div class="jumbotron">
 			<div class="container">
-				<h1 class="display-3 text-center my-3">공지사항</h1>
+				<h6 class="display-6 fw-bold text-center my-3">공지사항</h6>
 			</div>
 		</div>
 		
 		<div class="container">
 			<div class="text-end mb-2">
-				<span class="badge bg-success fs-6">전체 ${ requestScope.total_record } 건</span>			
+				<span class="badge bg-success fs-6">전체 ${ requestScope.total_record } 건</span>	
+				<c:if test="${ sessionId == 'admin' }">
+					<button class="btn btn-success" onclick="location.href='./NoticeWriteForm.do?id=<%= sessionId %>'">글쓰기</button>
+				</c:if>
 			</div>
 			
 			<!-- accordion -->
-			<c:if test="${ sessionId == 'admin' }">
-				<div class="container text-end mb-3">
-					<button class="btn btn-success" onclick="location.href='./NoticeWriteForm.do?id=<%= sessionId %>'">글쓰기</button>
-				</div>
-			</c:if>
-			
 			<div class="accordion" id="accordionExample">
 				<%
 					for(int i = 0; i < noticeList.size(); i++){

@@ -36,8 +36,10 @@
 <body>
 	<jsp:include page="../menu.jsp" />
 	
-	<div class="container-fluid">
-		<h1 class="display-4 text-center my-3">장소목록</h1>
+	<div class="jumbotron">
+		<div class="container">
+			<h6 class="display-6 fw-bold text-center my-3">장소정보</h5>
+		</div>
 	</div>
 	
 		<form action="./PlaceListAction.pc" method="post">
@@ -95,9 +97,7 @@
 		</div>
 	</div>
 	
-	
-	
-	<ul class="pagination pagination-lg justify-content-center mt-3">
+	<ul class="pagination pagination-md justify-content-center mt-3">
 		<c:set var="pageNum" value="<%= pageNum %>" />
 		<li class="page-item"><button class="page-link px-3" onclick="prePage()">&laquo;</button></li>
 		<c:forEach var="i" begin="${ startPageIndex }" end="${ endPageIndex }">
@@ -115,7 +115,6 @@
 		<li class="page-item"><button class="page-link px-3" onclick="nextPage()">&raquo;</button></li>
 	 </ul>
 	
-	<hr>
 	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 		function prePage(){

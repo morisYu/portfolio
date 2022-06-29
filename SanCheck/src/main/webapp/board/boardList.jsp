@@ -17,17 +17,32 @@
 	
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3 text-center">게시판</h1>
+			<h6 class="display-6 fw-bold text-center my-3">게시판</h5>
 		</div>
 	</div>
 	
 	<div class="container">
 		<form action="<c:url value="./BoardListAction.bc"/>" method="post">
-			<div class="text-end mb-2">
-				<span class="badge bg-success fs-6">전체 ${ total_board } 건</span>
+			<div class="row">
+				<div class="col-10">
+					<div class="container">
+						<select name="items" class="txt">
+							<option value="board_title">제목</option>
+							<option value="board_content">내용</option>
+							<option value="board_nickname">작성자</option>
+						</select>
+						<input name="text" type="text" />
+						<input type="submit" class="btn btn-primary" value="검색"/>
+						<button onclick="checkForm(); return false;" class="btn btn-secondary">글쓰기&raquo;</button>
+					</div>
+				</div>
+				<div class="col-2 text-end">
+					<span class="badge bg-success fs-6">전체 ${ total_board } 건</span>
+				</div>
 			</div>
 			
-			<div style="padding-top: 50px">
+			
+			<div style="padding-top: 10px">
 				<table class="table table-hover text-center">
 					<tr>
 						<th>번호</th>
@@ -51,7 +66,7 @@
 				</table>
 			</div>
 			
-			<div class="text-center">
+			<div class="text-center mb-3">
 				<c:set var="pageNum" value="${ pageNum }" />
 				<c:forEach var="i" begin="1" end="${ total_page }" >
 					<a href="<c:url value="./BoardListAction.bc?pageNum=${ i }" />">
@@ -67,18 +82,6 @@
 				</c:forEach>
 			</div>
 			
-			<div align="left">
-				<div class="container">
-					<select name="items" class="txt">
-						<option value="board_title">제목</option>
-						<option value="board_content">내용</option>
-						<option value="board_nickname">작성자</option>
-					</select>
-					<input name="text" type="text" />
-					<input type="submit" class="btn btn-primary" value="검색"/>
-					<button onclick="checkForm(); return false;" class="btn btn-secondary">글쓰기&raquo;</button>
-				</div>
-			</div>
 		</form>
 	</div>
 	<jsp:include page="../footer.jsp" />
