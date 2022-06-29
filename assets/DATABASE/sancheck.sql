@@ -76,6 +76,7 @@ CREATE TABLE plan_tbl (
 
 /************************* 산책기록(record) ***************************/
 -- 산책기록 테이블 생성
+DROP TABLE IF EXISTS record_tbl;
 CREATE TABLE record_tbl (
 	record_no INT AUTO_INCREMENT PRIMARY KEY,
     record_nickname VARCHAR(20),
@@ -85,8 +86,11 @@ CREATE TABLE record_tbl (
     record_nice INT,
     record_reg_date VARCHAR(20),
     record_open BOOL,
-    record_ip VARCHAR(50)
-);
+    record_ip VARCHAR(50),
+	CONSTRAINT user_plan_nickname_fk
+    FOREIGN KEY (record_nickname)
+    REFERENCES user_tbl(user_nickname) 
+)DEFAULT CHARSET=utf8mb4;
 
 /************************* 산책기록 댓글(record_comment) ***************************/
 -- 산책기록 댓글 테이블 생성

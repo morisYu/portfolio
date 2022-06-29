@@ -12,7 +12,7 @@
 	}
 	.menu_text{
 		color: #FFB2F5;
-		font-size: 1.8rem;
+		font-size: 1.2rem;
 	}
 	.menu_text:hover{
 		color: #B7F0B1;
@@ -61,13 +61,13 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 	<div class="container">
 		<div class="navbar-header ms-3">
-			<a class="navbar-brand" href="${ path }/index.jsp" style="font-size: 3rem">Home</a>
+			<a class="navbar-brand" href="${ path }/index.jsp" style="font-size: 2.4rem">Home</a>
 		</div>
 		<div class="navbar-header">
 			<a class="navbar-brand menu_text" href="${ path }/PlaceListAction.pc?pageNum=1">장소정보</a>
 		</div>
 		<div class="navbar-header">
-			<a class="navbar-brand text-danger fs-4" href="${ path }/index.jsp">산책기록</a>
+			<a class="navbar-brand menu_text" href="${ path }/RecordList.rc">산책기록</a>
 		</div>
 		<div class="navbar-header">
 			<a class="navbar-brand menu_text" href="${ path }/plan/planList.jsp">일정관리</a>

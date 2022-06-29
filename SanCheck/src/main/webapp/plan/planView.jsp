@@ -72,7 +72,7 @@
 			<div class="container text-center">
 				<a href="./planList.jsp" class="btn btn-primary" >목록</a>
 				<%
-					if(sessionId.equals(plan.getPlan_id())){
+					if(plan.getPlan_id().equals(sessionId)){
 				%>
 				<input type="submit" class="btn btn-success" value="수정" />
 				<%

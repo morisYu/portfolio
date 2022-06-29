@@ -36,4 +36,13 @@
   	<servlet-name>PlaceController</servlet-name>
   	<url-pattern>*.pc</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>RecordController</servlet-name>
+  	<servlet-class>controller.RecordControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RecordController</servlet-name>
+  	<url-pattern>*.rc</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -88,17 +88,25 @@ SELECT ut.user_nickname, pt.plan_kind, pt.plan_content, pt.plan_DT
 
 /************************* 산책기록(record) 테이블 데이터 ***************************/
 DESC record_tbl;
-INSERT INTO record_tbl (record_No, record_nickname, record_title, record_content, record_photo, record_nice, record_DT)
-	VALUES (NULL, 'KHD', '부산갔다왔어요', '오늘 부산가서 좋았습니다. 날씨가 너무 좋네요', NULL, 0, NOW()),
-		   (NULL, 'KKH', '서울갔다왔어요', '서울 차가 많이 막히네요', NULL, 0, NOW()),
-           (NULL, 'KHD', '대구갔다왔어요', '대구 너무 덥네요', NULL, 0, NOW()),
-           (NULL, 'LSG', '인천갔다왔어요', '인천 경치 좋습니다', NULL, 0, NOW()),
-           (NULL, 'KHD', '강원도 날씨 좋네요', '강원도에 오랜만에 왔는데 강아지가 너무 좋아하네요', NULL, 0, NOW()),
-           (NULL, 'SSW', '서해 놀러왔어요', '간만에 서해 바다에 왔습니다', NULL, 0, NOW()),
-           (NULL, 'PJB', '거제도 최고입니다', '거제도에 친구가 있어서 왔는데 회가 최고에요', NULL, 0, NOW()),
-           (NULL, 'LSG', '남해 왔습니다', '남해 펜션에 왔는데 강아지 동반이라 좋았어요', NULL, 0, NOW());
+INSERT INTO record_tbl (record_no, record_nickname, record_title, record_content, record_photo, record_nice,
+	record_reg_date, record_open, record_ip)
+	VALUES (0, 'KHD', '부산갔다왔어요', '오늘 부산가서 좋았습니다. 날씨가 너무 좋네요', NULL, 0, '2022/03/10', true, '0:0:0:0:1'),
+		   (0, 'KKH', '서울갔다왔어요', '서울 차가 많이 막히네요', NULL, 0, '2022/03/10', true, '0:0:0:0:1'),
+           (0, 'KHD', '대구갔다왔어요', '대구 너무 덥네요', NULL, 0, '2022/03/10', true, '0:0:0:0:2'),
+           (0, 'LSG', '인천갔다왔어요', '인천 경치 좋습니다', NULL, 0, '2022/03/10', true, '0:0:0:0:1'),
+           (0, 'KHD', '강원도 날씨 좋네요', '강원도에 오랜만에 왔는데 강아지가 너무 좋아하네요', NULL, 0, '2022/03/10', true, '0:0:0:0:3'),
+           (0, 'SSW', '서해 놀러왔어요', '간만에 서해 바다에 왔습니다', NULL, 0, '2022/03/10', true, '0:0:0:0:1'),
+           (0, 'PJB', '거제도 최고입니다', '거제도에 친구가 있어서 왔는데 회가 최고에요', NULL, 0, '2022/03/10', true, '0:0:0:0:5'),
+           (0, '관리자', '구미 여행001', '동구미 여행001', NULL, 0, '2022/04/10', true, '0:0:0:0:1'),
+           (0, '관리자', '구미 여행002', '남구미 여행001', NULL, 0, '2022/04/13', true, '0:0:0:0:1'),
+           (0, '관리자', '구미 여행003', '남구미 여행002', NULL, 0, '2022/04/15', true, '0:0:0:0:1'),
+           (0, '관리자', '구미 여행004', '구미 여행001', NULL, 0, '2022/04/20', true, '0:0:0:0:1'),
+           (0, '관리자', '구미 여행005', '동구미 여행002', NULL, 0, '2022/05/10', true, '0:0:0:0:1'),
+           (0, 'LSG', '남해 왔습니다', '남해 펜션에 왔는데 강아지 동반이라 좋았어요', NULL, 0, '2022/03/10', true, '0:0:0:0:1');
 
 SELECT * FROM record_tbl;
+
+SELECT user_nickname FROM user_tbl WHERE user_id = 'user02';
 
 -- 산책기록 테이블 확인
 SELECT ut.user_nickname, rt.record_title, rt.record_content, rt.record_DT
