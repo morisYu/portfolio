@@ -133,7 +133,7 @@ public class BoardControl extends HttpServlet {
 	private void requestBoardWrite(HttpServletRequest request) throws IOException {
 		BoardDAO dao = BoardDAO.getInstance();
 		
-		String filePath = "D:/upload";
+		String filePath = "D:/Vscode/portfolio/SanCheck/src/main/webapp/assets/img/placeImage";
 		int fileSize = 5 * 1024 *1024;
 		String encType = "UTF-8";
 		

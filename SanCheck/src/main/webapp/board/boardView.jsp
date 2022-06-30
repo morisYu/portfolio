@@ -53,6 +53,13 @@
 				</div>
 			</div>
 			
+			<div class="form-group row mb-2">
+				<label class="col-sm-2 control-label">사진</label>
+				<div class="col-sm-5" style="word-break: break-all;">
+					<img src="/fileupload/${ board['board_photo'] }" class="w-100" />
+				</div>
+			</div>
+			
 			<div class="form-group row">
 				
 				<div class="col-sm-offset-2 col-sm-7 text-center">

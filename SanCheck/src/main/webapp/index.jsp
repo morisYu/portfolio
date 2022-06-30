@@ -24,14 +24,13 @@
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: 0px;
+	left: 0;
 	right: 0;
-	opacity: 1;
+	opacity: 0.8;
 	background-position: center;
 	background-size: cover;
 }
 </style>
-
 </head>
 <body>
 	<jsp:include page="./menu.jsp" />
@@ -43,10 +42,10 @@
 			
 				<div class="carousel-item active" data-bs-interval="2000">
 					<div class="overlay-img"
-						style="background-image: url(https://cdn.pixabay.com/photo/2022/06/15/11/07/konigssee-7263638__340.jpg)"></div>
+						style="background-image: url(/fileupload/louvre.jpg);"></div>
 					<div class="carousel-text">
 						<div class="carousel-caption d-none d-md-block">
-			        <h5>First slide label</h5>
+			        <h5 class="display-5 fw-bold">First slide label</h5>
 			        <p>Some representative placeholder content for the first slide.</p>
 			      </div>
 					</div>
@@ -54,14 +53,24 @@
 
 				<div class="carousel-item" data-bs-interval="2000">
 					<div class="overlay-img"
-						style="background-image: url(https://cdn.pixabay.com/photo/2022/06/14/17/30/beach-7262492__340.jpg)"></div>
-					<div class="carousel-text"></div>
+						style="background-image: url(./assets/img/placeImage/mountain.jpg);"></div>
+					<div class="carousel-text">
+						<div class="carousel-caption d-none d-md-block">
+			        <h5 class="display-5 fw-bold">Second slide label</h5>
+			        <p>Some representative placeholder content for the first slide.</p>
+			      </div>
+					</div>
 				</div>
 
 				<div class="carousel-item" data-bs-interval="2000">
 					<div class="overlay-img"
-						style="background-image: url(https://cdn.pixabay.com/photo/2022/05/12/10/02/mountains-7191235__340.jpg)"></div>
-					<div class="carousel-text"></div>
+						style="background-image: url(/fileupload/strasbourg.jpg);"></div>
+					<div class="carousel-text">
+						<div class="carousel-caption d-none d-md-block">
+			        <h5 class="display-5 fw-bold">Third slide label</h5>
+			        <p>Some representative placeholder content for the first slide.</p>
+			      </div>
+					</div>
 				</div>
 				
 				<!-- 이전/다음 버튼 -->
@@ -82,8 +91,6 @@
 	<div class="container my-3 bg-primary">
 		<h1>test</h1>
 	</div>
-
-
 
 	<jsp:include page="./footer.jsp" />
 	<script type="text/javascript" src="./assets/JS/bootstrap.js"></script>
