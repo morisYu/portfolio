@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,7 +35,9 @@
 </head>
 <body>
 	<jsp:include page="./menu.jsp" />
-	
+	<%
+		String realPath = request.getServletContext().getRealPath("/upload");
+	%>
 	<!-- carousel -->
 	<div class="container-fluid bg-secondary px-0" >
 		<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -42,33 +45,33 @@
 			
 				<div class="carousel-item active" data-bs-interval="2000">
 					<div class="overlay-img"
-						style="background-image: url(/fileupload/louvre.jpg);"></div>
+						style="background-image: url(./upload/island.png);"></div>
 					<div class="carousel-text">
 						<div class="carousel-caption d-none d-md-block">
-			        <h5 class="display-5 fw-bold">First slide label</h5>
-			        <p>Some representative placeholder content for the first slide.</p>
+			        <h6 class="display-6 fw-bold">안녕하세요</h6>
+			        <p>hello.</p>
 			      </div>
 					</div>
 				</div>
 
 				<div class="carousel-item" data-bs-interval="2000">
 					<div class="overlay-img"
-						style="background-image: url(./assets/img/placeImage/mountain.jpg);"></div>
+						style="background-image: url(./upload/lin-zhi.jpg);"></div>
 					<div class="carousel-text">
 						<div class="carousel-caption d-none d-md-block">
-			        <h5 class="display-5 fw-bold">Second slide label</h5>
-			        <p>Some representative placeholder content for the first slide.</p>
+			        <h6 class="display-6 fw-bold">저는 유성화입니다.</h6>
+			        <p>My name is Moris Yu.</p>
 			      </div>
 					</div>
 				</div>
 
 				<div class="carousel-item" data-bs-interval="2000">
 					<div class="overlay-img"
-						style="background-image: url(/fileupload/strasbourg.jpg);"></div>
+						style="background-image: url(./upload/skyline.jpg);"></div>
 					<div class="carousel-text">
 						<div class="carousel-caption d-none d-md-block">
-			        <h5 class="display-5 fw-bold">Third slide label</h5>
-			        <p>Some representative placeholder content for the first slide.</p>
+			        <h6 class="display-6 fw-bold">반갑습니다.</h6>
+			        <p>Nice to meet you.</p>
 			      </div>
 					</div>
 				</div>
@@ -88,8 +91,9 @@
 		</div>
 	</div>
 	
-	<div class="container my-3 bg-primary">
-		<h1>test</h1>
+	<!-- 메인 페이지라서 색다른 디자인 필요함 -->
+	<div class="container">
+		
 	</div>
 
 	<jsp:include page="./footer.jsp" />

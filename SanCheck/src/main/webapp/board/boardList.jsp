@@ -24,6 +24,7 @@
 	<div class="container">
 		<form action="<c:url value="./BoardListAction.bc"/>" method="post">
 			<div class="row">
+				<!-- 게시글 검색 -->
 				<div class="col-10">
 					<div class="container">
 						<select name="items" class="txt">
@@ -36,11 +37,11 @@
 						<button onclick="checkForm(); return false;" class="btn btn-secondary">글쓰기&raquo;</button>
 					</div>
 				</div>
+				<!-- 검색된 게시글 건수 -->
 				<div class="col-2 text-end">
 					<span class="badge bg-success fs-6">전체 ${ total_board } 건</span>
 				</div>
 			</div>
-			
 			
 			<div style="padding-top: 10px">
 				<table class="table table-hover text-center">
@@ -66,6 +67,7 @@
 				</table>
 			</div>
 			
+			<!-- 기본적인 형태의 페이지번호 -->
 			<div class="text-center mb-3">
 				<c:set var="pageNum" value="${ pageNum }" />
 				<c:forEach var="i" begin="1" end="${ total_page }" >
@@ -81,11 +83,12 @@
 					</a>
 				</c:forEach>
 			</div>
-			
 		</form>
 	</div>
+	
 	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
+		// 게시글 작성 시 로그인 여부 확인
 		function checkForm(){
 			var id = "<c:out value="${ sessionId }"/>";
 			if(id == ""){
@@ -95,7 +98,6 @@
 			}
 			location.href="./BoardWriteForm.bc?user_id=<c:out value="${ sessionId }"/>";
 		}
-	
 	</script>
 </body>
 </html>

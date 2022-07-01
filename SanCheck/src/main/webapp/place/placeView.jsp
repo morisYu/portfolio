@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="dto.PlaceDTO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String sessionId = (String) session.getAttribute("sessionId");
 	String sessionGrade = (String) session.getAttribute("sessionGrade");
 	int num = ((Integer) request.getAttribute("num")).intValue();
 	int pageNum = ((Integer) request.getAttribute("pageNum")).intValue();
 	PlaceDTO place = (PlaceDTO) request.getAttribute("place");
-	String[] place_photos = null;
-	if(place.getPlace_photo() != null){
-		place_photos = place.getPlace_photo().split(",");
-	}
 %>
 
 <!DOCTYPE html>
@@ -47,48 +44,42 @@
 <body>
 	<jsp:include page="../menu.jsp" />
 	
-	<div class="container-fluid text-center my-3">
-		<h1 class="display-3">장소정보</h1>
+	<div class="jumbotron">
+		<div class="container">
+			<h6 class="display-6 fw-bold text-center my-3">장소정보</h5>
+		</div>
 	</div>
 	
 	<div class="container mb-5">
 		<div class="row">
 			<div class="col-sm-6">
-			
 				<!-- carousel -->
 				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
 				  <div class="carousel-inner">
-				    <div class="carousel-item active" data-bs-interval="2000" >
-				    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/15/11/07/konigssee-7263638__340.jpg)"></div>
-				    	<div class="carousel-text">
-				    	</div>
-				    </div>
-				    
-				    <div class="carousel-item" data-bs-interval="2000" >
-				    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/14/17/30/beach-7262492__340.jpg)"></div>
-				    	<div class="carousel-text">
-				    	</div>
-				    </div>
-				    
-				    <div class="carousel-item" data-bs-interval="2000" >
-				    	<div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/05/12/10/02/mountains-7191235__340.jpg)"></div>
-				    	<div class="carousel-text">
-				    	</div>
-				    </div>
-				  
+				  	<!-- 등록된 사진이름을 분리해서 사진 가져오기 -->
+				  	<c:set var="photos" value="${ fn:split(place.place_photo, ',') }" />
+				  	<c:forEach var="photo" items="${ photos }">
+				  		<div class="carousel-item active" data-bs-interval="2000" >
+					    	<div class="overlay-img" style="background-image: url(./upload/${photo})"></div>
+					    	<!-- 등록된 사진명 확인 
+					    		<div class="carousel-text text-white fw-bold">${ photo }</div>
+					    	-->
+					    </div>
+				  	</c:forEach>
+				  	<!-- 이전 사진 버튼 -->
 					  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
 					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					    <span class="visually-hidden">Previous</span>
 					  </button>
+					  <!-- 다음 사진 버튼 -->
 					  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
 					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 					    <span class="visually-hidden">Next</span>
 					  </button>
 					</div>
 				</div>
-			
 			</div>
-			
+			<!-- 장소 설명 -->
 			<div class="col-sm-6 pt-3">
 				<table class="table">
 					<tr>
@@ -117,40 +108,6 @@
 					<a href="./DeletePlaceAction.pc?num=${ place.place_no }" class="btn btn-danger px-5 py-1 fs-5" >삭제</a>
 				</c:if>
 			</div>
-			
-			
-			
-			
-			
-			<!-- 업로드 사진을 장소정보 상세페이지에서 보게 작업 중 -->
-				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-				  <div class="carousel-inner">
-				  	<c:if test="<%= place_photos != null %>" >
-					  	<c:forEach var="photo" items="<%= place_photos %>">
-					  		 <div class="carousel-item active" data-bs-interval="2000" >
-						    	 <div class="overlay-img" style="background-image: url(https://cdn.pixabay.com/photo/2022/06/15/11/07/konigssee-7263638__340.jpg)"></div>
-						    	 <div class="carousel-text">
-						    		 <h2>PHOTO-1</h2>
-						    		 <p>loremasklhfahjsfhakhfhjkahkhwjkyrqywfykah  jakhwfkhakhfkahksfhjhj</p>
-						    	 </div>
-						    </div>
-					  	</c:forEach>
-				  	</c:if>
-				    
-				  
-					  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="visually-hidden">Previous</span>
-					  </button>
-					  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="visually-hidden">Next</span>
-					  </button>
-					</div>
-				</div>
-			
-			
-			
 		</div>
 	</div>
 	

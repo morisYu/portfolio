@@ -2,6 +2,7 @@
 <%@ page import="dto.PlaceDTO" %>
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String sessionId = (String) session.getAttribute("sessionId");
 	String sessionGrade = (String) session.getAttribute("sessionGreade");
@@ -9,13 +10,9 @@
 	int total_count = ((Integer) request.getAttribute("total_count")).intValue();
 	int total_page = ((Integer) request.getAttribute("total_page")).intValue();
 	List<PlaceDTO> placeList = (List) request.getAttribute("placeList");
-	
 	int startPageIndex = ((Integer) request.getAttribute("startPageIndex"));
 	int endPageIndex = ((Integer) request.getAttribute("endPageIndex"));
 %>
-
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,51 +35,53 @@
 	
 	<div class="jumbotron">
 		<div class="container">
-			<h6 class="display-6 fw-bold text-center my-3">장소정보</h5>
+			<h6 class="display-6 fw-bold text-center my-3">장소목록</h5>
 		</div>
 	</div>
-	
-		<form action="./PlaceListAction.pc" method="post">
-			<div class="container text-center">
-				<div class="row" style="margin: auto;">
-				
-					<div class="col-auto ps-0 pe-2">
-						<select name="items" class="form-select">
-							<option value="place_name">장소명</option>
-							<option value="place_addr">주소</option>
-							<option value="place_other">기타</option>
-						</select>
-					</div>
-					
-					<div class="col-auto ps-0 pe-2">
-						<input name="text" type="text" class="form-control"/>
-					</div>
-					
-					<div class="col-auto ps-0 pe-2 mx-0">
-						<input type="submit" class="btn btn-primary px-3" value="검색"/>
-					</div>
-					
-					<c:if test="${ sessionGrade == 'admin' }">
-						<div class="col-auto ps-0 pe-2 mx-0">
-							<a href="./PlaceWriteForm.pc?id=${ sessionId }" class="btn btn-secondary">글쓰기&raquo;</a>
-						</div>
-					</c:if>
+	<!-- 장소/주소 검색 -->
+	<form action="./PlaceListAction.pc" method="post">
+		<div class="container text-center">
+			<div class="row" style="margin: auto;">
+			
+				<div class="col-auto ps-0 pe-2">
+					<select name="items" class="form-select">
+						<option value="place_name">장소명</option>
+						<option value="place_addr">주소</option>
+						<option value="place_other">기타</option>
+					</select>
 				</div>
 				
+				<div class="col-auto ps-0 pe-2">
+					<input name="text" type="text" class="form-control"/>
+				</div>
+				
+				<div class="col-auto ps-0 pe-2 mx-0">
+					<input type="submit" class="btn btn-primary px-3" value="검색"/>
+				</div>
+				
+				<c:if test="${ sessionGrade == 'admin' }">
+					<div class="col-auto ps-0 pe-2 mx-0">
+						<a href="./PlaceWriteForm.pc?id=${ sessionId }" class="btn btn-secondary">글쓰기&raquo;</a>
+					</div>
+				</c:if>
 			</div>
-		</form>
-	
+			
+		</div>
+	</form>
 	<hr>
-	
 	<div class="container">
 		<div class="row">
 			<c:forEach var="place" items="${ placeList }">
-			
 				<div class="col-md-6 col-lg-3 mb-3">
 			    <div class="card" style="width: 18rem;">
+			    	<!-- 카드 이미지 -->
 			    	<div class="bd-placeholder-img card-img-top">
-			    		<img src="https://cdn.pixabay.com/photo/2020/03/27/08/45/stone-lotus-4972881__340.jpg" class="h-100 w-100">
+			    		<!-- 사진이 여러개 등록된 경우 fn 태그로 사진이름을 분리 -->
+			    		<c:set var="photos" value="${ fn:split(place.place_photo, ',') }" />
+			    		<!-- 분리된 사진 중 첫 번째 사진을 표시 -->
+			    		<img src="./upload/${ photos[0] }" class="w-100" style="height: 150px">
 			    	</div>
+			    	<!-- 카드 내용 -->
 			      <div class="card-body">
 			        <h4 class="card-title mb-3 font-soojin">${ place.place_name }</h4>
 			        <p class="fs-6 mb-3">${ place.place_addr }</p>
@@ -92,7 +91,6 @@
 			      </div>
 			    </div>
 			  </div>
-				
 			</c:forEach>
 		</div>
 	</div>
@@ -113,20 +111,20 @@
 			</li>
 		</c:forEach>
 		<li class="page-item"><button class="page-link px-3" onclick="nextPage()">&raquo;</button></li>
-	 </ul>
+	</ul>
 	
 	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
+		// 이전페이지 이동
 		function prePage(){
 			var num = ${ pageNum } - 1;
 			location.href = "./PlaceListAction.pc?pageNum=" + num;
 		}
-		
+		// 다음페이지 이동
 		function nextPage(){
 			var num = ${ pageNum} + 1;
 			location.href = "./PlaceListAction.pc?pageNum=" + num;
 		}
-	
 	</script>
 </body>
 </html>

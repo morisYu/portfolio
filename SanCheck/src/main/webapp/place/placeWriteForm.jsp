@@ -9,11 +9,13 @@
 <body>
 	<jsp:include page="../menu.jsp" />
 
-	<div class="container-fluid">
-		<h3 class="display-3 my-3 text-center">장소정보 작성</h3>
+	<div class="jumbotron">
+		<div class="container">
+			<h6 class="display-6 fw-bold text-center my-3">장소정보 등록</h5>
+		</div>
 	</div>
 	
-	<div class="container col-md-4">
+	<div class="container col-md-4" style="height: 580px">
 		<form action="./PlaceWriteAction.pc" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="place_write_id" value="${ sessionId }" />
 			
@@ -21,7 +23,7 @@
 			  <div class="col-3">
 			    <label for="name" class="col-form-label">장소명</label>
 			  </div>
-			  <div class="col-auto">
+			  <div class="col-9">
 			    <input type="text" name="place_name" id="name" class="form-control">
 			  </div>
 			</div>
@@ -30,7 +32,7 @@
 				<div class="col-3">
 					<label for="addr" class="col-form-label">주소</label>
 				</div>
-				<div class="col-auto">
+				<div class="col-9">
 					<input type="text" name="place_addr" id="addr" class="form-control">
 				</div>
 			</div>
@@ -39,7 +41,7 @@
 				<div class="col-3">
 					<label for="tel" class="col-form-label">연락처</label>
 				</div>
-				<div class="col-auto">
+				<div class="col-9">
 					<input type="text" name="place_tel" id="tel" class="form-control">
 				</div>
 			</div>
@@ -48,7 +50,7 @@
 				<div class="col-3">
 					<label for="hours" class="col-form-label">운영시간</label>
 				</div>
-				<div class="col-auto">
+				<div class="col-9">
 					<input type="text" name="place_business_hours" id="hours" class="form-control">
 				</div>
 			</div>
@@ -57,7 +59,7 @@
 				<div class="col-3">
 					<label for="other" class="col-form-label">기타사항</label>
 				</div>
-				<div class="col-auto">
+				<div class="col-9">
 					<input type="text" name="place_other" id="other" class="form-control">
 				</div>
 			</div>
@@ -66,19 +68,19 @@
 				<div class="col-3">
 					<label for="photo" class="col-form-label">사진등록</label>
 				</div>
-				<div class="col-auto text-center">
+				<div class="col-9 text-center">
 					<button class="btn btn-success me-3" onclick="addPhoto(); return false;" >사진추가</button>
 					<button class="btn btn-danger" onclick="deletePhoto(); return false;" >항목삭제</button>
 				</div>
 			</div>
 			
-			<div class="row mb-2 w-100">
+			<div class="container p-0 mb-2 w-100 d-flex justify-content-end">
 				<table style="width: 310px">
 					<tbody id="addPhoto"></tbody>
 				</table>
 			</div>
 			
-			<div class="container text-center">
+			<div class="container text-center mb-3">
 				<input type="submit" class="btn btn-primary px-3" value="등록" />
 				<input type="reset" class="btn btn-secondary px-3" value="취소"	/>
 			</div>
@@ -87,8 +89,13 @@
 	
 	<jsp:include page="../footer.jsp"/>
 	<script type="text/javascript">
-		
+		var rowCount = 1;
+		// 사진 항목 추가
 		function addPhoto()	{
+			if(rowCount > 5){
+				return false;
+			}
+			rowCount = rowCount + 1;
 			var photo = document.getElementById('addPhoto');
 			const newRow = photo.insertRow();
 			const newCell = newRow.insertCell(0);
@@ -97,11 +104,14 @@
 			
 			return false;
 		}
-		
+		// 사진 항목 삭제
 		function deletePhoto(){
 			var photo = document.getElementById('addPhoto');
-			
+			rowCount = rowCount - 1;
 			photo.deleteRow(-1);
+			if(rowCount < 1){
+				rowCount = 1;
+			}
 		}
 	</script>
 </body>

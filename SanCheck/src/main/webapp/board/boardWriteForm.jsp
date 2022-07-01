@@ -20,14 +20,13 @@
 		</div>
 	</div>
 	
-	<div class="container text-center">
-		
+	<div class="container text-center" style="height: 580px">
 		<form name="newWrite" action="${ path }/BoardWriteAction.bc" class="form-horizontal"
-			method="post" oncubmit="return checkForm()" enctype="multipart/form-data">
+			method="post" onsubmit="return checkForm()" enctype="multipart/form-data">
 			<input name="id" type="hidden" class="form-control" value="${ sessionSciosessionId }" />
 			
 			<div class="form-group row mb-2">
-				<label class="col-sm-2 control-label">별명</label>
+				<label class="col-sm-2 control-label">작성자</label>
 				<div class="col-sm-3">
 					<input name="board_nickname" type="text" class="form-control" value="<%= nickname %>" readonly/>
 				</div>

@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -133,7 +134,16 @@ public class BoardControl extends HttpServlet {
 	private void requestBoardWrite(HttpServletRequest request) throws IOException {
 		BoardDAO dao = BoardDAO.getInstance();
 		
-		String filePath = "D:/Vscode/portfolio/SanCheck/src/main/webapp/assets/img/placeImage";
+		// 파일 저장 경로는 작업중인 폴더가 아니라 .metadata 안에 저장됨(작업중인 폴더에는 파일 업로드 되지 않고, 서비스중인 어플리케이션에 업로드 됨)
+		String realPath = request.getServletContext().getRealPath("/upload");
+		
+		// 파일 저장경로가 없을 때 폴더 생성
+		File path = new File(realPath);
+		if(!path.exists()) {
+			path.mkdirs();
+		}
+		
+		String filePath = realPath;
 		int fileSize = 5 * 1024 *1024;
 		String encType = "UTF-8";
 		
@@ -177,18 +187,57 @@ public class BoardControl extends HttpServlet {
 	}
 
 	// 게시글 수정하기
-	private void requestBoardUpdate(HttpServletRequest request) {
+	private void requestBoardUpdate(HttpServletRequest request) throws IOException {
 		int board_no = Integer.parseInt(request.getParameter("num"));
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		
+		
+		수정할 때 기존 이미지 파일명을 가지고와서 기존 파일은 삭제하고 수정된 사진을 업로드 해야함
+
+
+		File file = new File("C:/123.txt");
+        
+    	if( file.exists() ){
+    		if(file.delete()){
+    			System.out.println("파일삭제 성공");
+    		}else{
+    			System.out.println("파일삭제 실패");
+    		}
+    	}else{
+    		System.out.println("파일이 존재하지 않습니다.");
+    	}
+        	
+    	출처: https://javacpro.tistory.com/27 [버물리의 IT공부:티스토리]
+		
+		
+		// 파일 저장 경로는 작업중인 폴더가 아니라 .metadata 안에 저장됨(작업중인 폴더에는 파일 업로드 되지 않고, 서비스중인 어플리케이션에 업로드 됨)
+		String realPath = request.getServletContext().getRealPath("/upload");
+		
+		// 파일 저장경로가 없을 때 폴더 생성
+		File path = new File(realPath);
+		if(!path.exists()) {
+			path.mkdirs();
+		}
+		
+		String filePath = realPath;
+		int fileSize = 5 * 1024 *1024;
+		String encType = "UTF-8";
+		
+		MultipartRequest multi = new MultipartRequest(request, filePath, fileSize, encType, new DefaultFileRenamePolicy());
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		
 		BoardDTO board = new BoardDTO();
 		board.setBoard_no(board_no);
-		board.setBoard_nickname(request.getParameter("board_nickname"));
-		board.setBoard_title(request.getParameter("board_title"));
-		board.setBoard_content(request.getParameter("board_content"));
-		board.setBoard_photo(request.getParameter("board_photo"));
+		board.setBoard_nickname(multi.getParameter("board_nickname"));
+		board.setBoard_title(multi.getParameter("board_title"));
+		board.setBoard_content(multi.getParameter("board_content"));
+
+		Enumeration files = multi.getFileNames();
+		String fname = (String) files.nextElement();
+		String fileName = multi.getFilesystemName(fname);
+		
+		board.setBoard_photo(fileName);
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
 		String board_reg_date = formatter.format(new Date());
@@ -208,6 +257,23 @@ public class BoardControl extends HttpServlet {
 		int num = Integer.parseInt(request.getParameter("num"));
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		
+		삭제할 때 등록했던 이미지도 삭제해야 함
+
+		File file = new File("C:/123.txt");
+        
+    	if( file.exists() ){
+    		if(file.delete()){
+    			System.out.println("파일삭제 성공");
+    		}else{
+    			System.out.println("파일삭제 실패");
+    		}
+    	}else{
+    		System.out.println("파일이 존재하지 않습니다.");
+    	}
+        	
+    	출처: https://javacpro.tistory.com/27 [버물리의 IT공부:티스토리]
+		
+    		
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.deleteBoard(num);
 		

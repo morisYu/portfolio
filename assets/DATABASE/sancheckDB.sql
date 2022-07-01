@@ -36,20 +36,20 @@ DELETE FROM user_tbl WHERE user_id = 'LSG@example.com';
 /************************* 장소정보(place) 테이블 데이터 ***************************/
 DESC place_tbl;
 INSERT INTO place_tbl (place_No,place_write_id, place_name, place_addr, place_tel, place_business_hours, place_other, place_photo)
-	VALUES (NULL, 'admin', '동락공원', '경상북도 구미시 3공단1로 191', '054-480-4612', '24 시간', '입장료: 무료', NULL),
-		   (NULL, 'admin', '낙동강체육공원', '경상북도 구미시 낙동제방길 200', '없음', '24 시간', '일부 시설 유료', NULL),
-           (NULL, 'admin', '월광수변공원', '대구광역시 달서구 월곡로 5', '053-667-2851', '24 시간', '입장료: 무료', NULL),
-           (NULL, 'admin', '디아크문화관', '대구 달성군 다사읍 강정본길 57', '053-585-0916', '10:00 ~ 18:00(매주 월요일 휴무)', '입장료: 일부 유료', NULL),
-           (NULL, 'admin', '북서울꿈의숲', '서울 강북구 월계로 173', '02-2289-4001', '24 시간', '입장료: 무료', NULL),
-           (NULL, 'admin', '한강공원', '서울 마포구 마포나루길 467', '02-3780-0601', '24 시간', '입장료: 무료', NULL),
-           (NULL, 'admin', '몽마르뜨 공원', '서울 서초구 서초동 산177-3', '02-2155-6860', '24 시간', '입장료: 무료', NULL),
-           (NULL, 'admin', '인천대공원', '인천 남동구 장수동 산79', '042-466-7282', '09:00 ~ 17:30(우천 시 휴관)', '입장료: 무료', NULL),
-           (NULL, 'admin', '유림공원', '대전 유성구 어은로 27', '042-824-4581', '24 시간', '입장료: 무료', NULL),
-           (NULL, 'admin', '은구비공원', '대전 유성구 노은동로 166', '042-611-2718', '24 시간', '입장료: 무료', NULL),
-           (NULL, 'admin', '용두산공원', '부산 중구 용두산길 37-55', '051-860-7820', '24 시간', '입장료: 무료', NULL);
+	VALUES (NULL, 'admin', '동락공원', '경상북도 구미시 3공단1로 191', '054-480-4612', '24 시간', '입장료: 무료', 'assisi.jpg,beach.jpg,beach-1.jpg'),
+		   (NULL, 'admin', '낙동강체육공원', '경상북도 구미시 낙동제방길 200', '없음', '24 시간', '일부 시설 유료', 'bridge.jpg,berchtesgaden.jpg,jetty.jpg'),
+           (NULL, 'admin', '월광수변공원', '대구광역시 달서구 월곡로 5', '053-667-2851', '24 시간', '입장료: 무료', 'garden.jpg,sunset.jpg,hd-wallpaper.jpg'),
+           (NULL, 'admin', '디아크문화관', '대구 달성군 다사읍 강정본길 57', '053-585-0916', '10:00 ~ 18:00(매주 월요일 휴무)', '입장료: 일부 유료', 'gdansk.jpg,bora-bora.jpg,rocks.jpg'),
+           (NULL, 'admin', '북서울꿈의숲', '서울 강북구 월계로 173', '02-2289-4001', '24 시간', '입장료: 무료', 'ireland.jpg,ufo.jpg,solar-system.jpg'),
+           (NULL, 'admin', '한강공원', '서울 마포구 마포나루길 467', '02-3780-0601', '24 시간', '입장료: 무료', 'island.png,milky-way.jpg,space.jpg'),
+           (NULL, 'admin', '몽마르뜨 공원', '서울 서초구 서초동 산177-3', '02-2155-6860', '24 시간', '입장료: 무료', 'lake.jpg,lin-zhi.jpg,new-york.jpg'),
+           (NULL, 'admin', '인천대공원', '인천 남동구 장수동 산79', '042-466-7282', '09:00 ~ 17:30(우천 시 휴관)', '입장료: 무료', 'pathway.jpg,stonehenge.jpg,pagoda.jpg'),
+           (NULL, 'admin', '유림공원', '대전 유성구 어은로 27', '042-824-4581', '24 시간', '입장료: 무료', 'river.jpg,towards-the-garden.jpg,mont-saint-michel.jpg'),
+           (NULL, 'admin', '은구비공원', '대전 유성구 노은동로 166', '042-611-2718', '24 시간', '입장료: 무료', 'rocky-coast.jpg,hokkaido.jpg,svihov.jpg'),
+           (NULL, 'admin', '용두산공원', '부산 중구 용두산길 37-55', '051-860-7820', '24 시간', '입장료: 무료', 'skyline.jpg,gyeongbok-papace.jpg,hyangwonjeong-pavilion.jpg');
 
 -- 데이터 전체 조회
-SELECT * FROM place_tbl;
+SELECT * FROM place_tbl ORDER BY place_no DESC;
 
 -- 조건으로 데이터 조회
 SELECT * FROM place_tbl WHERE place_name LIKE '%공원%';

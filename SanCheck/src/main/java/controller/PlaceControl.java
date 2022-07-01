@@ -20,7 +20,6 @@ import dao.PlaceDAO;
 import dto.PlaceDTO;
 
 @MultipartConfig(
-	location="/tmp",
 	fileSizeThreshold=1024*1024,
 	maxFileSize=1024*1024*5,
 	maxRequestSize=1024*1024*5*5
@@ -164,20 +163,24 @@ public class PlaceControl extends HttpServlet {
 			}
 			
 			Part filePart = p;
+			// 파일이 여러개일 경우 쉼표로 구분
 			String fileName = filePart.getSubmittedFileName();
 			sb.append(fileName);
 			sb.append(",");
 			
 			InputStream fis = filePart.getInputStream();
 			
-			String realPath = request.getServletContext().getRealPath("/place/upload");
+			// 파일 저장 경로는 작업중인 폴더가 아니라 .metadata 안에 저장됨(작업중인 폴더에는 파일 업로드 되지 않고, 서비스중인 어플리케이션에 업로드 됨)
+			String realPath = request.getServletContext().getRealPath("/upload");
 			System.out.println(realPath);
 			
+			// 파일 저장경로가 없을 때 폴더 생성
 			File path = new File(realPath);
 			if(!path.exists()) {
 				path.mkdirs();
 			}
-		     
+		    
+			// File.separator 는 OS 에 따른 구분자(윈도우일 경우 '\', 리눅스일 경우 '/')
 		    String filePath = realPath + File.separator + fileName;
 		    
 		    // 파일 이름 중복 처리
@@ -199,6 +202,7 @@ public class PlaceControl extends HttpServlet {
 			
 			byte[] buf = new byte[1024];
 			int size = 0;
+			// read()함수 실행 결과 읽은 파일이 없으면 -1 반환함
 			while((size=fis.read(buf)) != -1) {
 				fos.write(buf, 0, size);
 			}
@@ -208,6 +212,7 @@ public class PlaceControl extends HttpServlet {
 		}
 		
 		if(sb.length() > 0) {
+			// 쉼표로 연결된 파일명의 제일 마지막에 붙은 쉼표 제거
 			sb.delete(sb.length()-1, sb.length());
 		}
 		
