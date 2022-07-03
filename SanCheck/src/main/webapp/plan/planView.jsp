@@ -18,8 +18,13 @@
 <body>
 	<jsp:include page="../menu.jsp" />
 	
-	<h3 class="display-5 my-3 text-center">일정 보기</h3>
-	<div class="container d-flex justify-content-center">
+	<div class="jumbotron">
+		<div class="container">
+			<h6 class="display-6 fw-bold text-center my-3">일정 내용</h5>
+		</div>
+	</div>
+	
+	<div class="container d-flex justify-content-center" style="height: 520px">
 		<form action="./planUpdateAction.jsp" method="post" class="form">
 		
 			<input type="hidden" name="plan_no" value="<%= plan.getPlan_no() %>" />
@@ -75,11 +80,10 @@
 					if(plan.getPlan_id().equals(sessionId)){
 				%>
 				<input type="submit" class="btn btn-success" value="수정" />
+				<a href="./planDeleteAction.jsp?num=<%= plan.getPlan_no() %>" class="btn btn-danger">삭제</a>
 				<%
 					}
 				%>
-				
-				<a href="./planDeleteAction.jsp?num=<%= plan.getPlan_no() %>" class="btn btn-danger">삭제</a> 
 			</div>
 			
 		</form>
@@ -89,7 +93,7 @@
 	<script type="text/javascript">
 		const colorText = document.querySelector("#plan_color");
 		var color = document.querySelector("#color");
-		          
+		// 선택한 색상 코드를 표시
 		colorText.addEventListener('change', () => {
 			color.innerHTML = colorText.value;
 		});

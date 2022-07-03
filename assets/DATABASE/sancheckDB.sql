@@ -17,36 +17,41 @@ INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname,
 		   (NULL, 'user08', '8888', '신성우', 'SSW', '010-3455-6789', '세종', 'SSW@hanmaum.net', 'user', '2022/06/05(21:15:18)'),
 		   (NULL, 'user09', '9999', '박진영', 'PJY', '010-9876-5432', '대구', 'PJY@hanmaum.net', 'user', '2022/06/10(17:06:42)'),
            (NULL, 'guest', 'guest', '게스트', 'GUEST', '011-1111-2222', '제주', 'guest@sancheck.com', 'user', '2022/01/01(21:15:18)');
-DELETE FROM user_tbl WHERE user_no = 12;
-SELECT * FROM user_tbl;
-INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname, 
-					  user_mobile, user_region, user_email, user_grade, user_join_date)
-	VALUES (0, 'aaa',  '0000', '유성화', 'aaa', '010-1234-5543', '구미', 'YSH@sancheck.com', 'admin', '2022/05/10(10:30:23)');
-SELECT * FROM user_tbl WHERE user_id = 'admin';
 
+-- 조회
+SELECT * FROM user_tbl;
+SELECT * FROM user_tbl WHERE user_id = 'admin';
 SELECT user_nickname FROM user_tbl WHERE user_id = 'admin';
 
+-- 삽입
+INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname, 
+					  user_mobile, user_region, user_email, user_grade, user_join_date)
+	VALUES (0, 'aaa',  '0000', '유성화', 'aaa', '010-1234-5543', '구미', 'YSH@sancheck.com', 'admin','2022/05/10(10:30:23)');
+
+-- 수정
 UPDATE user_tbl 
 	SET user_password = 'test', user_name = 'test', 
 		user_nickname = 'test', user_mobile = 'test', user_region = 'test'
 	WHERE user_id = 'LSG@example.com';
 
+-- 삭제
+DELETE FROM user_tbl WHERE user_no = 12;
 DELETE FROM user_tbl WHERE user_id = 'LSG@example.com';
 
 /************************* 장소정보(place) 테이블 데이터 ***************************/
 DESC place_tbl;
 INSERT INTO place_tbl (place_No,place_write_id, place_name, place_addr, place_tel, place_business_hours, place_other, place_photo)
-	VALUES (NULL, 'admin', '동락공원', '경상북도 구미시 3공단1로 191', '054-480-4612', '24 시간', '입장료: 무료', 'assisi.jpg,beach.jpg,beach-1.jpg'),
-		   (NULL, 'admin', '낙동강체육공원', '경상북도 구미시 낙동제방길 200', '없음', '24 시간', '일부 시설 유료', 'bridge.jpg,berchtesgaden.jpg,jetty.jpg'),
-           (NULL, 'admin', '월광수변공원', '대구광역시 달서구 월곡로 5', '053-667-2851', '24 시간', '입장료: 무료', 'garden.jpg,sunset.jpg,hd-wallpaper.jpg'),
-           (NULL, 'admin', '디아크문화관', '대구 달성군 다사읍 강정본길 57', '053-585-0916', '10:00 ~ 18:00(매주 월요일 휴무)', '입장료: 일부 유료', 'gdansk.jpg,bora-bora.jpg,rocks.jpg'),
-           (NULL, 'admin', '북서울꿈의숲', '서울 강북구 월계로 173', '02-2289-4001', '24 시간', '입장료: 무료', 'ireland.jpg,ufo.jpg,solar-system.jpg'),
-           (NULL, 'admin', '한강공원', '서울 마포구 마포나루길 467', '02-3780-0601', '24 시간', '입장료: 무료', 'island.png,milky-way.jpg,space.jpg'),
-           (NULL, 'admin', '몽마르뜨 공원', '서울 서초구 서초동 산177-3', '02-2155-6860', '24 시간', '입장료: 무료', 'lake.jpg,lin-zhi.jpg,new-york.jpg'),
-           (NULL, 'admin', '인천대공원', '인천 남동구 장수동 산79', '042-466-7282', '09:00 ~ 17:30(우천 시 휴관)', '입장료: 무료', 'pathway.jpg,stonehenge.jpg,pagoda.jpg'),
-           (NULL, 'admin', '유림공원', '대전 유성구 어은로 27', '042-824-4581', '24 시간', '입장료: 무료', 'river.jpg,towards-the-garden.jpg,mont-saint-michel.jpg'),
-           (NULL, 'admin', '은구비공원', '대전 유성구 노은동로 166', '042-611-2718', '24 시간', '입장료: 무료', 'rocky-coast.jpg,hokkaido.jpg,svihov.jpg'),
-           (NULL, 'admin', '용두산공원', '부산 중구 용두산길 37-55', '051-860-7820', '24 시간', '입장료: 무료', 'skyline.jpg,gyeongbok-papace.jpg,hyangwonjeong-pavilion.jpg');
+	VALUES (NULL, 'admin', '동락공원', '경상북도 구미시 3공단1로 191', '054-480-4612', '24 시간', '입장료: 무료', 'assisi.jpg,beach.jpg,beach-2.jpg'),
+		   (NULL, 'admin', '낙동강체육공원', '경상북도 구미시 낙동제방길 200', '없음', '24 시간', '일부 시설 유료', 'berchtesgaden.jpg,bow-lake.jpg,bridge.jpg'),
+           (NULL, 'admin', '월광수변공원', '대구광역시 달서구 월곡로 5', '053-667-2851', '24 시간', '입장료: 무료', 'bridge-2.jpg,sunset.jpg,christmas.jpg'),
+           (NULL, 'admin', '디아크문화관', '대구 달성군 다사읍 강정본길 57', '053-585-0916', '10:00 ~ 18:00(매주 월요일 휴무)', '입장료: 일부 유료', 'forest.jpg,garden.jpg,gdansk.jpg'),
+           (NULL, 'admin', '북서울꿈의숲', '서울 강북구 월계로 173', '02-2289-4001', '24 시간', '입장료: 무료', 'hd-wallpaper.jpg,hokkaido.jpg,indiana-dunes-state-park.jpg'),
+           (NULL, 'admin', '한강공원', '서울 마포구 마포나루길 467', '02-3780-0601', '24 시간', '입장료: 무료', 'island.png,ireland.jpg,lake.jpg'),
+           (NULL, 'admin', '몽마르뜨 공원', '서울 서초구 서초동 산177-3', '02-2155-6860', '24 시간', '입장료: 무료', 'lin-zhi.jpg,maldives.jpg,mountains.jpg'),
+           (NULL, 'admin', '인천대공원', '인천 남동구 장수동 산79', '042-466-7282', '09:00 ~ 17:30(우천 시 휴관)', '입장료: 무료', 'mountains-2.jpg,new-york.jpg,paris.jpg'),
+           (NULL, 'admin', '유림공원', '대전 유성구 어은로 27', '042-824-4581', '24 시간', '입장료: 무료', 'pathway.jpg,river.jpg,rocky-coast.jpg'),
+           (NULL, 'admin', '은구비공원', '대전 유성구 노은동로 166', '042-611-2718', '24 시간', '입장료: 무료', 'sandstones.jpg,skyline.jpg,stonehenge.jpg'),
+           (NULL, 'admin', '용두산공원', '부산 중구 용두산길 37-55', '051-860-7820', '24 시간', '입장료: 무료', 'sunset.jpg,thin.jpg,towards-the-garden.jpg');
 
 -- 데이터 전체 조회
 SELECT * FROM place_tbl ORDER BY place_no DESC;
@@ -70,21 +75,21 @@ INSERT INTO plan_tbl (plan_no, plan_id, plan_kind, plan_color, plan_content, pla
            (NULL, 'user02', '접종', '#FF00DD', '심장사상충접종', '2022/10/05'),
            (NULL, 'user04', '일반', '#FF00DD', '목욕', '2022/07/04');
 
+-- 조회
 SELECT * FROM plan_tbl;
-
 SELECT * FROM plan_tbl WHERE plan_id IN ('admin', 'user02') AND plan_reg_date LIKE '%2022/03%';
-
 SELECT * FROM plan_tbl WHERE plan_id='admin' AND plan_reg_date LIKE '%2022/06%';
-
 SELECT * FROM plan_tbl WHERE plan_no=3;
 
+-- 수정
 UPDATE plan_tbl SET plan_kind='실험실' WHERE plan_no=20;
+
 -- 일정관리 테이블 확인
-SELECT ut.user_nickname, pt.plan_kind, pt.plan_content, pt.plan_DT
+SELECT ut.user_id, pt.plan_kind, pt.plan_content, pt.plan_reg_date
 	FROM user_tbl AS ut
 	JOIN plan_tbl AS pt
-    ON ut.user_nickname = pt.plan_nickname
-    ORDER BY ut.user_nickname ASC, pt.plan_DT DESC;
+    ON ut.user_id = pt.plan_id
+    ORDER BY ut.user_nickname ASC, pt.plan_reg_date DESC;
 
 /************************* 산책기록(record) 테이블 데이터 ***************************/
 DESC record_tbl;
@@ -104,16 +109,16 @@ INSERT INTO record_tbl (record_no, record_nickname, record_title, record_content
            (0, '관리자', '구미 여행005', '동구미 여행002', NULL, 0, '2022/05/10', true, '0:0:0:0:1'),
            (0, 'LSG', '남해 왔습니다', '남해 펜션에 왔는데 강아지 동반이라 좋았어요', NULL, 0, '2022/03/10', true, '0:0:0:0:1');
 
+-- 조회
 SELECT * FROM record_tbl;
-
 SELECT user_nickname FROM user_tbl WHERE user_id = 'user02';
 
 -- 산책기록 테이블 확인
-SELECT ut.user_nickname, rt.record_title, rt.record_content, rt.record_DT
+SELECT ut.user_nickname, rt.record_title, rt.record_content, rt.record_reg_date
 	FROM user_tbl AS ut
 	JOIN record_tbl AS rt
     ON ut.user_nickname = rt.record_nickname
-    ORDER BY ut.user_nickname ASC, rt.record_DT DESC;
+    ORDER BY ut.user_nickname ASC, rt.record_reg_date DESC;
 
 /************************* 산책기록 댓글(record_comment) 테이블 데이터 ***************************/
 DESC record_comment_tbl;
@@ -128,17 +133,18 @@ INSERT INTO record_comment_tbl (record_comment_No, record_comment_nickname, reco
            (NULL, 'SSG', '네 내일 봐요', DEFAULT),
            (NULL, '관리자', '반갑습니다.', DEFAULT);
 
+-- 조회
 SELECT * FROM record_comment_tbl;
 
 /************************* 게시판(board) 테이블 데이터***************************/
 DESC board_tbl;
 INSERT INTO board_tbl (board_no, board_nickname, board_title, board_content, board_nice, board_photo, board_reg_date, board_ip)
-	VALUES (0, '관리자', '게시판에는 뭐 써요 001', '여기에는 어떤 내용을 쓰나요? 001', 10, NULL, '2022/01/10(13:10:53)', '127:0:0:1'),
-		   (0, 'LSG', '게시판에는 뭐 써요 002', '여기에는 어떤 내용을 쓰나요? 002', 3, NULL, '2022/01/17(12:11:13)', '127:8:64:1'),
-           (0, 'SSG', '게시판에는 뭐 써요 003', '여기에는 어떤 내용을 쓰나요? 003', 0, NULL, '2022/01/19(11:34:21)', '127:9:66:1'),
-           (0, 'PJB', '게시판에는 뭐 써요 004', '여기에는 어떤 내용을 쓰나요? 004', 2, NULL, '2022/02/02(09:55:12)', '127:100:87:1'),
-           (0, 'SSW', '게시판에는 뭐 써요 005', '여기에는 어떤 내용을 쓰나요? 005', 0, NULL, '2022/02/15(21:10:11)', '127:68:6:1'),
-           (0, 'PJY', '게시판에는 뭐 써요 006', '여기에는 어떤 내용을 쓰나요? 006', 1, NULL, '2022/03/16(11:51:22)', '127:44:5:1');
+	VALUES (0, '관리자', '게시판에는 뭐 써요 001', '여기에는 어떤 내용을 쓰나요? 001', 10, 'vietnam.jpg', '2022/01/10(13:10:53)', '127:0:0:1'),
+		   (0, 'LSG', '게시판에는 뭐 써요 002', '여기에는 어떤 내용을 쓰나요? 002', 3, 'thin.jpg', '2022/01/17(12:11:13)', '127:8:64:1'),
+           (0, 'SSG', '게시판에는 뭐 써요 003', '여기에는 어떤 내용을 쓰나요? 003', 0, 'svihov.jpg', '2022/01/19(11:34:21)', '127:9:66:1'),
+           (0, 'PJB', '게시판에는 뭐 써요 004', '여기에는 어떤 내용을 쓰나요? 004', 2, 'sunset.jpg', '2022/02/02(09:55:12)', '127:100:87:1'),
+           (0, 'SSW', '게시판에는 뭐 써요 005', '여기에는 어떤 내용을 쓰나요? 005', 0, 'rocky-coast.jpg', '2022/02/15(21:10:11)', '127:68:6:1'),
+           (0, 'PJY', '게시판에는 뭐 써요 006', '여기에는 어떤 내용을 쓰나요? 006', 1, 'new-york.jpg', '2022/03/16(11:51:22)', '127:44:5:1');
            
 SELECT * FROM board_tbl ORDER BY board_reg_date DESC;
 
@@ -176,8 +182,11 @@ INSERT INTO notice_tbl (notice_no, notice_nickname, notice_title, notice_content
            (NULL, '관리자', '공지사항입니다016', '내용19284675', '2022/04/01(07:29:24)'),
            (NULL, '관리자', '공지사항입니다017', '내용50695743', '2022/04/19(19:30:26)'),
            (NULL, '관리자', '공지사항입니다018', '내용00685743', '2022/05/29(20:40:29)');
+           
+-- 조회
 SELECT * FROM notice_tbl;
 SELECT * FROM notice_tbl ORDER BY notice_no DESC;
-UPDATE notice_tbl SET notice_title = 'test11', notice_content = 'test1111' WHERE notice_no = '3';
-
 SELECT * FROM notice_tbl WHERE notice_no = 3;
+
+-- 수정
+UPDATE notice_tbl SET notice_title = 'test11', notice_content = 'test1111' WHERE notice_no = '3';

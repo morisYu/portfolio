@@ -1,10 +1,13 @@
 /* sancheck */
 
+-- 사용자 추가(ID: user, PASSWORD: user1234)
+CREATE USER 'user'@'%' IDENTIFIED BY 'user1234';
+-- 사용자에게 권한 부여(모든 권한) 
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'%';
+
 -- 데이터베이스 생성
-/*
 DROP DATABASE IF EXISTS sancheck;
 CREATE DATABASE sancheck;
-*/
 
 -- 데이터베이스의 인코딩 설정
 -- 기존 utf8(utf8mb3, 문자 하나에 3 byte 사용)은 이모지를 지원하지 않기 때문에 utf8mb4(문자 하나에 4 byte 사용)로 설정
@@ -19,17 +22,12 @@ SHOW CHAR SET;
 -- MySQL 에서 제공하는 COLLATE 목록 확인
 SHOW COLLATION;
 
--- 테이블 전체 삭제
-/*
-DROP TABLE IF EXISTS user_tbl, place_tbl, plan_tbl, record_tbl, record_comment_tbl, 
-					 board_tbl, board_comment_tbl, notice_tbl;
-*/
-DROP TABLE IF EXISTS user_tbl, place_tbl, plan_tbl, record_tbl, record_comment_tbl, 
-					 board_tbl, board_comment_tbl, notice_tbl;
+-- db 선택
 USE sancheck;
 
 /************************* 사용자(user) ***************************/
 -- 사용자 테이블 생성
+DROP TABLE IF EXISTS user_tbl;
 CREATE TABLE user_tbl (
 	user_no INT AUTO_INCREMENT PRIMARY KEY,
     user_id VARCHAR(20) NOT NULL UNIQUE,
@@ -62,6 +60,7 @@ CREATE TABLE place_tbl (
 
 /************************* 일정관리(plan) ***************************/
 -- 일정관리 테이블 생성
+DROP TABLE IF EXISTS plan_tbl;
 CREATE TABLE plan_tbl (
 	plan_no INT AUTO_INCREMENT PRIMARY KEY,
     plan_id VARCHAR(20),
@@ -94,8 +93,10 @@ CREATE TABLE record_tbl (
 
 /************************* 산책기록 댓글(record_comment) ***************************/
 -- 산책기록 댓글 테이블 생성
+DROP TABLE IF EXISTS record_comment_tbl;
 CREATE TABLE record_comment_tbl (
 	record_comment_no INT AUTO_INCREMENT PRIMARY KEY,
+    record_no INT,
     record_comment_nickname VARCHAR(20),
     record_comment VARCHAR(20),
     record_comment_reg_date VARCHAR(50)
@@ -103,6 +104,7 @@ CREATE TABLE record_comment_tbl (
 
 /************************* 게시판(board) ***************************/
 -- 게시판 테이블 생성
+DROP TABLE IF EXISTS board_tbl;
 CREATE TABLE board_tbl (
 	board_no INT AUTO_INCREMENT PRIMARY KEY,
     board_nickname VARCHAR(20),
@@ -120,8 +122,10 @@ CREATE TABLE board_tbl (
 
 /************************* 게시판 댓글(board_comment) ***************************/
 -- 게시판 댓글 테이블 생성
+DROP TABLE IF EXISTS board_comment_tbl;
 CREATE TABLE board_comment_tbl (
 	board_comment_No INT AUTO_INCREMENT PRIMARY KEY,
+    board_no INT,
     board_comment_nickname VARCHAR(20),
     board_comment VARCHAR(20),
     board_comment_DT TIMESTAMP DEFAULT NOW()
@@ -129,6 +133,7 @@ CREATE TABLE board_comment_tbl (
 
 /************************* 공지사항(notice) ***************************/
 -- 공지사항 테이블 생성
+DROP TABLE IF EXISTS notice_tbl;
 CREATE TABLE notice_tbl (
 	notice_no INT AUTO_INCREMENT PRIMARY KEY,
     notice_nickname VARCHAR(20),
@@ -141,12 +146,9 @@ CREATE TABLE notice_tbl (
     ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8mb4;
 
-SELECT * FROM notice_tbl;
 -- 제약조건 확인
 SELECT * FROM information_schema.table_constraints 
-	WHERE  table_name = 'notice_tbl';
+	WHERE table_name = 'notice_tbl';
 
 -- 테이블 목록 확인
 SHOW TABLES;
-
-DELETE FROM notice_tbl WHERE notice_no = 40;

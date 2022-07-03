@@ -93,7 +93,7 @@
 	
 	<!-- 메인 페이지라서 색다른 디자인 필요함 -->
 	<div class="container">
-		
+		<%= realPath = request.getServletContext().getRealPath("/upload") %>
 	</div>
 
 	<jsp:include page="./footer.jsp" />

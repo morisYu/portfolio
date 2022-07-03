@@ -7,11 +7,17 @@
 <title>일정 등록</title>
 </head>
 <body>
-	<h1 class="display-3 text-center">일정 등록</h1>
+	
+	<div class="jumbotron">
+		<div class="container">
+			<h6 class="display-6 fw-bold text-center my-3">일정 등록</h5>
+		</div>
+	</div>
+	
 	<div class="container my-5">
 		<form class="form" action="./planWriteAction.jsp" method="post">
 		
-			<div class="container row m-auto">
+			<div class="container row m-auto mb-2">
 				<div class="col-sm-3 text-center">
 					<label for="plan_reg_date" class="col-form-label">날짜</label>
 				</div>
@@ -20,16 +26,21 @@
 				</div>
 			</div>
 		
-			<div class="container row m-auto">
+			<div class="container row m-auto mb-2">
 				<div class="col-sm-3 text-center">
 					<label for="plan_kind" class="col-form-label">종류</label>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" name="plan_kind" id="plan_kind" class="form-control">
+					<input type="radio" name="plan_kind" id="plan_kind" value="병원"><span class="fs-6">&nbsp;병원</span>
+					<input type="radio" name="plan_kind" id="plan_kind" value="미용"><span class="fs-6">&nbsp;미용</span>
+					<input type="radio" name="plan_kind" id="plan_kind" value="산책"><span class="fs-6">&nbsp;산책</span><br>
+					<input type="radio" name="plan_kind" id="plan_kind" value="여행"><span class="fs-6">&nbsp;여행</span>
+					<input type="radio" name="plan_kind" id="plan_kind" value="모임"><span class="fs-6">&nbsp;모임</span>
+					<input type="radio" name="plan_kind" id="plan_kind" value="기타"><span class="fs-6">&nbsp;기타</span>
 				</div>
 			</div>
 		
-			<div class="container row m-auto">
+			<div class="container row m-auto mb-2">
 				<div class="col-sm-3 text-center">
 					<label for="plan_content" class="col-form-label">내용</label>
 				</div>

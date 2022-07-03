@@ -66,7 +66,7 @@
 	
 	<script type="text/javascript">
 		function checkForm() {
-			if (!document.newWrite.name.value) {
+			if (!document.newWrite.board_nickname.value) {
 				alert("성명을 입력하세요.");
 				return false;
 			}

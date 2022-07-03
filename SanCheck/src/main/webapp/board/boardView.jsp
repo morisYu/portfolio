@@ -54,7 +54,8 @@
 			<div class="form-group row mb-2">
 				<label class="col-sm-2 control-label">사진</label>
 				<div class="col-sm-5" style="word-break: break-all;">
-					<input name="board_photo" type="file" class="form-control" />
+					<input name="old_board_photo" type="hidden" value="${ board['board_photo'] }" />
+					<input name="new_board_photo" type="file" class="form-control" />
 					<!-- 게시글에 있는 사진을 다운로드 가능하도록 함 -->
 					<a download href="./upload/${ board['board_photo'] }">${ board['board_photo'] }</a>
 					<img src="./upload/${ board['board_photo'] }" class="w-100" style="height: 270px"/>
@@ -69,7 +70,7 @@
 					<c:set var="board_nickname" value="<%= board.getBoard_nickname() %>" />
 					<c:if test="${ user_nickname == board_nickname }" >
 						<input type="submit" class="btn btn-success" value="수정" />
-						<a href="./BoardDeleteAction.bc?num=${ num }&pageNum=<%= nowpage %>" class="btn btn-danger">삭제</a>
+						<a href="./BoardDeleteAction.bc?num=${ num }&pageNum=<%= nowpage %>&oldphoto=${ board['board_photo'] }" class="btn btn-danger">삭제</a>
 					</c:if>
 				</div>
 			</div>

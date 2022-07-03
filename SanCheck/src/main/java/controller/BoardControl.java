@@ -191,12 +191,19 @@ public class BoardControl extends HttpServlet {
 		int board_no = Integer.parseInt(request.getParameter("num"));
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		
+    	// 파일 저장 경로는 작업중인 폴더가 아니라 .metadata 안에 저장됨(작업중인 폴더에는 파일 업로드 되지 않고, 서비스중인 어플리케이션에 업로드 됨)
+    	String realPath = request.getServletContext().getRealPath("/upload");
+    	
+		String filePath = realPath;
+		int fileSize = 5 * 1024 *1024;
+		String encType = "UTF-8";
 		
-		수정할 때 기존 이미지 파일명을 가지고와서 기존 파일은 삭제하고 수정된 사진을 업로드 해야함
-
-
-		File file = new File("C:/123.txt");
-        
+		MultipartRequest multi = new MultipartRequest(request, filePath, fileSize, encType, new DefaultFileRenamePolicy());
+		
+		// 이전 등록된 사진 삭제
+		String old_photo = multi.getParameter("old_board_photo");
+		String oldFilePath = realPath + File.separator + old_photo;
+		File file = new File(oldFilePath);
     	if( file.exists() ){
     		if(file.delete()){
     			System.out.println("파일삭제 성공");
@@ -206,25 +213,8 @@ public class BoardControl extends HttpServlet {
     	}else{
     		System.out.println("파일이 존재하지 않습니다.");
     	}
-        	
-    	출처: https://javacpro.tistory.com/27 [버물리의 IT공부:티스토리]
 		
-		
-		// 파일 저장 경로는 작업중인 폴더가 아니라 .metadata 안에 저장됨(작업중인 폴더에는 파일 업로드 되지 않고, 서비스중인 어플리케이션에 업로드 됨)
-		String realPath = request.getServletContext().getRealPath("/upload");
-		
-		// 파일 저장경로가 없을 때 폴더 생성
-		File path = new File(realPath);
-		if(!path.exists()) {
-			path.mkdirs();
-		}
-		
-		String filePath = realPath;
-		int fileSize = 5 * 1024 *1024;
-		String encType = "UTF-8";
-		
-		MultipartRequest multi = new MultipartRequest(request, filePath, fileSize, encType, new DefaultFileRenamePolicy());
-		
+    	// 수정된 내용 저장
 		BoardDAO dao = BoardDAO.getInstance();
 		
 		BoardDTO board = new BoardDTO();
@@ -253,14 +243,17 @@ public class BoardControl extends HttpServlet {
 	}
 	
 	// 게시글 삭제하기
-	private void requestBoardDelete(HttpServletRequest request) {
+	private void requestBoardDelete(HttpServletRequest request) throws IOException {
 		int num = Integer.parseInt(request.getParameter("num"));
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		
-		삭제할 때 등록했던 이미지도 삭제해야 함
-
-		File file = new File("C:/123.txt");
-        
+		// 파일 저장 경로는 작업중인 폴더가 아니라 .metadata 안에 저장됨(작업중인 폴더에는 파일 업로드 되지 않고, 서비스중인 어플리케이션에 업로드 됨)
+    	String realPath = request.getServletContext().getRealPath("/upload");
+		
+		// 이전 등록된 사진 삭제
+		String old_photo = request.getParameter("oldphoto");
+		String oldFilePath = realPath + File.separator + old_photo;
+		File file = new File(oldFilePath);
     	if( file.exists() ){
     		if(file.delete()){
     			System.out.println("파일삭제 성공");
@@ -270,27 +263,10 @@ public class BoardControl extends HttpServlet {
     	}else{
     		System.out.println("파일이 존재하지 않습니다.");
     	}
-        	
-    	출처: https://javacpro.tistory.com/27 [버물리의 IT공부:티스토리]
-		
     		
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.deleteBoard(num);
 		
-		request.setAttribute("num", num);
 		request.setAttribute("pageNum", pageNum);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
