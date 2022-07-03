@@ -4,7 +4,7 @@
     <div class="py-2">
       <h1 class="fw-bold mb-3" style="font-size: 3rem">Contact Moris</h1>
       <p class="my-2">
-      	<a href="https://github.com/morisYu" style="text-decoration: none;" class="mx-1"><i class="fa-brands fa-github text-white fs-3"></i></a>
+      	<a href="https://github.com/morisYu/portfolio/tree/master/SanCheck" style="text-decoration: none;" class="mx-1"><i class="fa-brands fa-github text-white fs-3"></i></a>
       	<span id="phone" class="mx-1"><i class="fa-solid fa-square-phone text-white fs-3"></i></span>
       	<span id="email" class="mx-1"><i class="fa-solid fa-envelope text-white fs-3"></i></span>
       </p>

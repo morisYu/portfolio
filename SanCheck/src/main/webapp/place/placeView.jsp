@@ -50,7 +50,7 @@
 		</div>
 	</div>
 	
-	<div class="container mb-5">
+	<div class="container mb-5" style="height: 540px">
 		<div class="row">
 			<div class="col-sm-6">
 				<!-- carousel -->
