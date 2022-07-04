@@ -11,7 +11,10 @@
 	String id = request.getParameter("id");
 	String password = request.getParameter("password");
 	String name = request.getParameter("name");
-	String nickname = request.getParameter("nickname");
+	String nickname = id;
+	if(!request.getParameter("nickname").equals("")){
+		nickname = request.getParameter("nickname");
+	}
 	String mobile1 = request.getParameter("mobile1");
 	String mobile2 = request.getParameter("mobile2");
 	String mobile3 = request.getParameter("mobile3");

@@ -232,7 +232,10 @@ public class PlaceControl extends HttpServlet {
 	// 장소정보 상세내용 가져오기
 	private void requestPlaceView(HttpServletRequest request) {
 		int num = Integer.parseInt(request.getParameter("num"));
-		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		int pageNum = 1;
+		if(request.getParameter("pageNum") != null) {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		}
 		
 		PlaceDAO dao = PlaceDAO.getInstance();
 		PlaceDTO place = dao.getPlaceByNum(num);

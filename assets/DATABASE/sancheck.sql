@@ -35,8 +35,8 @@ CREATE TABLE user_tbl (
     user_name VARCHAR(20) NOT NULL,
 	user_nickname VARCHAR(20) UNIQUE,
     user_mobile VARCHAR(20) NOT NULL,
-    user_region VARCHAR (20),
-    user_email VARCHAR(30),
+    user_region VARCHAR (20) NOT NULL,
+    user_email VARCHAR(30) NOT NULL,
     user_grade VARCHAR(50),
     user_join_date VARCHAR(50)
 )DEFAULT CHARSET=utf8mb4;
@@ -55,7 +55,9 @@ CREATE TABLE place_tbl (
     place_photo TEXT,
     CONSTRAINT user_place_id_fk
     FOREIGN KEY (place_write_id)
-    REFERENCES user_tbl(user_id) 
+    REFERENCES user_tbl(user_id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 )DEFAULT CHARSET=utf8mb4;
 
 /************************* 일정관리(plan) ***************************/
@@ -70,7 +72,9 @@ CREATE TABLE plan_tbl (
     plan_reg_date VARCHAR(20),
     CONSTRAINT user_plan_id_fk
     FOREIGN KEY (plan_id)
-    REFERENCES user_tbl(user_id) 
+    REFERENCES user_tbl(user_id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 )DEFAULT CHARSET=utf8mb4;
 
 /************************* 산책기록(record) ***************************/
@@ -88,7 +92,9 @@ CREATE TABLE record_tbl (
     record_ip VARCHAR(50),
 	CONSTRAINT user_plan_nickname_fk
     FOREIGN KEY (record_nickname)
-    REFERENCES user_tbl(user_nickname) 
+    REFERENCES user_tbl(user_nickname)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 )DEFAULT CHARSET=utf8mb4;
 
 /************************* 산책기록 댓글(record_comment) ***************************/
@@ -118,6 +124,7 @@ CREATE TABLE board_tbl (
     FOREIGN KEY (board_nickname)
     REFERENCES user_tbl(user_nickname)
     ON UPDATE CASCADE
+    ON DELETE CASCADE
 )DEFAULT CHARSET=utf8mb4;
 
 /************************* 게시판 댓글(board_comment) ***************************/
@@ -144,6 +151,7 @@ CREATE TABLE notice_tbl (
     FOREIGN KEY (notice_nickname)
     REFERENCES user_tbl(user_nickname)
     ON UPDATE CASCADE
+    ON DELETE CASCADE
 )DEFAULT CHARSET=utf8mb4;
 
 -- 제약조건 확인

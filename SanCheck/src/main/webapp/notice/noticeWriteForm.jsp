@@ -14,7 +14,11 @@
 <body>
 	<jsp:include page="../menu.jsp" />
 
-	<h1 class="display-3 text-center">공지사항 작성</h1>
+	<div class="jumbotron">
+		<div class="container">
+			<h6 class="display-6 fw-bold text-center my-3">공지사항 작성</h5>
+		</div>
+	</div>
 	
 	<div class="container col-sm-4">
 		<form class="form" action="${ path }/NoticeWriteAction.do" method="post">

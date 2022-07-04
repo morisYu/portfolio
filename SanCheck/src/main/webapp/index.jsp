@@ -1,5 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="dao.PlaceDAO" %>
+<%@ page import="dto.PlaceDTO" %>
+<%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	String sessionId = (String) session.getAttribute("sessionId");
+	String sessionGrade = (String) session.getAttribute("sessionGreade");
+	
+	PlaceDAO dao = PlaceDAO.getInstance();
+	
+	List<PlaceDTO> placeList = dao.getPlaceList(null, null);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,7 +39,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	opacity: 0.8;
+	opacity: 0.7;
 	background-position: center;
 	background-size: cover;
 }
@@ -91,11 +103,45 @@
 		</div>
 	</div>
 	
-	<!-- 메인 페이지라서 색다른 디자인 필요함 -->
+	<!-- 경로 확인 부분
 	<div class="container">
+		<p>나중에 이 부분은 삭제할 것(파일 저장 경로 확인용) </p>
 		<%= realPath = request.getServletContext().getRealPath("/upload") %>
 	</div>
-
+	 -->
+	<!-- 장소목록 -->
+	<div class="container my-5">
+		<div class="row">
+			<%
+				for(PlaceDTO place : placeList){
+			%>
+				<div class="col-md-6 col-lg-3 mb-3">
+			    <div class="card" style="width: 18rem;">
+			    	<!-- 카드 이미지 -->
+			    	<div class="bd-placeholder-img card-img-top">
+				    	<%
+				    		String[] photos = place.getPlace_photo().split(",");
+				    	%>
+			    		<!-- 분리된 사진 중 첫 번째 사진을 표시 -->
+			    		<img src="./upload/<%= photos[0] %>" class="w-100" style="height: 150px">
+			    	</div>
+			    	<!-- 카드 내용 -->
+			      <div class="card-body">
+			        <h4 class="card-title mb-3 font-soojin"><%= place.getPlace_name() %></h4>
+			        <p class="fs-6 mb-3"><%= place.getPlace_addr() %></p>
+			        <div class="text-center">
+			        	<a href="./PlaceViewAction.pc?num=<%= place.getPlace_no() %>" class="btn btn-primary">상세보기</a>
+			      	</div>
+			      </div>
+			    </div>
+			  </div>
+			
+			<%
+				}
+			%>
+		</div>
+	</div>
+	
 	<jsp:include page="./footer.jsp" />
 	<script type="text/javascript" src="./assets/JS/bootstrap.js"></script>
 </body>

@@ -50,8 +50,9 @@
 		
 		.navbar-nav{
 			position: absolute;
-			top: 80px;
+			top: 70px;
 			right: 0px;
+			z-index: 1;
 		}
 	}
 </style>
@@ -66,9 +67,11 @@
 		<div class="navbar-header">
 			<a class="navbar-brand menu_text" href="${ path }/PlaceListAction.pc?pageNum=1">장소정보</a>
 		</div>
-		<div class="navbar-header">
-			<a class="navbar-brand menu_text" href="${ path }/RecordList.rc">산책기록</a>
-		</div>
+		<!-- 산책기록은 나중에 추가할 것
+			<div class="navbar-header">
+				<a class="navbar-brand menu_text" href="${ path }/RecordList.rc">산책기록</a>
+			</div>
+		-->
 		<div class="navbar-header">
 			<a class="navbar-brand menu_text" href="${ path }/plan/planList.jsp">일정관리</a>
 		</div>
@@ -120,7 +123,6 @@
   const hamburger = document.querySelector(".navbar-nav");
 
   toggleBtn.addEventListener('click', () => {
-    console.log('test');
     hamburger.classList.toggle('active');
   })
 </script>

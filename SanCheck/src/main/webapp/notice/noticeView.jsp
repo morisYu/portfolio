@@ -20,35 +20,35 @@
 	
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3 text-center">상세내용</h1>
+			<h6 class="display-6 fw-bold text-center my-3">공지사항 수정</h5>
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="container" style="height: 540px">
 		<form name="newUpdate" action="NoticeUpdateAction.do?num=<%= notice.getNotice_no() %>&pageNum=<%= nowpage %>"
 			class="form-horizontal" method="post">
-			<div class="form-group row">
+			<div class="form-group row mb-2">
 				<label class="col-sm-2 control-label">작성자</label>
 				<div class="col-sm-3">
 					<input name="name" id="name" class="form-control" value="<%= notice.getNotice_nickname() %>">
 				</div>
 			</div>
 			
-			<div class="form-group row">
+			<div class="form-group row mb-2">
 				<label class="col-sm-2 control-label">제목</label>
 				<div class="col-sm-3">
 					<input name="title" id="title" class="form-control" value="<%= notice.getNotice_title() %>">
 				</div>
 			</div>
 			
-			<div class="form-group row">
+			<div class="form-group row mb-2">
 				<label class="col-sm-2 control-label">내용</label>
 				<div class="col-sm-8" style="word-break: break-all">
 					<textarea name="content" id="content" rows="5" cols="50" style="resize: none;"> <%= notice.getNotice_content() %></textarea>
 				</div>
 			</div>
 			
-			<div class="form-group row">
+			<div class="form-group row mb-2">
 				<div class="col-sm-offset-2 col-sm-10">
 					<c:set var="grade" value="admin" />
 					<c:if test="${ sessionGrade eq grade }">

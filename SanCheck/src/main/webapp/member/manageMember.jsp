@@ -20,9 +20,12 @@
 </head>
 <body>
 	<jsp:include page="../menu.jsp" />
-	<h1 class="text-center">회원 관리</h1>
 	
-	
+	<div class="jumbotron">
+		<div class="container">
+			<h6 class="display-6 fw-bold text-center my-3">회원관리</h5>
+		</div>
+	</div>
 	
 	<div class="container">
 	

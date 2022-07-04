@@ -118,11 +118,17 @@
 		// 이전페이지 이동
 		function prePage(){
 			var num = ${ pageNum } - 1;
+			if(num < 1){
+				num = 1;
+			}
 			location.href = "./PlaceListAction.pc?pageNum=" + num;
 		}
 		// 다음페이지 이동
 		function nextPage(){
 			var num = ${ pageNum} + 1;
+			if(num > ${ endPageIndex }){
+				num = ${ endPageIndex };
+			}
 			location.href = "./PlaceListAction.pc?pageNum=" + num;
 		}
 	</script>

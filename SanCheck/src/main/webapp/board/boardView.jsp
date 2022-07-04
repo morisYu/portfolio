@@ -55,7 +55,12 @@
 				<label class="col-sm-2 control-label">사진</label>
 				<div class="col-sm-5" style="word-break: break-all;">
 					<input name="old_board_photo" type="hidden" value="${ board['board_photo'] }" />
-					<input name="new_board_photo" type="file" class="form-control" />
+					<!-- 게시글 작성자와 현재 로그인 별명 비교해서 수정/삭제 버튼 활성화 -->
+					<c:set var="user_nickname" value="<%= nickname %>" />
+					<c:set var="board_nickname" value="<%= board.getBoard_nickname() %>" />
+					<c:if test="${ user_nickname == board_nickname }" >
+						<input name="new_board_photo" type="file" class="form-control" />
+					</c:if>
 					<!-- 게시글에 있는 사진을 다운로드 가능하도록 함 -->
 					<a download href="./upload/${ board['board_photo'] }">${ board['board_photo'] }</a>
 					<img src="./upload/${ board['board_photo'] }" class="w-100" style="height: 270px"/>

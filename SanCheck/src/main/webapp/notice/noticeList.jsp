@@ -75,7 +75,7 @@
 
 			<ul class="pagination pagination-sm justify-content-center mt-3">
 				<c:set var="pageNum" value="<%= pageNum %>" />
-				<li class="page-item"><a class="page-link px-3" href="./Preview.do?pageNum=${ pageNum }">&laquo;</a></li>
+				<li class="page-item"><button class="page-link px-3" onclick="prePage()">&laquo;</button></li>
 				<c:forEach var="i" begin="1" end="<%= total_page %>">
 					<li class="page-item">
 						<c:choose>
@@ -88,7 +88,7 @@
 						</c:choose>
 					</li>
 				</c:forEach>
-				<li class="page-item"><a class="page-link px-3" href="./Nextview.do?pageNum=${ pageNum }">&raquo;</a></li>
+				<li class="page-item"><button class="page-link px-3" onclick="nextPage()">&raquo;</button></li>
 		  </ul>
 		  
 		  
@@ -105,6 +105,23 @@
 			}
 	
 			location.href = "./BoardWriteForm.do?id=<%=sessionId%>";
+		}
+		
+		// 이전페이지 이동
+		function prePage(){
+			var num = ${ pageNum } - 1;
+			if(num < 1){
+				num = 1;
+			}
+			location.href = "./NoticeListAction.do?pageNum=" + num;
+		}
+		// 다음페이지 이동
+		function nextPage(){
+			var num = ${ pageNum} + 1;
+			if(num > ${ total_page }){
+				num = ${ total_page };
+			}
+			location.href = "./NoticeListAction.do?pageNum=" + num;
 		}
 	</script>
 </body>

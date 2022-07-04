@@ -75,7 +75,7 @@
 							<option value="울산">울산</option>
 							<option value="인천">인천</option>
 							<option value="제주도">제주도</option>
-							<option value="기타">기타</option>
+							<option value="기타" selected>기타</option>
 						</select>
 					</div>
 				</div>
@@ -91,7 +91,7 @@
 							<option value="yahoo.co.kr">yahoo.co.kr</option>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="nate.com">nate.com</option>
-							<option value="">직접입력</option>
+							<option value="" selected>직접입력</option>
 						</select>
 					</div>
 				</div>
@@ -123,6 +123,24 @@
 			if(member.password.value != member.password_confirm.value){
 				alert("비밀번호를 동일하게 입력하세요.");
 				member.password_confirm.focus();
+				return false;
+			}
+			
+			if(!member.name.value){
+				alert("이름을 입력하세요.");
+				member.name.focus();
+				return false;
+			}
+			
+			if(!member.mobile1.value | !member.mobile2.value | !member.mobile3.value){
+				alert("전화번호를 입력하세요.");
+				member.mobile1.focus();
+				return false;
+			}
+			
+			if(!member.email1.value){
+				alert("이메일을 입력하세요.");
+				member.email1.focus();
 				return false;
 			}
 		}
