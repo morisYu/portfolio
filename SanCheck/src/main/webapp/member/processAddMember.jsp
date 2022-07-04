@@ -30,7 +30,7 @@
 
 <sql:setDataSource var="dataSource"
 	url="jdbc:mysql://localhost:3306/sancheck?useSSL=false&serverTimezone=Asia/Seoul"
-	driver="com.mysql.cj.jdbc.Driver" user="root" password="1234"/>
+	driver="com.mysql.cj.jdbc.Driver" user="user" password="user1234"/>
 
 <sql:query var="rs" dataSource="${ dataSource }">
 	SELECT user_id FROM user_tbl

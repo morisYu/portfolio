@@ -143,6 +143,12 @@
 				member.email1.focus();
 				return false;
 			}
+			
+			if(!member.email2.value){
+				alert("이메일을 입력하세요.");
+				member.email2.focus();
+				return false;
+			}
 		}
 		
 		function emailSetting(){

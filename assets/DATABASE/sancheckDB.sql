@@ -6,17 +6,17 @@ USE sancheck;
 DESC user_tbl;
 INSERT INTO user_tbl (user_no, user_id, user_password, user_name, user_nickname, 
 					  user_mobile, user_region, user_email, user_grade, user_join_date)
-	VALUES (NULL, 'admin',  '0000', '유성화', '관리자', '010-1234-5543', '구미', 'YSH@sancheck.com', 'admin', '2022/05/10(10:30:23)'),
-		   (NULL, 'user01', '1111', '이승기', 'LSG', '010-1234-5543', '서울', 'LSG@example.com', 'user', '2022/05/11(11:21:35)'),
-		   (NULL, 'user02', '2222', '성시경', 'SSG', '010-2435-1232', '대구', 'SSG@example.com', 'user', '2022/05/12(15:11:05)'),
-		   (NULL, 'user03', '3333', '김경호', 'KKH', '010-6654-7768', '부산', 'KKH@example.com', 'user', '2022/05/15(09:30:23)'),
-		   (NULL, 'user04', '4444', '강호동', 'KHD', '010-5543-8789', '대전', 'KHD@gooble.co.kr', 'admin', '2022/05/18(10:30:23)'),
-		   (NULL, 'user05', '5555', '윤종신', 'YJS', '010-7821-0023', '구미', 'YJS@gooble.co.kr', 'user', '2022/05/20(10:30:23)'),
-		   (NULL, 'user06', '6666', '조세호', 'JSH', '010-3345-3214', '경기', 'JSH@gooble.co.kr', 'user', '2022/05/21(15:55:11)'),
-		   (NULL, 'user07', '7777', '박재범', 'PJB', '010-5546-7657', '서울', 'PJB@hanmaum.net', 'user', '2022/05/22(20:30:45)'),
-		   (NULL, 'user08', '8888', '신성우', 'SSW', '010-3455-6789', '세종', 'SSW@hanmaum.net', 'user', '2022/06/05(21:15:18)'),
-		   (NULL, 'user09', '9999', '박진영', 'PJY', '010-9876-5432', '대구', 'PJY@hanmaum.net', 'user', '2022/06/10(17:06:42)'),
-           (NULL, 'guest', 'guest', '게스트', 'GUEST', '011-1111-2222', '제주', 'guest@sancheck.com', 'user', '2022/01/01(21:15:18)');
+	VALUES (NULL, 'admin',  '0000', '유성화', '관리자', '010-1234-5543', '구미', 'YSH@sancheck.com', 'admin', '2022/05/10(10:30:23)');
+INSERT INTO user_tbl VALUES (NULL, 'user01', '1111', '이승기', 'LSG', '010-1234-5543', '서울', 'LSG@example.com', 'user', '2022/05/11(11:21:35)');
+INSERT INTO user_tbl VALUES (NULL, 'user02', '2222', '성시경', 'SSG', '010-2435-1232', '대구', 'SSG@example.com', 'user', '2022/05/12(15:11:05)');
+INSERT INTO user_tbl VALUES (NULL, 'user03', '3333', '김경호', 'KKH', '010-6654-7768', '부산', 'KKH@example.com', 'user', '2022/05/15(09:30:23)');
+INSERT INTO user_tbl VALUES (NULL, 'user04', '4444', '강호동', 'KHD', '010-5543-8789', '대전', 'KHD@gooble.co.kr', 'admin', '2022/05/18(10:30:23)');
+INSERT INTO user_tbl VALUES (NULL, 'user05', '5555', '윤종신', 'YJS', '010-7821-0023', '구미', 'YJS@gooble.co.kr', 'user', '2022/05/20(10:30:23)');
+INSERT INTO user_tbl VALUES (NULL, 'user06', '6666', '조세호', 'JSH', '010-3345-3214', '경기', 'JSH@gooble.co.kr', 'user', '2022/05/21(15:55:11)');
+INSERT INTO user_tbl VALUES (NULL, 'user07', '7777', '박재범', 'PJB', '010-5546-7657', '서울', 'PJB@hanmaum.net', 'user', '2022/05/22(20:30:45)');
+INSERT INTO user_tbl VALUES (NULL, 'user08', '8888', '신성우', 'SSW', '010-3455-6789', '세종', 'SSW@hanmaum.net', 'user', '2022/06/05(21:15:18)');
+INSERT INTO user_tbl VALUES (NULL, 'user09', '9999', '박진영', 'PJY', '010-9876-5432', '대구', 'PJY@hanmaum.net', 'user', '2022/06/10(17:06:42)');
+INSERT INTO user_tbl VALUES (NULL, 'guest', 'guest', '게스트', 'GUEST', '011-1111-2222', '제주', 'guest@sancheck.com', 'user', '2022/01/01(21:15:18)');
 
 -- 조회
 SELECT * FROM user_tbl;
@@ -40,18 +40,18 @@ DELETE FROM user_tbl WHERE user_id = 'LSG@example.com';
 
 /************************* 장소정보(place) 테이블 데이터 ***************************/
 DESC place_tbl;
-INSERT INTO place_tbl (place_No,place_write_id, place_name, place_addr, place_tel, place_business_hours, place_other, place_photo)
-	VALUES (NULL, 'admin', '동락공원', '경상북도 구미시 3공단1로 191', '054-480-4612', '24 시간', '입장료: 무료', 'assisi.jpg,beach.jpg,beach-2.jpg'),
-		   (NULL, 'admin', '낙동강체육공원', '경상북도 구미시 낙동제방길 200', '없음', '24 시간', '일부 시설 유료', 'berchtesgaden.jpg,bow-lake.jpg,bridge.jpg'),
-           (NULL, 'admin', '월광수변공원', '대구광역시 달서구 월곡로 5', '053-667-2851', '24 시간', '입장료: 무료', 'bridge-2.jpg,sunset.jpg,christmas.jpg'),
-           (NULL, 'admin', '디아크문화관', '대구 달성군 다사읍 강정본길 57', '053-585-0916', '10:00 ~ 18:00(매주 월요일 휴무)', '입장료: 일부 유료', 'forest.jpg,garden.jpg,gdansk.jpg'),
-           (NULL, 'admin', '북서울꿈의숲', '서울 강북구 월계로 173', '02-2289-4001', '24 시간', '입장료: 무료', 'hd-wallpaper.jpg,hokkaido.jpg,indiana-dunes-state-park.jpg'),
-           (NULL, 'admin', '한강공원', '서울 마포구 마포나루길 467', '02-3780-0601', '24 시간', '입장료: 무료', 'island.png,ireland.jpg,lake.jpg'),
-           (NULL, 'admin', '몽마르뜨 공원', '서울 서초구 서초동 산177-3', '02-2155-6860', '24 시간', '입장료: 무료', 'lin-zhi.jpg,maldives.jpg,mountains.jpg'),
-           (NULL, 'admin', '인천대공원', '인천 남동구 장수동 산79', '042-466-7282', '09:00 ~ 17:30(우천 시 휴관)', '입장료: 무료', 'mountains-2.jpg,new-york.jpg,paris.jpg'),
-           (NULL, 'admin', '유림공원', '대전 유성구 어은로 27', '042-824-4581', '24 시간', '입장료: 무료', 'pathway.jpg,river.jpg,rocky-coast.jpg'),
-           (NULL, 'admin', '은구비공원', '대전 유성구 노은동로 166', '042-611-2718', '24 시간', '입장료: 무료', 'sandstones.jpg,skyline.jpg,stonehenge.jpg'),
-           (NULL, 'admin', '용두산공원', '부산 중구 용두산길 37-55', '051-860-7820', '24 시간', '입장료: 무료', 'sunset.jpg,thin.jpg,towards-the-garden.jpg');
+INSERT INTO place_tbl (place_no, place_write_id, place_name, place_addr, place_tel, place_business_hours, place_other, place_photo)
+	VALUES (NULL, 'admin', '동락공원', '경상북도 구미시 3공단1로 191', '054-480-4612', '24 시간', '입장료: 무료', 'assisi.jpg,beach.jpg,beach-2.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '낙동강체육공원', '경상북도 구미시 낙동제방길 200', '없음', '24 시간', '일부 시설 유료', 'berchtesgaden.jpg,bow-lake.jpg,bridge.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '월광수변공원', '대구광역시 달서구 월곡로 5', '053-667-2851', '24 시간', '입장료: 무료', 'bridge-2.jpg,sunset.jpg,christmas.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '디아크문화관', '대구 달성군 다사읍 강정본길 57', '053-585-0916', '10:00 ~ 18:00(매주 월요일 휴무)', '입장료: 일부 유료', 'forest.jpg,garden.jpg,gdansk.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '북서울꿈의숲', '서울 강북구 월계로 173', '02-2289-4001', '24 시간', '입장료: 무료', 'hd-wallpaper.jpg,hokkaido.jpg,indiana-dunes-state-park.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '한강공원', '서울 마포구 마포나루길 467', '02-3780-0601', '24 시간', '입장료: 무료', 'island.png,ireland.jpg,lake.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '몽마르뜨 공원', '서울 서초구 서초동 산177-3', '02-2155-6860', '24 시간', '입장료: 무료', 'lin-zhi.jpg,maldives.jpg,mountains.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '인천대공원', '인천 남동구 장수동 산79', '042-466-7282', '09:00 ~ 17:30(우천 시 휴관)', '입장료: 무료', 'mountains-2.jpg,new-york.jpg,paris.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '유림공원', '대전 유성구 어은로 27', '042-824-4581', '24 시간', '입장료: 무료', 'pathway.jpg,river.jpg,rocky-coast.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '은구비공원', '대전 유성구 노은동로 166', '042-611-2718', '24 시간', '입장료: 무료', 'sandstones.jpg,skyline.jpg,stonehenge.jpg');
+INSERT INTO place_tbl VALUES (NULL, 'admin', '용두산공원', '부산 중구 용두산길 37-55', '051-860-7820', '24 시간', '입장료: 무료', 'sunset.jpg,thin.jpg,towards-the-garden.jpg');
 
 -- 데이터 전체 조회
 SELECT * FROM place_tbl ORDER BY place_no DESC;
@@ -62,18 +62,18 @@ SELECT * FROM place_tbl WHERE place_name LIKE '%공원%';
 /************************* 일정관리(plan) 테이블 데이터 ***************************/
 DESC plan_tbl;
 INSERT INTO plan_tbl (plan_no, plan_id, plan_kind, plan_color, plan_content, plan_reg_date)
-	VALUES (NULL, 'admin', '기념일', '#FF0000', '세계야생동물의날', '2022/03/03'),
-		   (NULL, 'admin', '기념일', '#FF0000', '국제강아지의날', '2022/03/23'),
-           (NULL, 'admin', '기념일', '#FF0000', '세계실험동물의날', '2022/04/24'),
-           (NULL, 'admin', '기념일', '#FF0000', '국제떠돌이동물의날', '2022/08/19'),
-           (NULL, 'admin', '기념일', '#FF0000', '테스트의날', '2022/08/19'),
-           (NULL, 'user02', '병원', '#FF00DD', '건강검진', '2022/05/05'),
-           (NULL, 'user03', '모임', '#FF00DD', '강사모 모임', '2022/04/05'),
-           (NULL, 'user01', '여행', '#FF00DD', '부산 펜션', '2022/07/08'),
-           (NULL, 'user01', '산책', '#FF00DD', '동락공원산책', '2022/03/15'),
-           (NULL, 'user05', '일반', '#FF00DD', '일산펫쇼', '2022/05/28'),
-           (NULL, 'user02', '접종', '#FF00DD', '심장사상충접종', '2022/10/05'),
-           (NULL, 'user04', '일반', '#FF00DD', '목욕', '2022/07/04');
+	VALUES (NULL, 'admin', '기념일', '#FF0000', '세계야생동물의날', '2022/03/03');
+INSERT INTO plan_tbl VALUES (NULL, 'admin', '기념일', '#FF0000', '국제강아지의날', '2022/03/23');
+INSERT INTO plan_tbl VALUES (NULL, 'admin', '기념일', '#FF0000', '세계실험동물의날', '2022/04/24');
+INSERT INTO plan_tbl VALUES (NULL, 'admin', '기념일', '#FF0000', '국제떠돌이동물의날', '2022/07/10');
+INSERT INTO plan_tbl VALUES (NULL, 'user02', '병원', '#FF00DD', '건강검진', '2022/05/05');
+INSERT INTO plan_tbl VALUES (NULL, 'user03', '모임', '#FF00DD', '강사모 모임', '2022/04/05');
+INSERT INTO plan_tbl VALUES (NULL, 'user01', '여행', '#FF00DD', '부산 펜션', '2022/07/08');
+INSERT INTO plan_tbl VALUES (NULL, 'admin', '기념일', '#FF0000', '테스트의날', '2022/08/19');
+INSERT INTO plan_tbl VALUES (NULL, 'user01', '산책', '#FF00DD', '동락공원산책', '2022/03/15');
+INSERT INTO plan_tbl VALUES (NULL, 'user05', '일반', '#FF00DD', '일산펫쇼', '2022/05/28');
+INSERT INTO plan_tbl VALUES (NULL, 'user02', '접종', '#FF00DD', '심장사상충접종', '2022/10/05');
+INSERT INTO plan_tbl VALUES (NULL, 'user04', '일반', '#FF00DD', '목욕', '2022/07/04');
 
 -- 조회
 SELECT * FROM plan_tbl;

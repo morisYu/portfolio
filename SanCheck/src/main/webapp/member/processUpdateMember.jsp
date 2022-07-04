@@ -24,7 +24,7 @@
 
 <sql:setDataSource var="dataSource"
 	url="jdbc:mysql://localhost:3306/sancheck?useSSL=false&serverTimezone=Asia/Seoul"
-	driver="com.mysql.cj.jdbc.Driver" user="root" password="1234"/>
+	driver="com.mysql.cj.jdbc.Driver" user="user" password="user1234"/>
 
 <sql:update dataSource="${ dataSource }" var="resultSet">
 	UPDATE user_tbl SET user_password = ?, user_name = ?, user_nickname = ?, user_mobile = ?, 

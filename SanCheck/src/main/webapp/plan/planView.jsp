@@ -51,7 +51,12 @@
 					<label for="plan_kind">종류</label>
 				</div>
 				<div class="col-sm-8">
-					<input type="text" name="plan_kind" id="plan_kind" class="form-control w-100" value="<%= plan.getPlan_kind() %>" >
+					<input type="radio" name="plan_kind" id="plan_kind" value="병원"><span class="fs-6">&nbsp;병원</span>
+					<input type="radio" name="plan_kind" id="plan_kind" value="미용"><span class="fs-6">&nbsp;미용</span>
+					<input type="radio" name="plan_kind" id="plan_kind" value="산책"><span class="fs-6">&nbsp;산책</span><br>
+					<input type="radio" name="plan_kind" id="plan_kind" value="여행"><span class="fs-6">&nbsp;여행</span>
+					<input type="radio" name="plan_kind" id="plan_kind" value="모임"><span class="fs-6">&nbsp;모임</span>
+					<input type="radio" name="plan_kind" id="plan_kind" value="기타"><span class="fs-6">&nbsp;기타</span>
 				</div>
 			</div>
 			
@@ -97,7 +102,18 @@
 		colorText.addEventListener('change', () => {
 			color.innerHTML = colorText.value;
 		});
-	
+		
+		const checkedKind = document.getElementsByName('plan_kind');
+		var count = checkedKind.length;
+		var kind = '<%= plan.getPlan_kind() %>';
+		console.log('라디오버튼 갯수 ', count);
+		console.log('종류: ', kind);
+		for(var i=0; i < count; i++) {
+			console.log(checkedKind[i].value);
+			if(checkedKind[i].value == kind){
+				checkedKind[i].checked = true;
+			}
+		}
 	</script>
 </body>
 </html>

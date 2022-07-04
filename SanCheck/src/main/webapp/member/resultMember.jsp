@@ -28,6 +28,8 @@
 					out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");
 				} else if (msg.equals("3")){
 					out.println(" <h2 class='alert alert-danger'>아이디가 중복됩니다.</h2>");
+				} else if (msg.equals("4")){
+					out.println(" <h2 class='alert alert-danger'>해당 아이디가 없습니다.</h2>");
 				}
 			} else {
 				out.println("<h2 class='alert alert-danger'>회원정보가 삭제되었습니다.</h2>");

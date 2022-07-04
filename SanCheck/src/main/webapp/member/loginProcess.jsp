@@ -42,7 +42,7 @@
 	}
 	
 	if(user_id == null){
-		response.sendRedirect("/SanCheck/member/resultMember.jsp?msg=3");
+		response.sendRedirect("/SanCheck/member/resultMember.jsp?msg=4");
 	}else{
 		response.sendRedirect("/SanCheck/index.jsp");
 	}

@@ -47,9 +47,7 @@
 </head>
 <body>
 	<jsp:include page="./menu.jsp" />
-	<%
-		String realPath = request.getServletContext().getRealPath("/upload");
-	%>
+
 	<!-- carousel -->
 	<div class="container-fluid bg-secondary px-0" >
 		<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -102,13 +100,7 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- 경로 확인 부분
-	<div class="container">
-		<p>나중에 이 부분은 삭제할 것(파일 저장 경로 확인용) </p>
-		<%= realPath = request.getServletContext().getRealPath("/upload") %>
-	</div>
-	 -->
+	 
 	<!-- 장소목록 -->
 	<div class="container my-5">
 		<div class="row">
